@@ -1655,6 +1655,12 @@ Theme Primary Color
 .theme-primary .badge-primary-light {
   background-color: #d5e5f4;
   color: #2d9bda; }
+.theme-primary .badge-success-light {
+  background-color: #6ed47c;
+  color: #37f31e; }
+.theme-primary .badge-prepared-light {
+  background-color: #f9a1fc;
+  color: #f31ee8; }
 .theme-primary .badge-primary-light[href]:hover, .theme-primary .badge-primary-light[href]:focus {
   background-color: #adcce9; }
 .theme-primary .badge-secondary-light {
