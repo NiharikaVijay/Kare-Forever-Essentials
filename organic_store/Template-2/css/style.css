@@ -884,16 +884,6 @@ select.g-select[option="selected"] {
 }
 
 
-
-
-
-
-
-
-
-
-
-
 .menuzord-menu ul.dropdown li a {
   padding: 0 15px;
   line-height: 50px;
@@ -3342,7 +3332,7 @@ footer {
   background: #363636;
 }
 footer .main_footer .footer_logo a.tran3s {
-    width: 150px;
+    width: 50px;
     line-height: 50px;
     text-align: center;
     color: #fff;
