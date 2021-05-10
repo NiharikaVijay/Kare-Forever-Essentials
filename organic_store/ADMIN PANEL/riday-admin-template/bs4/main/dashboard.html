@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from multipurposethemes.com/admin/riday-admin-template/bs4/main/order.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 May 2021 18:13:46 GMT -->
+<!-- Mirrored from multipurposethemes.com/admin/riday-admin-template/bs4/main/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 May 2021 18:12:32 GMT -->
 
 <head>
 	<meta charset="utf-8">
@@ -9,9 +9,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<link rel="icon" href="https://multipurposethemes.com/admin/riday-admin-template/bs4/images/favicon.ico">
+	<link rel="icon" href="../images/favicon.png">
 
-	<title>KARE Admin | Customer List</title>
+	<title>Admin | Dashboard </title>
 
 	<!-- Vendors Style-->
 	<link rel="stylesheet" href="css/vendors_css.css">
@@ -39,8 +39,8 @@
 				<a href="index.html" class="logo">
 					<!-- logo-->
 					<div class="logo-lg">
-						<span class="light-logo"><img src="../images/logo-dark-text.png" alt="logo"></span>
-						<span class="dark-logo"><img src="../images/logo-light-text.png" alt="logo"></span>
+						<span class="light-logo"><img src="../images/logo.png" alt="logo"></span>
+						<span class="dark-logo"><img src="../images/logo.png" alt="logo"></span>
 					</div>
 				</a>
 			</div>
@@ -322,64 +322,45 @@
 						<!-- sidebar menu-->
 						<ul class="sidebar-menu" data-widget="tree">
 							<li>
-								<a href="index.html">
+								<a href="dashboard.html">
 									<i class="icon-Home"></i>
 									<span>Dashboard</span>
 								</a>
 							</li>
-							<li class="treeview">
-								<a href="#">
+
+							<li>
+								<a href="order_index.html">
 									<i class="icon-Clipboard-check"><span class="path1"></span><span
 											class="path2"></span><span class="path3"></span></i>
-									<span>Order</span>
-									<span class="pull-right-container">
-										<i class="fa fa-angle-right pull-right"></i>
-									</span>
+									<span>Orders</span>
 								</a>
-								<ul class="treeview-menu">
-									<li><a href="order.html"><i class="icon-Commit"><span class="path1"></span><span
-													class="path2"></span></i>Order List</a></li>
-									<li><a href="order_details.html"><i class="icon-Commit"><span
-													class="path1"></span><span class="path2"></span></i>Order
-											Details</a></li>
-								</ul>
 							</li>
 							<li class="treeview">
 								<a href="#">
 									<i class="icon-Dinner"><span class="path1"></span><span class="path2"></span><span
 											class="path3"></span><span class="path4"></span><span
 											class="path5"></span></i>
-									<span>Menus</span>
+									<span>Products</span>
 									<span class="pull-right-container">
 										<i class="fa fa-angle-right pull-right"></i>
 									</span>
 								</a>
 								<ul class="treeview-menu">
-									<li><a href="add_new_menu.html"><i class="icon-Commit"><span
-													class="path1"></span><span class="path2"></span></i>Add New Menu</a>
-									</li>
-									<li><a href="menu_list.html"><i class="icon-Commit"><span class="path1"></span><span
-													class="path2"></span></i>Menu List</a></li>
-									<li><a href="menu_categories.html"><i class="icon-Commit"><span
+									<li><a href="product_add.html"><i class="icon-Commit"><span
+													class="path1"></span><span class="path2"></span></i>Add New
+											Product</a></li>
+									<li><a href="product_index.html"><i class="icon-Commit"><span class="path1"></span><span
+													class="path2"></span></i>Product List</a></li>
+									<li><a href="categories_index.html"><i class="icon-Commit"><span
 													class="path1"></span><span class="path2"></span></i>Categories</a>
 									</li>
 								</ul>
 							</li>
-							<li class="treeview">
-								<a href="#">
+							<li>
+								<a href="customer_index.html">
 									<i class="icon-Group"><span class="path1"></span><span class="path2"></span></i>
 									<span>Customer</span>
-									<span class="pull-right-container">
-										<i class="fa fa-angle-right pull-right"></i>
-									</span>
 								</a>
-								<ul class="treeview-menu">
-									<li><a href="add_new_menu.html"><i class="icon-Commit"><span
-													class="path1"></span><span class="path2"></span></i>Customer</a>
-									</li>
-									<li><a href="members.html"><i class="icon-Commit"><span class="path1"></span><span
-													class="path2"></span></i>Members</a></li>
-								</ul>
 							</li>
 							<li>
 								<a href="analysis.html">
@@ -388,40 +369,7 @@
 									<span>Analysis</span>
 								</a>
 							</li>
-							<li class="treeview">
-								<a href="#">
-									<i class="icon-Cart"><span class="path1"></span><span class="path2"></span></i>
-									<span>Online Store</span>
-									<span class="pull-right-container">
-										<i class="fa fa-angle-right pull-right"></i>
-									</span>
-								</a>
-								<ul class="treeview-menu">
-									<li><a href="ecommerce_products.html"><i class="icon-Commit"><span
-													class="path1"></span><span class="path2"></span></i>Products</a>
-									</li>
-									<li><a href="ecommerce_cart.html"><i class="icon-Commit"><span
-													class="path1"></span><span class="path2"></span></i>Products
-											Cart</a></li>
-									<li><a href="ecommerce_products_edit.html"><i class="icon-Commit"><span
-													class="path1"></span><span class="path2"></span></i>Products
-											Edit</a></li>
-									<li><a href="ecommerce_details.html"><i class="icon-Commit"><span
-													class="path1"></span><span class="path2"></span></i>Product
-											Details</a></li>
-									<li><a href="ecommerce_orders.html"><i class="icon-Commit"><span
-													class="path1"></span><span class="path2"></span></i>Product
-											Orders</a></li>
-									<li><a href="ecommerce_checkout.html"><i class="icon-Commit"><span
-													class="path1"></span><span class="path2"></span></i>Products
-											Checkout</a></li>
-									<li><a href="invoice.html"><i class="icon-Commit"><span class="path1"></span><span
-													class="path2"></span></i>Invoice</a></li>
-									<li><a href="invoicelist.html"><i class="icon-Commit"><span
-													class="path1"></span><span class="path2"></span></i>Invoice List</a>
-									</li>
-								</ul>
-							</li>
+							
 							<li class="header">UI & Pages</li>
 							<li class="treeview">
 								<a href="#">
@@ -929,7 +877,7 @@
 								</ul>
 							</li>
 						</ul>
-						<div class="sidebar-widgets">
+						<!-- <div class="sidebar-widgets">
 							<div class="mx-25 mb-30 pb-20 side-bx bg-primary bg-food-dark rounded20">
 								<div class="text-center">
 									<img src="../images/res-menu.png" class="sideimg" alt="">
@@ -942,7 +890,7 @@
 							<div class="copyright text-left m-25">
 								<p><strong class="d-block">Riday Admin Dashboard</strong> © 2021 All Rights Reserved</p>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</section>
@@ -951,170 +899,428 @@
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 			<div class="container-full">
-				<div class="content-header">
-					<div class="d-flex align-items-center">
-						<div class="mr-auto">
-							<h3 class="page-title">Customer List</h3>
-							<div class="d-inline-block align-items-center">
-								<nav>
-									<ol class="breadcrumb">
-										<li class="breadcrumb-item"><a href="#"><i class="mdi mdi-home-outline"></i></a>
-										</li>
-										<li class="breadcrumb-item" aria-current="page">Customer</li>
-										<li class="breadcrumb-item active" aria-current="page">Customer List</li>
-									</ol>
-								</nav>
-							</div>
-						</div>
-					</div>
-				</div>
 				<!-- Main content -->
 				<section class="content">
 					<div class="row">
-						<div class="col-12">
+						<div class="col-xxxl-3 col-lg-6 col-12">
 							<div class="box">
+								<div class="box-body">
+									<div class="d-flex align-items-start">
+										<div>
+											<img src="../images/food/online-order-1.png" class="w-80 mr-20" alt="" />
+										</div>
+										<div>
+											<h2 class="my-0 font-weight-700">89</h2>
+											<p class="text-fade mb-0">Total Order</p>
+											<p class="font-size-12 mb-0 text-success"><span
+													class="badge badge-pill badge-success-light mr-5"><i
+														class="fa fa-arrow-up"></i></span>3% (15 Days)</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xxxl-3 col-lg-6 col-12">
+							<div class="box">
+								<div class="box-body">
+									<div class="d-flex align-items-start">
+										<div>
+											<img src="../images/food/online-order-2.png" class="w-80 mr-20" alt="" />
+										</div>
+										<div>
+											<h2 class="my-0 font-weight-700">899</h2>
+											<p class="text-fade mb-0">Total Delivered</p>
+											<p class="font-size-12 mb-0 text-success"><span
+													class="badge badge-pill badge-success-light mr-5"><i
+														class="fa fa-arrow-up"></i></span>8% (15 Days)</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xxxl-3 col-lg-6 col-12">
+							<div class="box">
+								<div class="box-body">
+									<div class="d-flex align-items-start">
+										<div>
+											<img src="../images/food/online-order-3.png" class="w-80 mr-20" alt="" />
+										</div>
+										<div>
+											<h2 class="my-0 font-weight-700">59</h2>
+											<p class="text-fade mb-0">Total Canceled</p>
+											<p class="font-size-12 mb-0 text-primary"><span
+													class="badge badge-pill badge-primary-light mr-5"><i
+														class="fa fa-arrow-down"></i></span>2% (15 Days)</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xxxl-3 col-lg-6 col-12">
+							<div class="box">
+								<div class="box-body">
+									<div class="d-flex align-items-start">
+										<div>
+											<img src="../images/food/online-order-4.png" class="w-80 mr-20" alt="" />
+										</div>
+										<div>
+											<h2 class="my-0 font-weight-700">$789k</h2>
+											<p class="text-fade mb-0">Total Revenue</p>
+											<p class="font-size-12 mb-0 text-primary"><span
+													class="badge badge-pill badge-primary-light mr-5"><i
+														class="fa fa-arrow-down"></i></span>12% (15 Days)</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xxxl-7 col-xl-6 col-lg-6 col-12">
+							<div class="box">
+								<div class="box-body">
+									<div class="d-flex justify-content-between">
+										<div>
+											<h4 class="box-title mb-0">Daily Revenue</h4>
+											<p class="mb-0 text-mute">Lorem ipsum dolor</p>
+										</div>
+										<div class="text-right">
+											<h3 class="box-title mb-0 font-weight-700">$ 154K</h3>
+											<p class="mb-0"><span class="text-success">+ 1.5%</span> than last week</p>
+										</div>
+									</div>
+									<div id="chart" class="mt-20"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xxxl-5 col-xl-6 col-lg-6 col-12">
+							<div class="box">
+								<div class="box-body">
+									<h4 class="box-title">Customer Flow</h4>
+									<div class="d-md-flex d-block justify-content-between">
+										<div>
+											<h3 class="mb-0 font-weight-700">$2,780k</h3>
+											<p class="mb-0 text-primary"><small>In Restaurant</small></p>
+										</div>
+										<div>
+											<h3 class="mb-0 font-weight-700">$1,410k</h3>
+											<p class="mb-0 text-danger"><small>Online Order</small></p>
+										</div>
+									</div>
+									<div id="yearly-comparison"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12">
+							<div class="box bg-transparent no-shadow">
+								<div class="box-header pt-0 px-0">
+									<h4 class="box-title">
+										Customer Review
+									</h4>
+								</div>
 								<div class="box-body px-0">
-									<div class="table-responsive rounded card-table">
-										<table class="table border-no" id="example1">
-											<thead>
-												<tr>
-													<th>Customer ID</th>
-													<th>Name</th>
-													<th>Email</th>
-													<th>Contact No.</th>
-													<th>Orders made</th>
-													<th>Items in Cart</th>
-													<th>Items in Wishlist</th>
-													<th>Last Order</th>
-													<th></th>
-												</tr>
-											</thead>
-											<tbody>
-												<a href="order_details.html">
-													<tr class="hover-primary">
-														<td>#245879</td>
-														<td>Aaliyah clark</td>
-														<td>aaliyahclark@gmail.com</td>
-														<td>9110837927</td>
-														<td>10</td>
-														<td>5</td>
-														<td>4</td>
-														<td>
-															<span class="badge badge-pill badge-danger-light">New
-																Order</span>
-														</td>
-														<td>
-															<div class="btn-group">
-																<a class="hover-primary dropdown-toggle no-caret"
-																	data-toggle="dropdown"><i
-																		class="fa fa-ellipsis-h"></i></a>
-																<div class="dropdown-menu">
-																	<a class="dropdown-item" href="#">Accept Order</a>
-																	<a class="dropdown-item" href="#">Reject Order</a>
-																</div>
-															</div>
-														</td>
-													</tr>
-												</a>
-
-												<tr class="hover-primary">
-													<td>#245880</td>
-													<td>Boone Doe</td>
-													<td>boonedoe@gmail.com</td>
-													<td>9110837927</td>
-													<td>12</td>
-													<td>5</td>
-													<td>4</td>
-													<td>
-														<span class="badge badge-pill badge-info-light">Accepted</span>
-													</td>
-													<td>
-														<div class="btn-group">
-															<a class="hover-primary dropdown-toggle no-caret"
-																data-toggle="dropdown"><i
-																	class="fa fa-ellipsis-h"></i></a>
-															<div class="dropdown-menu">
-																<a class="dropdown-item" href="#">Accept Order</a>
-																<a class="dropdown-item" href="#">Reject Order</a>
+									<div class="review-slider owl-carousel">
+										<div class="box p-0">
+											<div class="box-body">
+												<div class="d-flex align-items-center">
+													<div class="review-tx">
+														<div class="d-flex mb-10">
+															<img src="../images/avatar/1.jpg"
+																class="w-40 h-40 mr-10 rounded100" alt="" />
+															<div>
+																<p class="mb-0">Johen Doe</p>
+																<p class="mb-0"><small class="text-mute">1 day
+																		ago</small></p>
 															</div>
 														</div>
-													</td>
-												</tr>
-												<tr class="hover-primary">
-													<td>#245881</td>
-													<td>Carlie Paton</td>
-													<td>carliepaton@gmail.com</td>
-													<td>9110837927</td>
-													<td>3</td>
-													<td>5</td>
-													<td>4</td>
-													<td>
-														<span class="badge badge-pill badge-warning-light">Out for
-															Delivery</span>
-													</td>
-													<td>
-														<div class="btn-group">
-															<a class="hover-primary dropdown-toggle no-caret"
-																data-toggle="dropdown"><i
-																	class="fa fa-ellipsis-h"></i></a>
-															<div class="dropdown-menu">
-																<a class="dropdown-item" href="#">Accept Order</a>
-																<a class="dropdown-item" href="#">Reject Order</a>
+														<p class="mb-10">Lorem ipsum dolor sit amet, consectetur
+															adipiscing elit, sed do eiusmod tempor incididunt ut labore
+															et dolore magna aliqua.. </p>
+														<div class="d-flex text-warning align-items-center">
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star-half-empty"></i>
+															<span class="text-fade ml-10">4.5</span>
+														</div>
+													</div>
+													<img src="../images/food/dish-1.png" class="dish-img" alt="" />
+												</div>
+											</div>
+										</div>
+										<div class="box p-0">
+											<div class="box-body">
+												<div class="d-flex align-items-center">
+													<div class="review-tx">
+														<div class="d-flex mb-10">
+															<img src="../images/avatar/2.jpg"
+																class="w-40 h-40 mr-10 rounded100" alt="" />
+															<div>
+																<p class="mb-0">Mical Doe</p>
+																<p class="mb-0"><small class="text-mute">2 day
+																		ago</small></p>
 															</div>
 														</div>
-													</td>
-												</tr>
-												<tr class="hover-primary">
-													<td>#245882</td>
-													<td>Delilah</td>
-													<td>delilah@gmail.com</td>
-													<td>9110837927</td>
-													<td>14</td>
-													<td>4</td>
-													<td>4</td>
-													<td>
-														<span
-															class="badge badge-pill badge-success-light">Delivered</span>
-													</td>
-													<td>
-														<div class="btn-group">
-															<a class="hover-primary dropdown-toggle no-caret"
-																data-toggle="dropdown"><i
-																	class="fa fa-ellipsis-h"></i></a>
-															<div class="dropdown-menu">
-																<a class="dropdown-item" href="#">Accept Order</a>
-																<a class="dropdown-item" href="#">Reject Order</a>
+														<p class="mb-10">Lorem ipsum dolor sit amet, consectetur
+															adipiscing elit, sed do eiusmod tempor incididunt ut labore
+															et dolore magna aliqua.. </p>
+														<div class="d-flex text-warning align-items-center">
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star-half-empty"></i>
+															<span class="text-fade ml-10">4.5</span>
+														</div>
+													</div>
+													<img src="../images/food/dish-2.png" class="dish-img" alt="" />
+												</div>
+											</div>
+										</div>
+										<div class="box p-0">
+											<div class="box-body">
+												<div class="d-flex align-items-center">
+													<div class="review-tx">
+														<div class="d-flex mb-10">
+															<img src="../images/avatar/3.jpg"
+																class="w-40 h-40 mr-10 rounded100" alt="" />
+															<div>
+																<p class="mb-0">Stepni Doe</p>
+																<p class="mb-0"><small class="text-mute">3 day
+																		ago</small></p>
 															</div>
 														</div>
-													</td>
-												</tr>
-												<tr class="hover-primary">
-													<td>#245883</td>
-													<td>Hannah Doe</td>
-													<td>hannahdoe@gmail.com</td>
-													<td>9110837927</td>
-													<td>3</td>
-													<td>5</td>
-													<td>4</td>
-													<td>
-														<span
-															class="badge badge-pill badge-primary-light">Cancelled</span>
-													</td>
-													<td>
-														<div class="btn-group">
-															<a class="hover-primary dropdown-toggle no-caret"
-																data-toggle="dropdown"><i
-																	class="fa fa-ellipsis-h"></i></a>
-															<div class="dropdown-menu">
-																<a class="dropdown-item" href="#">Accept Order</a>
-																<a class="dropdown-item" href="#">Reject Order</a>
+														<p class="mb-10">Lorem ipsum dolor sit amet, consectetur
+															adipiscing elit, sed do eiusmod tempor incididunt ut labore
+															et dolore magna aliqua.. </p>
+														<div class="d-flex text-warning align-items-center">
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star-half-empty"></i>
+															<span class="text-fade ml-10">4.5</span>
+														</div>
+													</div>
+													<img src="../images/food/dish-3.png" class="dish-img" alt="" />
+												</div>
+											</div>
+										</div>
+										<div class="box p-0">
+											<div class="box-body">
+												<div class="d-flex align-items-center">
+													<div class="review-tx">
+														<div class="d-flex mb-10">
+															<img src="../images/avatar/4.jpg"
+																class="w-40 h-40 mr-10 rounded100" alt="" />
+															<div>
+																<p class="mb-0">Rehan Doe</p>
+																<p class="mb-0"><small class="text-mute">4 day
+																		ago</small></p>
 															</div>
 														</div>
-													</td>
-												</tr>
-												
-											</tbody>
-										</table>
+														<p class="mb-10">Lorem ipsum dolor sit amet, consectetur
+															adipiscing elit, sed do eiusmod tempor incididunt ut labore
+															et dolore magna aliqua.. </p>
+														<div class="d-flex text-warning align-items-center">
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star-half-empty"></i>
+															<span class="text-fade ml-10">4.5</span>
+														</div>
+													</div>
+													<img src="../images/food/dish-4.png" class="dish-img" alt="" />
+												</div>
+											</div>
+										</div>
+										<div class="box p-0">
+											<div class="box-body">
+												<div class="d-flex align-items-center">
+													<div class="review-tx">
+														<div class="d-flex mb-10">
+															<img src="../images/avatar/5.jpg"
+																class="w-40 h-40 mr-10 rounded100" alt="" />
+															<div>
+																<p class="mb-0">Himesh Doe</p>
+																<p class="mb-0"><small class="text-mute">1 day
+																		ago</small></p>
+															</div>
+														</div>
+														<p class="mb-10">Lorem ipsum dolor sit amet, consectetur
+															adipiscing elit, sed do eiusmod tempor incididunt ut labore
+															et dolore magna aliqua.. </p>
+														<div class="d-flex text-warning align-items-center">
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star-half-empty"></i>
+															<span class="text-fade ml-10">4.5</span>
+														</div>
+													</div>
+													<img src="../images/food/dish-5.png" class="dish-img" alt="" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xxxl-5 col-12">
+							<div class="box">
+								<div class="box-header no-border">
+									<h4 class="box-title">
+										Trending Keyword
+										<small class="subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing
+											elit</small>
+									</h4>
+								</div>
+								<div class="box-body pt-0">
+									<div>
+										<div class="progress mb-5">
+											<div class="progress-bar progress-bar-primary progress-bar-striped"
+												role="progressbar" aria-valuenow="80" aria-valuemin="0"
+												aria-valuemax="100" style="width: 80%">
+											</div>
+										</div>
+										<div class="d-flex justify-content-between">
+											<p class="text-primary">#paneer</p>
+											<p class="text-mute">420 times</p>
+										</div>
+									</div>
+									<div>
+										<div class="progress mb-5">
+											<div class="progress-bar progress-bar-primary progress-bar-striped"
+												role="progressbar" aria-valuenow="50" aria-valuemin="0"
+												aria-valuemax="100" style="width: 50%">
+											</div>
+										</div>
+										<div class="d-flex justify-content-between">
+											<p class="text-primary">#breakfast</p>
+											<p class="text-mute">150 times</p>
+										</div>
+									</div>
+									<div>
+										<div class="progress mb-5">
+											<div class="progress-bar progress-bar-primary progress-bar-striped"
+												role="progressbar" aria-valuenow="40" aria-valuemin="0"
+												aria-valuemax="100" style="width: 40%">
+											</div>
+										</div>
+										<div class="d-flex justify-content-between">
+											<p class="text-primary">#tea</p>
+											<p class="text-mute">120 times</p>
+										</div>
+									</div>
+								</div>
+								<div class="box-body pt-0">
+									<h4 class="box-title d-block">
+										Others Tag
+									</h4>
+									<div class="d-inline-block">
+										<a href="#"
+											class="waves-effect waves-light btn btn-outline btn-rounded btn-primary mb-5">#panjabifood</a>
+										<a href="#"
+											class="waves-effect waves-light btn btn-outline btn-rounded btn-primary mb-5">#chainissfood</a>
+										<a href="#"
+											class="waves-effect waves-light btn btn-outline btn-rounded btn-primary mb-5">#pizza</a>
+										<a href="#"
+											class="waves-effect waves-light btn btn-outline btn-rounded btn-primary mb-5">#burgar</a>
+										<a href="#"
+											class="waves-effect waves-light btn btn-outline btn-rounded btn-primary mb-5">#coffee</a>
+										<a href="#"
+											class="waves-effect waves-light btn btn-outline btn-rounded btn-primary mb-5">20+</a>
+									</div>
+								</div>
+							</div>
+							<div class="box">
+								<div class="box-header no-border">
+									<h4 class="box-title">
+										Today's Special
+									</h4>
+								</div>
+								<div class="box-body pt-0">
+									<div class="mb-5">
+										<img class="rounded img-fluid" src="../images/food/img1.jpg" alt="">
+									</div>
+									<div class="info-content">
+										<h5 class="my-15"><a href="ecommerce_details.html">Spicy Pizza with Extra
+												Cheese</a></h5>
+										<div class="d-flex justify-content-between align-items-center">
+											<h4 class="mb-0 text-black">$6.53</h4>
+											<div class="d-flex align-items-center">
+												<i class="fa fa-heart text-primary"></i>
+												<h6 class="text-black mb-0">256k</h6>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xxxl-7 col-12">
+							<div class="box">
+								<div class="box-header no-border pb-0">
+									<h4 class="box-title">Delivery Map</h4>
+								</div>
+								<div class="box-body">
+									<div id="chartdiv" class="h-400"></div>
+									<div class="pt-30">
+										<h4 class="box-title mb-20">Upcoming Shipping Schedule</h4>
+										<div class="bb-1 pb-10 mb-20 d-lg-flex d-block justify-content-between">
+											<div class="d-flex">
+												<img src="../images/avatar/4.jpg" class="w-40 h-40 mr-10 rounded100"
+													alt="">
+												<div>
+													<p class="mb-0">Stepni Doe <span class="text-primary ml-10">(3
+															items)</span></p>
+													<p class="mb-0"><small class="text-mute">will be shipping on 10:12
+															am</small></p>
+												</div>
+											</div>
+											<div class="d-flex align-items-center">
+												<p class="mb-0 mr-10">8817 Sand Pine Dr, Navarre, FL, 32566</p>
+												<div class="bg-info rounded-circle w-30 h-30 l-h-30 text-center">
+													<i class="fa fa-location-arrow"></i>
+												</div>
+											</div>
+										</div>
+										<div class="bb-1 pb-10 mb-20  d-lg-flex d-block justify-content-between">
+											<div class="d-flex">
+												<img src="../images/avatar/5.jpg" class="w-40 h-40 mr-10 rounded100"
+													alt="">
+												<div>
+													<p class="mb-0">Mical clark <span class="text-primary ml-10">(2
+															items)</span></p>
+													<p class="mb-0"><small class="text-mute">will be shipping on 12:12
+															am</small></p>
+												</div>
+											</div>
+											<div class="d-flex align-items-center">
+												<p class="mb-0 mr-10">8817 Sand Pine Dr, Navarre, FL, 32566</p>
+												<div class="bg-info rounded-circle w-30 h-30 l-h-30 text-center">
+													<i class="fa fa-location-arrow"></i>
+												</div>
+											</div>
+										</div>
+										<div class="bb-1 pb-10  d-lg-flex d-block justify-content-between">
+											<div class="d-flex">
+												<img src="../images/avatar/7.jpg" class="w-40 h-40 mr-10 rounded100"
+													alt="">
+												<div>
+													<p class="mb-0">Steponi mohan <span class="text-primary ml-10">(7
+															items)</span></p>
+													<p class="mb-0"><small class="text-mute">will be shipping on 11:12
+															am</small></p>
+												</div>
+											</div>
+											<div class="d-flex align-items-center">
+												<p class="mb-0 mr-10">8817 Sand Pine Dr, Navarre, FL, 32566</p>
+												<div class="bg-info rounded-circle w-30 h-30 l-h-30 text-center">
+													<i class="fa fa-location-arrow"></i>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -1270,7 +1476,6 @@
 			</div>
 			&copy; 2021 <a href="https://www.multipurposethemes.com/">Multipurpose Themes</a>. All Rights Reserved.
 		</footer>
-
 
 		<!-- Control Sidebar -->
 		<aside class="control-sidebar">
@@ -1676,14 +1881,19 @@
 	<script src="../assets/vendor_components/apexcharts-bundle/dist/apexcharts.min.js"></script>
 	<script src="../assets/icons/feather-icons/feather.min.js"></script>
 
-	<script src="../assets/vendor_components/datatable/datatables.min.js"></script>
+	<script src="../assets/vendor_components/OwlCarousel2/dist/owl.carousel.js"></script>
+	<script src="../../../../../cdn.amcharts.com/lib/4/core.js"></script>
+	<script src="../../../../../cdn.amcharts.com/lib/4/maps.js"></script>
+	<script src="../../../../../cdn.amcharts.com/lib/4/geodata/worldLow.js"></script>
+	<script src="../../../../../cdn.amcharts.com/lib/4/themes/kelly.js"></script>
+	<script src="../../../../../cdn.amcharts.com/lib/4/themes/animated.js"></script>
 
 	<!-- Riday App -->
 	<script src="js/template.js"></script>
-	<script src="js/pages/order.js"></script>
+	<script src="js/pages/dashboard.js"></script>
 
 </body>
 
-<!-- Mirrored from multipurposethemes.com/admin/riday-admin-template/bs4/main/order.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 May 2021 18:13:48 GMT -->
+<!-- Mirrored from multipurposethemes.com/admin/riday-admin-template/bs4/main/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 May 2021 18:13:29 GMT -->
 
 </html>
