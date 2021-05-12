@@ -1,0 +1,57 @@
+{% extends "template.twig" %}
+
+{% block title %}Admin | Customer List{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="box">
+            <div class="box-body px-0">
+                <div class="table-responsive rounded card-table">
+                    <table class="table border-no" id="example1">
+                        <thead>
+                            <tr>
+                                <th>Customer ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Contact No.</th>
+                                <th>Orders made</th>
+                                <th>Items in Cart</th>
+                                <th>Items in Wishlist</th>
+                                <th>Last Order</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for customer in customers %}
+                            <tr class="hover-primary">
+                                <td>{{customer[0]}}</td>
+                                <td>{{customer[1]}}</td>
+                                <td>{{customer[3]}}</td>
+                                <td>{{customer[2]}}</td>
+                                <td>10</td>
+                                <td>5</td>
+                                <td>4</td>
+                                <td>
+                                    <span class="badge badge-pill badge-danger-light">New
+                                        Order</span>
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a class="hover-primary dropdown-toggle no-caret" data-toggle="dropdown"><i
+                                                class="fa fa-ellipsis-h"></i></a>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Accept Order</a>
+                                            <a class="dropdown-item" href="#">Reject Order</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
