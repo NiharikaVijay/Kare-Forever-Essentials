@@ -29,11 +29,14 @@ $db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 #Main code, changes for every view
 $customerModel = new CustomerModel($db);
 
-$customers = $customerModel->getAllCustomers();
-
-echo $twig->render('customer_index.twig', [
-    'page_title' => 'Customer List',
+$cxid = $_GET['cxid'];
+$details = $customerModel->getCustomerDetails($cxid);
+$orders = $customerModel->getCustomerOrders($cxid);
+// echo var_dump($details);
+echo $twig->render('customer_details.twig', [
+    'page_title' => 'Customer Details',
     'section' => 'Customer',
-    'subsection' => 'Customer List',
-    'customers' => $customers
+    'subsection' => 'Details',
+    'details' => $details,
+    'orders' => $orders
 ]);
