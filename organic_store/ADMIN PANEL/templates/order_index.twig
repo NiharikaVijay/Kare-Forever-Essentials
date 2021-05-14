@@ -1,0 +1,78 @@
+{% extends "template.twig" %}
+
+{% block title %}Admin | Customer List{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="box">
+            <div class="box-body px-0">
+                <div class="table-responsive rounded card-table">
+                    <table class="table border-no" id="example1">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Date</th>
+                                <th>Customer Name</th>
+                                <th>Location</th>
+                                <th>Amount</th>
+                                <th>Status Order</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orders %}
+                            <tr class="hover-primary">
+                                <td>{{order[0]}}</td>
+                                <td>{{order[1]}}</td>
+                                <td>{{order[2]}}</td>
+                                <td>{{order[3]}}, {{order[4]}}, {{order[5]}}-{{order[6]}}, {{order[7]}}</td>
+                                <td>₹{{order[8]}}</td>
+                                {% if order[9] == 'Placed' %}
+                                <td>
+                                    <span class="badge badge-pill badge-danger-light">Placed</span>
+                                </td>
+                                {% elseif order[9] == 'Accepted' %}
+                                <td>
+                                    <span class="badge badge-pill badge-info-light">Accepted</span>
+                                </td>
+                                {% elseif order[9] == 'Out' %}
+                                <td>
+                                    <span class="badge badge-pill badge-warning-light">Our for
+                                        Delivery</span>
+                                </td>
+                                {% elseif order[9] == 'Delivered' %}
+                                <td>
+                                    <span class="badge badge-pill badge-success-light">Delivered</span>
+                                </td>
+                                {% else %}
+                                <td>
+                                    <span class="badge badge-pill badge-primary-light">Cancelled</span>
+                                </td>
+                                {% endif %}
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="order_details.php?ordid={{order[0]}}">
+                                            <button type="button"
+                                                class="waves-effect waves-light btn btn-primary">View</button></a>
+                                        <div class="btn-group">
+                                            <button type="button"
+                                                class="waves-effect waves-light btn btn-primary dropdown-toggle"
+                                                data-toggle="dropdown">
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="#">Accept Order</a>
+                                                <a class="dropdown-item" href="#">Reject Order</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
