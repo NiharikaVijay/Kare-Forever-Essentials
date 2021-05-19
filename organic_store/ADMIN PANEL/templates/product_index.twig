@@ -23,9 +23,7 @@
                     </div>
                 </div>
             </div>
-            <img class="card-img-top"
-                src="{{product[2]}}"
-                alt="Card image cap">
+            <img class="card-img-top" src="{{product[2]}}" alt="Card image cap">
 
             <div class="card-body">
                 <p class="card-text">
@@ -35,16 +33,34 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            {% if product[8] %}
+                            <th>30 mL</th>
+                            {% endif %}
+                            {% if product[9] %}
                             <th>50 mL</th>
+                            {% endif %}
+                            {% if product[10] %}
                             <th>100 mL</th>
+                            {% endif %}
+                            {% if product[11] %}
                             <th>250 mL</th>
+                            {% endif %}
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>520</td>
-                            <td>845</td>
-                            <td>1945</td>
+                            {% if product[8] %}
+                            <td>₹{{product[8]}}</td>
+                            {% endif %}
+                            {% if product[9] %}
+                            <td>₹{{product[9]}}</td>
+                            {% endif %}
+                            {% if product[10] %}
+                            <td>₹{{product[10]}}</td>
+                            {% endif %}
+                            {% if product[11] %}
+                            <td>₹{{product[11]}}</td>
+                            {% endif %}
                         </tr>
                     </tbody>
                 </table>
