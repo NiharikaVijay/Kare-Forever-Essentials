@@ -29,12 +29,14 @@ $db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 #Main code, changes for every view
 $productModel = new ProductModel($db);
 $pdid = $_GET['pdid'];
-// $products = $productModel->getProductDetails($pdid);
+$products = $productModel->getProductDetails($pdid);
 
 // echo $products[0];
 echo $twig->render('product_details.twig', [
     'page_title' => 'Product Details',
     'section' => 'Product',
     'subsection' => 'Product Details',
-    'products' => $products
+    'details' => $products['details'],
+    'media' => $products['media'],
+    'reviews' => $products['reviews']
 ]);
