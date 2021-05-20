@@ -65,4 +65,24 @@ class ProductModel
 
         ];
     }
+
+    public function getCatCon()
+    {
+        $sql = 'SELECT catid, catname
+        FROM category;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute();
+        $cat = $prep->fetchAll();
+
+        $sql = 'SELECT concid, concname
+        FROM concern;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute();
+        $conc = $prep->fetchAll();
+
+        return [
+            'cat' => $cat,
+            'conc' => $conc
+        ];
+    }
 }
