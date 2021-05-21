@@ -10,29 +10,29 @@
                 <form action="#">
                     <div class="form-body">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="font-weight-700 font-size-16">Product Name</label>
+                                    <label>Product Name</label>
                                     <input type="text" class="form-control" placeholder="Product Name">
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Ingredients</label>
                                     <textarea rows="5" cols="5" class="form-control"
                                         placeholder="Enter ingredients"></textarea>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Benefits</label>
                                     <textarea rows="5" cols="5" class="form-control"
                                         placeholder="Enter benefits"></textarea>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Application</label>
                                     <textarea rows="5" cols="5" class="form-control"
@@ -41,7 +41,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-3 col-12">
+                            <div class="col-md-4 col-12">
                                 <div class="form-group">
                                     <label>Categories</label>
                                     <select class="form-control select2" multiple="multiple"
@@ -52,7 +52,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-12">
+                            <div class="col-md-4 col-12">
                                 <div class="form-group">
                                     <label>Concerns</label>
                                     <select class="form-control select2" multiple="multiple"
@@ -63,112 +63,100 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="tags-default form-group">
                                     <label>Tags</label><br>
                                     <input type="text" value="" data-role="tagsinput"
                                         placeholder="Enter comma separated tags" />
                                 </div>
                             </div>
-
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="font-weight-700 font-size-16">Price</label>
+                                    <label>30 ml</label>
                                     <div class="input-group">
                                         <div class="input-group-addon">₹
                                         </div>
-                                        <input type="text" class="form-control" placeholder="270">
+                                        <input type="text" class="form-control" placeholder="0" value="0">
                                     </div>
                                 </div>
                             </div>
-                            <!--/span-->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="font-weight-700 font-size-16">Discount</label>
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><i class="ti-cut"></i></div>
-                                        <input type="text" class="form-control" placeholder="50%">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="font-weight-700 font-size-16">Status</label>
-                                    <div class="radio-list">
-                                        <label class="radio-inline p-0 mr-10">
-                                            <div class="radio radio-info">
-                                                <input type="radio" name="radio" id="radio1" value="option1">
-                                                <label for="radio1">Published</label>
-                                            </div>
-                                        </label>
-                                        <label class="radio-inline">
-                                            <div class="radio radio-info">
-                                                <input type="radio" name="radio" id="radio2" value="option2">
-                                                <label for="radio2">Draft</label>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/span-->
-                        </div>
-                        <!-- <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="font-weight-700 font-size-16">Ingredients and
-                                        Description</label>
-                                    <textarea class="form-control p-20"
-                                        rows="4">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable.</textarea>
-                                </div>
-                            </div>
-                        </div> -->
-                        <!--/row-->
-                        {# <div class="box">
-                            <div class="box-body col-md-6">
-                                <h4 class="box-title">Media</h4>
-                                <form action="#" class="dropzone">
-                                    <div class="fallback">
-                                        <input name="file" type="file" multiple />
-                                    </div>
-                                </form>
-                            </div>
-                        </div> #}
-                        <div class="row">
-                            <div class="box">
-                                <div class="box-body col-md-12">
-                                    <h4 class="box-title">Media</h4>
-                                    <form action="#" class="dropzone">
-                                        <div class="fallback">
-                                            <input name="file" type="file" multiple />
-                                        </div>
-                                    </form>
-                                </div>
-
-                            </div>
-                        </div>
-                        {# <div class="row">
                             <div class="col-md-3">
-                                <h4 class="box-title mt-20">Media Files</h4>
+                                <div class="form-group">
+                                    <label>50 ml</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">₹
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="10" value="0">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>100 ml</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">₹
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="10" value="0">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>250 ml</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">₹
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="10" value="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Media Files</label>
                                 <div class="product-img text-left">
-                                    <!-- <img src="../images/product/product-9.png" alt="" class="mb-15"> -->
-                                    <p>Upload Anonther Image</p>
-                                    <div class="btn btn-info mb-20">
+                                    {# <img src="../image   s/product/product-9.png" alt="" class="mb-15"> #}
+                                    <div class="btn btn-light mb-20">
                                         <input type="file" class="upload form-control" required multiple>
                                     </div>
                                 </div>
                             </div>
-                        </div> #}
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Status</label>
+                                <div class="radio-list">
+                                    <label class="radio-inline p-0 mr-10">
+                                        <div class="radio radio-info">
+                                            <input type="radio" name="radio" id="radio1" value="option1">
+                                            <label for="radio1">Published</label>
+                                        </div>
+                                    </label>
+                                    <label class="radio-inline">
+                                        <div class="radio radio-info">
+                                            <input type="radio" name="radio" id="radio2" value="option2">
+                                            <label for="radio2">Draft</label>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-actions mt-10">
                         <button type="submit" class="btn btn-primary"> <i class="fa fa-check"></i>
                             Save / Add</button>
                         <button type="button" class="btn btn-danger">Cancel</button>
                     </div>
-                </form>
             </div>
+            </form>
         </div>
     </div>
+</div>
+</div>
 </div>
 {% endblock %}
