@@ -7,13 +7,13 @@
     <div class="col-12">
         <div class="box">
             <div class="box-body">
-                <form action="#">
+                <form action="product_create.php" method="POST" enctype="multipart/form-data">
                     <div class="form-body">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Product Name</label>
-                                    <input type="text" class="form-control" placeholder="Product Name">
+                                    <input type="text" class="form-control" placeholder="Product Name" name="pdname" required>
                                 </div>
                             </div>
                         </div>
@@ -22,21 +22,21 @@
                                 <div class="form-group">
                                     <label>Ingredients</label>
                                     <textarea rows="5" cols="5" class="form-control"
-                                        placeholder="Enter ingredients"></textarea>
+                                        placeholder="Enter ingredients" name="ingredients" required></textarea>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Benefits</label>
                                     <textarea rows="5" cols="5" class="form-control"
-                                        placeholder="Enter benefits"></textarea>
+                                        placeholder="Enter benefits" name="benefits" required></textarea>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Application</label>
                                     <textarea rows="5" cols="5" class="form-control"
-                                        placeholder="Enter application"></textarea>
+                                        placeholder="Enter application" name="application" required></textarea>
                                 </div>
                             </div>
                         </div>
@@ -44,8 +44,8 @@
                             <div class="col-md-4 col-12">
                                 <div class="form-group">
                                     <label>Categories</label>
-                                    <select class="form-control select2" multiple="multiple"
-                                        data-placeholder="Select categories" style="width: 100%;">
+                                    <select class="form-control select2" multiple
+                                        data-placeholder="Select categories" style="width: 100%;" name="categories[]">
                                         {% for category in categories %}
                                         <option value={{category[0]}}>{{category[1]}}</option>
                                         {% endfor %}
@@ -55,8 +55,8 @@
                             <div class="col-md-4 col-12">
                                 <div class="form-group">
                                     <label>Concerns</label>
-                                    <select class="form-control select2" multiple="multiple"
-                                        data-placeholder="Select concerns" style="width: 100%;">
+                                    <select class="form-control select2" multiple
+                                        data-placeholder="Select concerns" style="width: 100%;" name="concerns[]">
                                         {% for concern in concerns %}
                                         <option value={{concern[0]}}>{{concern[1]}}</option>
                                         {% endfor %}
@@ -67,7 +67,7 @@
                                 <div class="tags-default form-group">
                                     <label>Tags</label><br>
                                     <input type="text" value="" data-role="tagsinput"
-                                        placeholder="Enter comma separated tags" />
+                                        placeholder="Enter comma separated tags" name="tags" />
                                 </div>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
                                     <div class="input-group">
                                         <div class="input-group-addon">₹
                                         </div>
-                                        <input type="text" class="form-control" placeholder="0" value="0">
+                                        <input type="text" class="form-control" placeholder="0" value="0" name="30ml" required>
                                     </div>
                                 </div>
                             </div>
@@ -88,7 +88,7 @@
                                     <div class="input-group">
                                         <div class="input-group-addon">₹
                                         </div>
-                                        <input type="text" class="form-control" placeholder="10" value="0">
+                                        <input type="text" class="form-control" placeholder="10" value="0" name="50ml" required>
                                     </div>
                                 </div>
                             </div>
@@ -98,7 +98,7 @@
                                     <div class="input-group">
                                         <div class="input-group-addon">₹
                                         </div>
-                                        <input type="text" class="form-control" placeholder="10" value="0">
+                                        <input type="text" class="form-control" placeholder="10" value="0" name="100ml" required>
                                     </div>
                                 </div>
                             </div>
@@ -108,7 +108,7 @@
                                     <div class="input-group">
                                         <div class="input-group-addon">₹
                                         </div>
-                                        <input type="text" class="form-control" placeholder="10" value="0">
+                                        <input type="text" class="form-control" placeholder="10" value="0" name="250ml" required>
                                     </div>
                                 </div>
                             </div>
@@ -119,38 +119,34 @@
                             <div class="form-group">
                                 <label>Media Files</label>
                                 <div class="product-img text-left">
-                                    {# <img src="../image   s/product/product-9.png" alt="" class="mb-15"> #}
                                     <div class="btn btn-light mb-20">
-                                        <input type="file" class="upload form-control" required multiple>
+                                        <input type="file" class="upload form-control" required multiple name="media[]" required>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-md-6">
+                        {# <div class="col-md-6">
                             <div class="form-group">
                                 <label>Status</label>
                                 <div class="radio-list">
                                     <label class="radio-inline p-0 mr-10">
                                         <div class="radio radio-info">
-                                            <input type="radio" name="radio" id="radio1" value="option1">
+                                            <input type="radio" name="radio" name="radio1" value="option1">
                                             <label for="radio1">Published</label>
                                         </div>
                                     </label>
                                     <label class="radio-inline">
                                         <div class="radio radio-info">
-                                            <input type="radio" name="radio" id="radio2" value="option2">
+                                            <input type="radio" name="radio" name="radio2" value="option2">
                                             <label for="radio2">Draft</label>
                                         </div>
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </div> #}
                     </div>
                     <div class="form-actions mt-10">
-                        <button type="submit" class="btn btn-primary"> <i class="fa fa-check"></i>
-                            Save / Add</button>
-                        <button type="button" class="btn btn-danger">Cancel</button>
+                        <center><button type="submit" class="btn btn-primary"> <i class="fa fa-check"></i>Add product</button></center>
                     </div>
             </div>
             </form>
