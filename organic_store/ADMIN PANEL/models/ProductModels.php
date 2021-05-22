@@ -9,6 +9,17 @@ class ProductModel
         $this->db = $db;
     }
 
+    public function generateRandomString($length = 10)
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
     public function getAllProducts()
     {
         $sql = 'SELECT p.pdname, p.isactive,
@@ -84,5 +95,81 @@ class ProductModel
             'cat' => $cat,
             'conc' => $conc
         ];
+    }
+
+    public function addProduct(
+        $pdname,
+        $ing,
+        $ben,
+        $app,
+        $tags,
+        $p30,
+        $p50,
+        $p100,
+        $p250,
+        $cat,
+        $conc,
+        $media
+    ) {
+        $pdid = $this->generateRandomString(5);
+        $sql = 'INSERT INTO product VALUES("' . $pdid . '", 
+        "' . $pdname . '",
+        "' . $ing . '",
+        "' . $ben . '",
+        "' . $app . '",
+        "' . $tags . '",
+        FALSE,
+        TRUE,
+        ' . $p30 . ',
+        ' . $p50 . ',
+        ' . $p100 . ',
+        ' . $p250 . ');';
+        $prep = $this->db->prepare($sql);
+        $prep->execute();
+
+        foreach ($cat as $c) {
+            $sql = 'INSERT INTO prodcat VALUES("' . $pdid . '", 
+            "' . $c . '");';
+            $prep = $this->db->prepare($sql);
+            $prep->execute();
+        }
+
+        foreach ($conc as $c) {
+            $sql = 'INSERT INTO prodconc VALUES("' . $pdid . '", 
+            "' . $c . '");';
+            $prep = $this->db->prepare($sql);
+            $prep->execute();
+        }
+
+        $target_dir = '../images/products/';
+        $nimages = sizeof($media['name']);
+        for ($i = 0; $i < $nimages; $i++) {
+            $mdid = $this->generateRandomString(6);
+            $target_file = $target_dir . $pdid . '-' . $mdid . '-' . basename($media['name'][$i]);
+
+            if (!move_uploaded_file($media["tmp_name"][$i], $target_file)) {
+                echo "Sorry, there was an error uploading your file.";
+                die();
+            }
+
+            if ($i == 0) {
+                $sql = 'INSERT INTO media VALUES("' . $mdid . '", 
+                "' . $target_file . '",
+                TRUE,
+                "' . $pdid . '",
+                TRUE
+                );';
+            } else {
+                $sql = 'INSERT INTO media VALUES("' . $mdid . '", 
+                "' . $target_file . '",
+                TRUE,
+                "' . $pdid . '",
+                FALSE
+                );';
+            }
+            $prep = $this->db->prepare($sql);
+            $prep->execute();
+        }
+        return ;
     }
 }
