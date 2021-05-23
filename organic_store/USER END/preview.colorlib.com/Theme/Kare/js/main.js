@@ -86,7 +86,7 @@
 	    }
 		});
 	
-		$('.carousel-testimony').owlCarousel({
+		$('.testimonials-carousel').owlCarousel({
 			center: true,
 			loop: true,
 			items:1,

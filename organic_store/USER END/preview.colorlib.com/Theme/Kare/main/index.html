@@ -41,9 +41,17 @@
 			</div>
 		</div>
 	</div>
+
 				<div class="bottom_header">
 				<div class="container">
 					<div class="row">
+						
+						<div class="col-md-4 col-sm-5 col-xs-6 logo-responsive">
+							<div class="logo-area">
+								<a href="index.html" class="pull-left logo"><img src="images/logo/logo.png"
+										alt="LOGO"></a>
+							</div>
+						</div>
 						<div class="col-md-4 col-sm-12 col-xs-12">
 							<div class="search-box">
 								<form action="#" class="clearfix">
@@ -52,115 +60,18 @@
 								</form>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-5 col-xs-6 logo-responsive">
-							<div class="logo-area">
-								<a href="index.html" class="pull-left logo"><img src="images/logo/logo.png"
-										alt="LOGO"></a>
-							</div>
-						</div>
 						<div class="col-md-4 col-sm-7 col-xs-6 pdt-14">
 							<div class="login_option float_left">
-								<div class="login_form">
+								<div class="login">
 									<div class="user">
 										<i class="fa fa-user-circle"></i>
 									</div>							
-									<div class="login-info">
-										<div class="welcome">Welcome!</div>
-										<!-- select menu -->
-										<form action="#" class="select-form">
-											<div class="g-input f1 mb-30">
-												<select class="text-capitalize selectpicker" data-style="g-select"
-													data-width="100%">
-													<option value="0" selected="">Sign In</option>
-													<option value="1">Sign In</option>
-													<option value="2">My Profile</option>
-													<option value="3">My Orders</option>
-													<option value="4">Wishlist</option>
-													<option value="4">Cart</option>
-												</select>
-											</div>
-										</form>
-									</div>
 								</div> <!-- End of .cart_list -->
 							</div>
 							<div class="cart_option float_left">
 								<button class="cart tran3s dropdown-toggle" id="cartDropdown"><i
 										class="icon-shopping_cart" aria-hidden="true"></i><span
 										class="s_color_bg p_color">2</span></button>
-								<div class="cart-info">
-									<div>My Cart</div>
-									<!--<div class="doller">84.00$</div>-->
-								</div>
-
-								<div class="cart_list color2_bg" aria-labelledby="cartDropdown">
-									<ul>
-										<li>
-											<div class="cart_item_wrapper clear_fix">
-												<div class="img_holder float_left"><img src="images/shop/9.png"
-														alt="Cart Image" class="img-responsive"></div>
-												<!-- End of .img_holder -->
-
-												<div class="item_deatils float_left">
-													<h6>Hibiscus Hair Gel</h6>
-													<ul>
-														<li><i class="fa fa-star" aria-hidden="true"></i></li>
-														<li><i class="fa fa-star" aria-hidden="true"></i></li>
-														<li><i class="fa fa-star" aria-hidden="true"></i></li>
-														<li><i class="fa fa-star" aria-hidden="true"></i></li>
-														<li><i class="fa fa-star" aria-hidden="true"></i></li>
-													</ul>
-													<span class="font_fix">Rs 550</span>
-												</div> <!-- End of .item_deatils -->
-											</div> <!-- End of .cart_item_wrapper -->
-										</li>
-
-										<li>
-											<div class="cart_item_wrapper clear_fix">
-												<div class="img_holder float_left"><img src="images/shop/10.png"
-														alt="Cart Image" class="img-responsive"></div>
-												<!-- End of .img_holder -->
-
-												<div class="item_deatils float_left">
-													<h6>Rose Face Scrub</h6>
-													<ul>
-														<li><i class="fa fa-star" aria-hidden="true"></i></li>
-														<li><i class="fa fa-star" aria-hidden="true"></i></li>
-														<li><i class="fa fa-star" aria-hidden="true"></i></li>
-														<li><i class="fa fa-star" aria-hidden="true"></i></li>
-														<li><i class="fa fa-star" aria-hidden="true"></i></li>
-													</ul>
-													<span class="font_fix">Rs 650</span>
-												</div> <!-- End of .item_deatils -->
-											</div> <!-- End of .cart_item_wrapper -->
-										</li>
-
-										<li>
-											<div class="cart_item_wrapper clear_fix">
-												<div class="img_holder float_left"><img src="images/shop/11.png"
-														alt="Cart Image" class="img-responsive"></div>
-												<!-- End of .img_holder -->
-
-												<div class="item_deatils float_left">
-													<h6>SeaWeed Hair Spa</h6>
-													<ul>
-														<li><i class="fa fa-star" aria-hidden="true"></i></li>
-														<li><i class="fa fa-star" aria-hidden="true"></i></li>
-														<li><i class="fa fa-star" aria-hidden="true"></i></li>
-														<li><i class="fa fa-star" aria-hidden="true"></i></li>
-														<li><i class="fa fa-star" aria-hidden="true"></i></li>
-													</ul>
-													<span class="font_fix">Rs 550</span>
-												</div> <!-- End of .item_deatils -->
-											</div> <!-- End of .cart_item_wrapper -->
-										</li>
-									</ul>
-
-									<div class="cart_total clear_fix">
-
-										<span class="total font_fix float_left">Total - 140$</span>
-										<a href="#" class="s_color_bg float_right tran3s">View Cart</a>
-									</div>
-								</div> <!-- End of .cart_list -->
 							</div>
 
 						</div>
@@ -190,15 +101,18 @@
 						<a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">Log In</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown04">
-							<a class="dropdown-item" href="#" data-toggle="modal" data-target="#login-modal">Log In /
+							<a class="dropdown-item" href="#"data-toggle="modal" data-target="#loginModal">Log In /
 								Register</a>
+
 							<a class="dropdown-item" href="product-single.html">My Profile</a>
 							<a class="dropdown-item" href="checkout.html">My Orders</a>
 							<a class="dropdown-item" href="wishlist.html">Wishlist</a>
 							<a class="dropdown-item" href="cart.html">Cart</a>
 
 						</div>
+
 					</li>
+
 
 					<li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span
 								class="icon-shopping_cart"></span>[0]</a></li>
@@ -207,32 +121,54 @@
 		</div>
 	</nav>
 
+		<!-- Login Modal Code -->
 
-	<!-- Login Modal Code -->
-	<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-		aria-hidden="true" style="display: none;">
-		<div class="modal-dialog">
-			<div class="loginmodal-container">
-				<div class="modal-header heading-section text-center">
-					<h2 class="mb-2">Enter Phone Number</h2><br>
-				</div>
-				<div class="modal-content">
-					<form>
-						<input type="text" name="user" placeholder="Email ID/ Phone no.">
-						<!-- <input type="password" name="pass" placeholder="Password"> -->
-						<input type="submit" name="login" class="login loginmodal-submit" value="Get OTP" data-toggle="modal" data-target="#otp-modal">
-					</form>
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-title text-center">
+          <h4>Login</h4>
+        </div>
+        <div class="d-flex flex-column text-center">
+          <form>
+            <div class="form-group">
+              <input type="email" class="form-control" id="email1"placeholder="Your email address...">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" id="password1" placeholder="Your password...">
+            </div>
+            <button type="button" class="btn btn-info btn-block btn-round">Login</button>
+          </form>
+          
+          <div class="text-center text-muted delimiter">or use a social network</div>
+          <div class="d-flex justify-content-center social-buttons">
+            <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </button>
+            <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </button>
+            <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Google">
+              <i class="fa fa-google"></i>
+            </button>
+          </di>
+        </div>
+      </div>
+    </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <div class="signup-section">Not a member yet? <a href="#a" class="text-info"> Sign Up</a>.</div>
+      </div>
+  </div>
+</div>
+</div>
 
-					<!-- <div class="login-help">
-						<a href="#">Register</a> - <a href="#">Forgot Password</a>
-					</div> -->
-				</div>
-
-			</div>
-		</div>
-	</div>
-
-	
+	       
 	
 
 	<section id="home-section" class="hero">
@@ -519,16 +455,15 @@
 	</div>
 </section>
 -->
-			<!--Testimonials Section-->
+					<!--Testimonials Section-->
 		<section class="testimonials-section" style="background-image:url(images/parallax/1.jpg);">
 			<div class="container">
-				<div class="theme_title" >
+				<div class="theme_title">
 					<h2>testimonials</h2>
 				</div>
 				<div class="testimonials-carousel">
 
-				<div class="row owl-carousel">	<!--Slide Item-->
-				<div class="col-md-6 col-lg-4">
+					<!--Slide Item-->
 					<div class="slide-item">
 						<div class="inner-box">
 							<div class="content">
@@ -546,9 +481,45 @@
 							</div>
 						</div>
 					</div>
-				</div>
 
-				<div class="col-md-6 col-lg-4">
+					<!--Slide Item-->
+					<div class="slide-item">
+						<div class="inner-box">
+							<div class="content">
+								<div class="text-bg">
+									<div class="quote-icon"><span class="fa fa-quote-left"></span></div>
+									<div class="text">Who do not know how to pursue an sed pleasure rationally encounter
+										that are extremely win painful nor again is there anyone who loves or pursues or
+										desires obtain pain itself circumstances.</div>
+								</div>
+								<div class="info clearfix">
+									<div class="author-thumb"><img src="images/team/a2.png" alt=""></div>
+									<div class="author">Jessy Federar</div>
+									<div class="author-title">Cor.Manager</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!--Slide Item-->
+					<div class="slide-item">
+						<div class="inner-box">
+							<div class="content">
+								<div class="text-bg">
+									<div class="quote-icon"><span class="fa fa-quote-left"></span></div>
+									<div class="text">Who do not know how to pursue an sed pleasure rationally encounter
+										that are extremely win painful nor again is there anyone who loves or pursues or
+										desires obtain pain itself circumstances.</div>
+								</div>
+								<div class="info clearfix">
+									<div class="author-thumb"><img src="images/team/a3.png" alt=""></div>
+									<div class="author">Mark Antony</div>
+									<div class="author-title">Designer</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--Slide Item-->
 					<div class="slide-item">
 						<div class="inner-box">
 							<div class="content">
@@ -566,8 +537,8 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-6 col-lg-4">
+
+					<!--Slide Item-->
 					<div class="slide-item">
 						<div class="inner-box">
 							<div class="content">
@@ -578,15 +549,32 @@
 										desires obtain pain itself circumstances.</div>
 								</div>
 								<div class="info clearfix">
-									<div class="author-thumb"><img src="images/team/a1.png" alt=""></div>
-									<div class="author">William Border</div>
+									<div class="author-thumb"><img src="images/team/a2.png" alt=""></div>
+									<div class="author">Jessy Federar</div>
+									<div class="author-title">Cor.Manager</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!--Slide Item-->
+					<div class="slide-item">
+						<div class="inner-box">
+							<div class="content">
+								<div class="text-bg">
+									<div class="quote-icon"><span class="fa fa-quote-left"></span></div>
+									<div class="text">Who do not know how to pursue an sed pleasure rationally encounter
+										that are extremely win painful nor again is there anyone who loves or pursues or
+										desires obtain pain itself circumstances.</div>
+								</div>
+								<div class="info clearfix">
+									<div class="author-thumb"><img src="images/team/a3.png" alt=""></div>
+									<div class="author">Mark Antony</div>
 									<div class="author-title">Designer</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
 
 				</div>
 			</div>
@@ -733,12 +721,16 @@
 	<script src="js/jquery.easing.1.3.js"></script>
 	<script src="js/jquery.waypoints.min.js"></script>
 	<script src="js/jquery.stellar.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
+	<!-- <script src="js/owl.carousel.min.js"></script> -->
+	<script type="text/javascript" src="js/owl.carousel.min.js"></script>
 	<script src="js/jquery.magnific-popup.min.js"></script>
 	<script src="js/aos.js"></script>
 	<script src="js/jquery.animateNumber.min.js"></script>
 	<script src="js/bootstrap-datepicker.js"></script>
 	<script src="js/scrollax.min.js"></script>
+
+
+
 
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&amp;sensor=false"></script>
@@ -746,13 +738,6 @@
 	<script src="js/main.js"></script>
 
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() { dataLayer.push(arguments); }
-		gtag('js', new Date());
-
-		gtag('config', 'UA-23581568-13');
-	</script>
 </body>
 
 <!-- Mirrored from preview.colorlib.com/theme/vegefoods/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 02 May 2021 06:19:50 GMT -->
