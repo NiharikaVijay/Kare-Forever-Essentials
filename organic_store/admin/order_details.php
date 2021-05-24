@@ -36,5 +36,7 @@ echo $twig->render('order_details.twig', [
     'section' => 'Order',
     'subsection' => 'Order Details',
     'details' => $order['details'],
-    'products' => $order['products']
+    'products' => $order['products'],
+    'coupon' => $order['coupon'],
+    'total'=> $order['total']
 ]);

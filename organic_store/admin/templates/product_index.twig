@@ -33,6 +33,7 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <th></th>
                             {% if product[8] %}
                             <th>30 mL</th>
                             {% endif %}
@@ -49,6 +50,7 @@
                     </thead>
                     <tbody>
                         <tr>
+                            <td><b>MRP</b></td>
                             {% if product[8] %}
                             <td>₹{{product[8]}}</td>
                             {% endif %}
@@ -60,6 +62,21 @@
                             {% endif %}
                             {% if product[11] %}
                             <td>₹{{product[11]}}</td>
+                            {% endif %}
+                        </tr>
+                        <tr>
+                            <td><b>Final</b></td>
+                            {% if product[12] %}
+                            <td>₹{{product[12]}}</td>
+                            {% endif %}
+                            {% if product[13] %}
+                            <td>₹{{product[13]}}</td>
+                            {% endif %}
+                            {% if product[14] %}
+                            <td>₹{{product[14]}}</td>
+                            {% endif %}
+                            {% if product[15] %}
+                            <td>₹{{product[15]}}</td>
                             {% endif %}
                         </tr>
                     </tbody>

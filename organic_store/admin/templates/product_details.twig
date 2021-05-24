@@ -51,10 +51,12 @@
                             <h4 class="box-title">Application</h4>
                             <p>{{details[5]}}</p>
                             <h4 class="box-title">Prices</h4>
+                            <p>Discount rate: {{details[19]}}%</p>
                             <div class="table-responsive">
                                 <table class="table b-1">
                                     <thead class="bg-inverse">
                                         <tr>
+                                            <th></th>
                                             {% if details[6] %}
                                             <th>30 mL</th>
                                             {% endif %}
@@ -71,6 +73,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
+                                            <td><b>MRP</b></td>
                                             {% if details[6] %}
                                             <td>₹{{details[6]}}</td>
                                             {% endif %}
@@ -82,6 +85,21 @@
                                             {% endif %}
                                             {% if details[9] %}
                                             <td>₹{{details[9]}}</td>
+                                            {% endif %}
+                                        </tr>
+                                        <tr>
+                                            <td><b>Final</b></td>
+                                            {% if details[15] %}
+                                            <td>₹{{details[15]}}</td>
+                                            {% endif %}
+                                            {% if details[16] %}
+                                            <td>₹{{details[16]}}</td>
+                                            {% endif %}
+                                            {% if details[17] %}
+                                            <td>₹{{details[17]}}</td>
+                                            {% endif %}
+                                            {% if details[18] %}
+                                            <td>₹{{details[18]}}</td>
                                             {% endif %}
                                         </tr>
                                     </tbody>

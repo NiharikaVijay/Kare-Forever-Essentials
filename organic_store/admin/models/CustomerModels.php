@@ -14,7 +14,8 @@ class CustomerModel
         $sql = 'SELECT cx.cxid, cx.cxname, cx.cxemail, cx.cxphone,
         IFNULL(o.cnt, 0) AS ordercount, 
         IFNULL(c.cnt,0) AS cartcount, 
-        IFNULL(w.cnt, 0 ) AS wishcount 
+        IFNULL(w.cnt, 0 ) AS wishcount,
+        cx.lpts
         FROM customer cx 
         LEFT OUTER JOIN ( SELECT cxid, count(cxid) AS cnt FROM wishlist GROUP BY cxid) w ON w.cxid = cx.cxid 
         LEFT OUTER JOIN ( SELECT cxid, count(cxid) AS cnt FROM cart GROUP BY cxid) c ON c.cxid = cx.cxid 
@@ -30,11 +31,12 @@ class CustomerModel
         IFNULL(o.cnt, 0) AS ordercount, 
         IFNULL(c.cnt,0) AS cartcount, 
         IFNULL(w.cnt, 0 ) AS wishcount,
-        IFNULL(o.revenue, 0) AS revenue
+        IFNULL(o.revenue, 0) AS revenue,
+        cx.lpts, cx.referral
         FROM customer cx 
         LEFT OUTER JOIN ( SELECT cxid, count(cxid) AS cnt FROM wishlist GROUP BY cxid) w ON w.cxid = cx.cxid 
         LEFT OUTER JOIN ( SELECT cxid, count(cxid) AS cnt FROM cart GROUP BY cxid) c ON c.cxid = cx.cxid 
-        LEFT OUTER JOIN (SELECT cxid, count(cxid) AS cnt , SUM(amount) AS revenue FROM orders GROUP BY cxid) o ON o.cxid = cx.cxid
+        LEFT OUTER JOIN (SELECT cxid, count(cxid) AS cnt , SUM(finamt) AS revenue FROM orders GROUP BY cxid) o ON o.cxid = cx.cxid
         WHERE cx.cxid= :cxid;';
         $prep = $this->db->prepare($sql);
         $prep->execute(['cxid' => $cxid]);
@@ -46,7 +48,7 @@ class CustomerModel
     {
         $sql = 'SELECT o.ordid, o.timestamp, 
         a.line1, a.line2, a.city,a.pincode, a.state,
-        o.amount, o.status 
+        o.finamt, o.status 
         FROM orders AS o LEFT OUTER JOIN address AS a
         ON a.cxid=o.cxid
         where o.cxid= :cxid ';
