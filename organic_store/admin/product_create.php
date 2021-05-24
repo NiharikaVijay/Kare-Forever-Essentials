@@ -40,6 +40,7 @@ $p100 = $_POST['100ml'];
 $p250 = $_POST['250ml'];
 $cat = $_POST['categories'];
 $conc = $_POST['concerns'];
+$discount = $_POST['discount'];
 $media = $_FILES['media'];
 
 $productModel->addProduct(
@@ -54,6 +55,7 @@ $productModel->addProduct(
     $p250,
     $cat,
     $conc,
+    $discount,
     $media
 );
 

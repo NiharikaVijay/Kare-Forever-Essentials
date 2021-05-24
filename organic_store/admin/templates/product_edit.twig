@@ -1,10 +1,23 @@
 {% extends "template.twig" %}
 
-{% block title %}Admin | Add Product{% endblock %}
+{% block title %}Admin | Edit Product{% endblock %}
 
 {% block content %}
 <div class="row">
-    <div class="col-12">
+    <div class="col-md-4">
+        <div class="box box-body b-1 text-center no-shadow">
+            <img src={{details['media'][0][0]}} id="product-image" class="img-fluid" alt="" />
+        </div>
+        <div class="pro-photos">
+            {% for img in details['media'] %}
+            <div class="photos-item item-active">
+                <img src={{img[0]}} alt="">
+            </div>
+            {% endfor %}
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="col-md-8">
         <div class="box">
             <div class="box-body">
                 <form action="product_create.php" method="POST" enctype="multipart/form-data">
@@ -13,8 +26,8 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Product Name</label>
-                                    <input type="text" class="form-control" placeholder="Product Name" name="pdname"
-                                        required>
+                                    <input type="text" class="form-control" value={{details['general'][0]}}
+                                        name="pdname" required>
                                 </div>
                             </div>
                         </div>
@@ -22,22 +35,22 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Ingredients</label>
-                                    <textarea rows="5" cols="5" class="form-control" placeholder="Enter ingredients"
-                                        name="ingredients" required></textarea>
+                                    <textarea rows="5" cols="5" class="form-control" name="ingredients"
+                                        required>{{details['general'][1]}}</textarea>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Benefits</label>
-                                    <textarea rows="5" cols="5" class="form-control" placeholder="Enter benefits"
-                                        name="benefits" required></textarea>
+                                    <textarea rows="5" cols="5" class="form-control" name="benefits"
+                                        required>{{details['general'][2]}}</textarea>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Application</label>
-                                    <textarea rows="5" cols="5" class="form-control" placeholder="Enter application"
-                                        name="application" required></textarea>
+                                    <textarea rows="5" cols="5" class="form-control" name="application"
+                                        required>{{details['general'][3]}}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +60,10 @@
                                     <label>Categories</label>
                                     <select class="form-control select2" multiple data-placeholder="Select categories"
                                         style="width: 100%;" name="categories[]">
-                                        {% for category in categories %}
+                                        {% for category in details['cat'] %}
+                                        <option value={{category[0]}} selected>{{category[1]}}</option>
+                                        {% endfor %}
+                                        {% for category in details['notcat'] %}
                                         <option value={{category[0]}}>{{category[1]}}</option>
                                         {% endfor %}
                                     </select>
@@ -58,7 +74,10 @@
                                     <label>Concerns</label>
                                     <select class="form-control select2" multiple data-placeholder="Select concerns"
                                         style="width: 100%;" name="concerns[]">
-                                        {% for concern in concerns %}
+                                        {% for concern in details['conc'] %}
+                                        <option value={{concern[0]}} selected>{{concern[1]}}</option>
+                                        {% endfor %}
+                                        {% for concern in details['notconc'] %}
                                         <option value={{concern[0]}}>{{concern[1]}}</option>
                                         {% endfor %}
                                     </select>
@@ -67,13 +86,14 @@
                             <div class="col-md-3">
                                 <div class="tags-default form-group">
                                     <label>Tags</label><br>
-                                    <input type="text" placeholder="Enter comma separated tags" data-role="tagsinput" name="tags" />
+                                    <input type="text" value={{details['general'][9]}} data-role="tagsinput"
+                                        name="tags" />
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="control-label">Discount</label>
-                                    <input id="discount" type="text" value="10" name="discount"
+                                    <input id="discount" type="number" min="0" max="100" value={{details['general'][10]}} name="discount"
                                         data-bts-button-down-class="btn btn-secondary"
                                         data-bts-button-up-class="btn btn-secondary">
                                 </div>
@@ -86,8 +106,8 @@
                                     <div class="input-group">
                                         <div class="input-group-addon">₹
                                         </div>
-                                        <input type="text" class="form-control" placeholder="0" value="0" name="30ml"
-                                            required>
+                                        <input type="number" class="form-control" value={{details['general'][4]}}
+                                            name="30ml" required>
                                     </div>
                                 </div>
                             </div>
@@ -97,8 +117,8 @@
                                     <div class="input-group">
                                         <div class="input-group-addon">₹
                                         </div>
-                                        <input type="text" class="form-control" placeholder="10" value="0" name="50ml"
-                                            required>
+                                        <input type="number" class="form-control" value={{details['general'][5]}}
+                                            name="50ml" required>
                                     </div>
                                 </div>
                             </div>
@@ -108,8 +128,8 @@
                                     <div class="input-group">
                                         <div class="input-group-addon">₹
                                         </div>
-                                        <input type="text" class="form-control" placeholder="10" value="0" name="100ml"
-                                            required>
+                                        <input type="number" class="form-control" value={{details['general'][6]}}
+                                            name="100ml" required>
                                     </div>
                                 </div>
                             </div>
@@ -119,8 +139,8 @@
                                     <div class="input-group">
                                         <div class="input-group-addon">₹
                                         </div>
-                                        <input type="text" class="form-control" placeholder="10" value="0" name="250ml"
-                                            required>
+                                        <input type="number" class="form-control" value={{details['general'][7]}}
+                                            name="250ml" required>
                                     </div>
                                 </div>
                             </div>
@@ -130,9 +150,10 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Media Files</label>
+                                <p>Files selected will be the ONLY media files for this product</p>
                                 <div class="product-img text-left">
                                     <div class="btn btn-light mb-20">
-                                        <input type="file" class="upload form-control" required multiple name="media[]"
+                                        <input type="file" class="upload form-control" multiple name="media[]"
                                             required>
                                     </div>
                                 </div>

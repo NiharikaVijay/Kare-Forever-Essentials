@@ -51,7 +51,7 @@ class ProductModel
         pcn.concerns,
         IFNULL(o.itemcount,0), IFNULL(o.ordcount,0),
         ROUND(p.30ml*(100-p.discount)/100,2), ROUND(p.50ml*(100-p.discount)/100, 2), ROUND(p.100ml*(100-p.discount)/100,2), ROUND(p.250ml*(100-p.discount)/100,2),
-        p.discount
+        p.discount, p.tags
         FROM product p LEFT OUTER JOIN (SELECT pdid, round(avg(rating),1) AS rtg, count(rating) AS rtgcount FROM reviews GROUP BY pdid) r ON r.pdid=p.pdid
         LEFT OUTER JOIN (SELECT p.pdid, group_concat(p.name) AS concerns FROM  (SELECT pc.pdid AS pdid, c.concname AS name FROM prodconc pc LEFT OUTER JOIN concern c ON pc.concid=c.concid) p GROUP BY p.pdid) pcn ON p.pdid=pcn.pdid
         LEFT OUTER JOIN (SELECT p.pdid, group_concat(p.name) AS categories FROM  (SELECT pc.pdid AS pdid, c.catname AS name FROM prodcat pc LEFT OUTER JOIN category c ON pc.catid=c.catid) p GROUP BY p.pdid) pct ON p.pdid=pct.pdid
@@ -112,6 +112,7 @@ class ProductModel
         $p250,
         $cat,
         $conc,
+        $discount,
         $media
     ) {
         $pdid = $this->generateRandomString(5);
@@ -126,7 +127,8 @@ class ProductModel
         ' . $p30 . ',
         ' . $p50 . ',
         ' . $p100 . ',
-        ' . $p250 . ');';
+        ' . $p250 . ',
+        ' . $discount . ');';
         $prep = $this->db->prepare($sql);
         $prep->execute();
 
@@ -192,5 +194,51 @@ class ProductModel
         $prep->execute([
             'pdid' => $pdid
         ]);
+    }
+
+    public function getEditProductDetails($pdid)
+    {
+        $sql = 'SELECT pdname,
+        ingredients, benefits, application,
+        IFNULL(30ml,0), IFNULL(50ml,0), IFNULL(100ml,0), IFNULL(250ml,0),
+        pdid, tags, discount
+        FROM product  WHERE pdid= :pdid;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute(['pdid' => $pdid]);
+        $general = $prep->fetchAll();
+
+        $sql = 'SELECT path,isimage FROM media WHERE pdid= :pdid;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute(['pdid' => $pdid]);
+        $media = $prep->fetchAll();
+
+        $sql = 'SELECT catid, catname FROM category WHERE catid IN ( SELECT catid FROM prodcat WHERE pdid= :pdid);';
+        $prep = $this->db->prepare($sql);
+        $prep->execute(['pdid' => $pdid]);
+        $cat = $prep->fetchAll();
+
+        $sql = 'SELECT catid, catname FROM category WHERE catid NOT IN ( SELECT catid FROM prodcat WHERE pdid= :pdid);';
+        $prep = $this->db->prepare($sql);
+        $prep->execute(['pdid' => $pdid]);
+        $notcat = $prep->fetchAll();
+
+        $sql = 'SELECT concid, concname FROM concern WHERE concid IN ( SELECT concid FROM prodconc WHERE pdid= :pdid);';
+        $prep = $this->db->prepare($sql);
+        $prep->execute(['pdid' => $pdid]);
+        $conc = $prep->fetchAll();
+
+        $sql = 'SELECT concid, concname FROM concern WHERE concid NOT IN ( SELECT concid FROM prodconc WHERE pdid= :pdid);';
+        $prep = $this->db->prepare($sql);
+        $prep->execute(['pdid' => $pdid]);
+        $notconc = $prep->fetchAll();
+
+        return [
+            'general' => $general[0],
+            'media' => $media,
+            'cat' => $cat,
+            'notcat' => $notcat,
+            'conc' => $conc,
+            'notconc' => $notconc
+        ];
     }
 }
