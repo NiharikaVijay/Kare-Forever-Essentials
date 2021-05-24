@@ -174,4 +174,23 @@ class ProductModel
         }
         return;
     }
+
+    public function changeState($isActive, $pdid)
+    {
+        $sql = 'UPDATE product set isactive= :isactive WHERE pdid= :pdid;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute([
+            'isactive' => $isActive,
+            'pdid' => $pdid
+        ]);
+    }
+
+    public function deleteProduct(String $pdid)
+    {
+        $sql = "DELETE FROM product where pdid= :pdid;";
+        $prep = $this->db->prepare($sql);
+        $prep->execute([
+            'pdid' => $pdid
+        ]);
+    }
 }
