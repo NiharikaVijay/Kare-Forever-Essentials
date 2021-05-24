@@ -37,14 +37,14 @@
                                 </td>
                                 {% elseif order[9] == 'Out' %}
                                 <td>
-                                    <span class="badge badge-pill badge-warning-light">Our for
+                                    <span class="badge badge-pill badge-warning-light">Out for
                                         Delivery</span>
                                 </td>
                                 {% elseif order[9] == 'Delivered' %}
                                 <td>
                                     <span class="badge badge-pill badge-success-light">Delivered</span>
                                 </td>
-                                {% else %}
+                                {% elseif order[9] == 'Cancelled' %}
                                 <td>
                                     <span class="badge badge-pill badge-primary-light">Cancelled</span>
                                 </td>
@@ -60,8 +60,10 @@
                                                 data-toggle="dropdown">
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#">Accept Order</a>
-                                                <a class="dropdown-item" href="#">Reject Order</a>
+                                                <a class="dropdown-item" href="order_update.php?status=acp&ordid={{order[0]}}">Accepted</a>
+                                                <a class="dropdown-item" href="order_update.php?status=ofd&ordid={{order[0]}}">Out for Delivery</a>
+                                                <a class="dropdown-item" href="order_update.php?status=dvd&ordid={{order[0]}}">Delivered</a>
+                                                <a class="dropdown-item" href="order_update.php?status=can&ordid={{order[0]}}">Cancelled</a>
                                             </div>
                                         </div>
                                     </div>

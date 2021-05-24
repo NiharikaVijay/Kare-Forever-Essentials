@@ -46,4 +46,25 @@ class OrderModel
             "products" => $products
         ];
     }
+
+    public function updateOrderStatus(String $ordid, String $status)
+    {
+        if ($status == 'acp') {
+            $status = 'Accepted';
+        } elseif ($status == 'ofd') {
+            $status = 'Out';
+        } elseif ($status == 'dvd') {
+            $status = 'Delivered';
+        } elseif ($status == 'can') {
+            $status = 'Cancelled';
+        }
+
+        $sql = 'UPDATE orders SET status=:status WHERE ordid= :ordid;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute([
+            'ordid' => $ordid,
+            'status' => $status
+        ]);
+        $prep->fetchAll();
+    }
 }
