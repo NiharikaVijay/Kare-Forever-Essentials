@@ -60,7 +60,7 @@ class ProductModel
         $prep->execute(['pdid' => $pdid]);
         $details = $prep->fetchAll();
 
-        $sql = 'SELECT path,isimage FROM media WHERE pdid= :pdid;';
+        $sql = 'SELECT path,isimage FROM media WHERE pdid= :pdid ORDER BY isdefault DESC;';
         $prep = $this->db->prepare($sql);
         $prep->execute(['pdid' => $pdid]);
         $media = $prep->fetchAll();
@@ -158,14 +158,14 @@ class ProductModel
 
             if ($i == 0) {
                 $sql = 'INSERT INTO media VALUES("' . $mdid . '", 
-                "' . $target_file . '",
+                "' . substr($target_file, 2) . '",
                 TRUE,
                 "' . $pdid . '",
                 TRUE
                 );';
             } else {
                 $sql = 'INSERT INTO media VALUES("' . $mdid . '", 
-                "' . $target_file . '",
+                "' . substr($target_file, 2) . '",
                 TRUE,
                 "' . $pdid . '",
                 FALSE
@@ -207,7 +207,7 @@ class ProductModel
         $prep->execute(['pdid' => $pdid]);
         $general = $prep->fetchAll();
 
-        $sql = 'SELECT path,isimage FROM media WHERE pdid= :pdid;';
+        $sql = 'SELECT path,isimage FROM media WHERE pdid= :pdid ORDER BY isdefault DESC;';
         $prep = $this->db->prepare($sql);
         $prep->execute(['pdid' => $pdid]);
         $media = $prep->fetchAll();
@@ -240,5 +240,106 @@ class ProductModel
             'conc' => $conc,
             'notconc' => $notconc
         ];
+    }
+
+    public function editProduct(
+        $pdid,
+        $pdname,
+        $ing,
+        $ben,
+        $app,
+        $tags,
+        $p30,
+        $p50,
+        $p100,
+        $p250,
+        $cat,
+        $conc,
+        $discount,
+        $media
+    ) {
+        $sql = 'UPDATE product SET
+        pdname= :pdname,
+        ingredients= :ing,
+        benefits= :ben,
+        application= :app,
+        tags= :tags,
+        30ml= :p30,
+        50ml= :p50,
+        100ml= :p100,
+        250ml= :p250,
+        discount= :discount WHERE pdid= :pdid;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute([
+            'pdname' => $pdname,
+            'ing' => $ing,
+            'ben' => $ben,
+            'app' => $app,
+            'tags' => $tags,
+            'p30' => $p30,
+            'p50' => $p50,
+            'p100' => $p100,
+            'p250' => $p250,
+            'discount' => $discount,
+            'pdid' => $pdid
+        ]);
+
+        $sql = 'DELETE FROM prodcat WHERE pdid= :pdid;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute(['pdid' => $pdid]);
+
+        foreach ($cat as $c) {
+            $sql = 'INSERT INTO prodcat VALUES("' . $pdid . '", 
+            "' . $c . '");';
+            $prep = $this->db->prepare($sql);
+            $prep->execute();
+        }
+
+        $sql = 'DELETE FROM prodconc WHERE pdid= :pdid;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute(['pdid' => $pdid]);
+
+        foreach ($conc as $c) {
+            $sql = 'INSERT INTO prodconc VALUES("' . $pdid . '", 
+        "' . $c . '");';
+            $prep = $this->db->prepare($sql);
+            $prep->execute();
+        }
+
+        if (sizeof($media) > 0) {
+            $sql = 'DELETE FROM media WHERE pdid= :pdid;';
+            $prep = $this->db->prepare($sql);
+            $prep->execute(['pdid' => $pdid]);
+
+            $target_dir = '../media/products/';
+            $nimages = sizeof($media['name']);
+            for ($i = 0; $i < $nimages; $i++) {
+                $mdid = $this->generateRandomString(6);
+                $target_file = $target_dir . $pdid . '-' . $mdid . '-' . basename($media['name'][$i]);
+
+                if (!move_uploaded_file($media["tmp_name"][$i], $target_file)) {
+                    die();
+                }
+
+                if ($i == 0) {
+                    $sql = 'INSERT INTO media VALUES("' . $mdid . '", 
+                "' . substr($target_file, 2) . '",
+                TRUE,
+                "' . $pdid . '",
+                TRUE
+                );';
+                } else {
+                    $sql = 'INSERT INTO media VALUES("' . $mdid . '", 
+                "' . substr($target_file, 2) . '",
+                TRUE,
+                "' . $pdid . '",
+                FALSE
+                );';
+                }
+                $prep = $this->db->prepare($sql);
+                $prep->execute();
+            }
+        }
+        return;
     }
 }
