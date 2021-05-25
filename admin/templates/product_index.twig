@@ -1,0 +1,153 @@
+{% extends "template.twig" %}
+
+{% block title %}Admin | Product List{% endblock %}
+{% block content %}
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+    function changeState(obj, pdid) {
+        // function below will run clear.php?h=michael
+        var isActive = false;
+        if (obj.checked) {
+            isActive = true;
+        }
+        $.ajax({
+            type: "GET",
+            url: "product_state_update.php",
+            data: {
+                isActive: isActive,
+                pdid: pdid
+            },
+            success: function () { }
+        });
+    }
+</script>
+<div class="row">
+    {% for product in products %}
+    <div class="col-md-12 col-lg-4">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">{{product[0]}}</h4>
+                <div class="header-elements">
+                    <!-- <span class="badge bg-danger badge-pill">Paid</span> -->
+                    <div class="box-controls pull-right">
+                        <label class="switch switch-border switch-danger">
+                            {% if product[1] %}
+                            <input type="checkbox" onChange="changeState(this,{{product[7]}})" checked>
+                            {% else %}
+                            <input type="checkbox" onChange="changeState(this,{{product[7]}})">
+                            {% endif %}
+                            <span class="switch-indicator"></span>
+                            <span class="switch-description"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <img class="card-img-top" src="{{product[2]}}" alt="Card image cap">
+
+            <div class="card-body">
+                <p class="card-text">
+                    <strong>Categories: </strong>{{product[5]}}<br>
+                    <strong>Concerns: </strong>{{product[6]}}
+                </p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            {% if product[8] %}
+                            <th>30 mL</th>
+                            {% endif %}
+                            {% if product[9] %}
+                            <th>50 mL</th>
+                            {% endif %}
+                            {% if product[10] %}
+                            <th>100 mL</th>
+                            {% endif %}
+                            {% if product[11] %}
+                            <th>250 mL</th>
+                            {% endif %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>MRP</b></td>
+                            {% if product[8] %}
+                            <td>₹{{product[8]}}</td>
+                            {% endif %}
+                            {% if product[9] %}
+                            <td>₹{{product[9]}}</td>
+                            {% endif %}
+                            {% if product[10] %}
+                            <td>₹{{product[10]}}</td>
+                            {% endif %}
+                            {% if product[11] %}
+                            <td>₹{{product[11]}}</td>
+                            {% endif %}
+                        </tr>
+                        <tr>
+                            <td><b>Final</b></td>
+                            {% if product[12] %}
+                            <td>₹{{product[12]}}</td>
+                            {% endif %}
+                            {% if product[13] %}
+                            <td>₹{{product[13]}}</td>
+                            {% endif %}
+                            {% if product[14] %}
+                            <td>₹{{product[14]}}</td>
+                            {% endif %}
+                            {% if product[15] %}
+                            <td>₹{{product[15]}}</td>
+                            {% endif %}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal center-modal fade" id="modal-center-{{product[7]}}" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Are you sure you want to delete this product?</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>{{product[0]}}</p>
+                        </div>
+                        <div class="modal-footer modal-footer-uniform">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <a href="product_delete.php?pdid={{product[7]}}"><button type="button" class="btn btn-primary float-right">Delete</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer justify-content-between d-flex">
+                <!-- <span class="text-muted">Last updated 3 mins ago</span> -->
+                <ul class="list-inline mb-0">
+                    <li><a href="product_details.php?pdid={{product[7]}}">View more</a></li>
+                    <li><a href="product_edit.php?pdid={{product[7]}}">Edit</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#modal-center-{{product[7]}}">Delete</a></li>
+                </ul>
+                <span>
+                    {% if product[4]==0 %}
+                    {% for i in 1..5 %}
+                    <i class="fa fa-star text-warning"></i>
+                    {% endfor %}
+                    <span class="text-muted ml-2">5.0 (0)</span>
+                    {% else %}
+                    {% for i in 1..(product[3]|round(0,'floor')) %}
+                    <i class="fa fa-star text-warning"></i>
+                    {% endfor %}
+                    {% if product[3]-(product[3]|round(0,'floor')) >= 0.5 %}
+                    <i class="fa fa-star-half text-warning"></i>
+                    {% endif %}
+                    <span class="text-muted ml-2">
+                        {{product[3]}} ({{product[4]}})</span>
+                    {% endif %}
+
+                </span>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,202 @@
+{% extends "template.twig" %}
+
+{% block title %}Admin | Edit Product{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="box box-body b-1 text-center no-shadow">
+            <img src={{details['media'][0][0]}} id="product-image" class="img-fluid" alt="" />
+        </div>
+        <div class="pro-photos">
+            {% for img in details['media'] %}
+            <div class="photos-item item-active">
+                <img src={{img[0]}} alt="">
+            </div>
+            {% endfor %}
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="col-md-8">
+        <div class="box">
+            <div class="box-body">
+                <form action="product_save.php" method="POST" enctype="multipart/form-data">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Product ID</label>
+                                    <input type="text" class="form-control" value={{details['general'][8]}} name="pdid"
+                                        style="pointer-events:none;
+                                        background:rgb(201, 197, 197);">
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label>Product Name</label>
+                                    <input type="text" class="form-control" value={{details['general'][0]}}
+                                        name="pdname" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Ingredients</label>
+                                    <textarea rows="5" cols="5" class="form-control" name="ingredients"
+                                        required>{{details['general'][1]}}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Benefits</label>
+                                    <textarea rows="5" cols="5" class="form-control" name="benefits"
+                                        required>{{details['general'][2]}}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Application</label>
+                                    <textarea rows="5" cols="5" class="form-control" name="application"
+                                        required>{{details['general'][3]}}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Categories</label>
+                                    <select class="form-control select2" multiple data-placeholder="Select categories"
+                                        style="width: 100%;" name="categories[]">
+                                        {% for category in details['cat'] %}
+                                        <option value={{category[0]}} selected>{{category[1]}}</option>
+                                        {% endfor %}
+                                        {% for category in details['notcat'] %}
+                                        <option value={{category[0]}}>{{category[1]}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Concerns</label>
+                                    <select class="form-control select2" multiple data-placeholder="Select concerns"
+                                        style="width: 100%;" name="concerns[]">
+                                        {% for concern in details['conc'] %}
+                                        <option value={{concern[0]}} selected>{{concern[1]}}</option>
+                                        {% endfor %}
+                                        {% for concern in details['notconc'] %}
+                                        <option value={{concern[0]}}>{{concern[1]}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="tags-default form-group">
+                                    <label>Tags</label><br>
+                                    <input type="text" value={{details['general'][9]}} data-role="tagsinput"
+                                        name="tags" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label">Discount</label>
+                                    <input id="discount" type="number" min="0" max="100"
+                                        value={{details['general'][10]}} name="discount"
+                                        data-bts-button-down-class="btn btn-secondary"
+                                        data-bts-button-up-class="btn btn-secondary">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>30 ml</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">₹
+                                        </div>
+                                        <input type="number" class="form-control" value={{details['general'][4]}}
+                                            name="30ml" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>50 ml</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">₹
+                                        </div>
+                                        <input type="number" class="form-control" value={{details['general'][5]}}
+                                            name="50ml" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>100 ml</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">₹
+                                        </div>
+                                        <input type="number" class="form-control" value={{details['general'][6]}}
+                                            name="100ml" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>250 ml</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">₹
+                                        </div>
+                                        <input type="number" class="form-control" value={{details['general'][7]}}
+                                            name="250ml" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Media Files</label>
+                                <p>Files selected will be the ONLY media files for this product. Leave blank if you
+                                    don't want to change. Avoid files with spaces in name.</p>
+                                <div class="product-img text-left">
+                                    <div class="btn btn-light mb-20">
+                                        <input type="file" class="upload form-control" multiple name="media[]" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {# <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Status</label>
+                                <div class="radio-list">
+                                    <label class="radio-inline p-0 mr-10">
+                                        <div class="radio radio-info">
+                                            <input type="radio" name="radio" name="radio1" value="option1">
+                                            <label for="radio1">Published</label>
+                                        </div>
+                                    </label>
+                                    <label class="radio-inline">
+                                        <div class="radio radio-info">
+                                            <input type="radio" name="radio" name="radio2" value="option2">
+                                            <label for="radio2">Draft</label>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div> #}
+                    </div>
+                    <div class="form-actions mt-10">
+                        <center><button type="submit" class="btn btn-primary"> <i class="fa fa-check"></i>Save
+                                Changes</button></center>
+                    </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+{% endblock %}

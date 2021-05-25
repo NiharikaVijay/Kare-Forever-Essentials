@@ -1,0 +1,219 @@
+{% extends "template.twig" %}
+
+{% block title %}Admin | Order Details{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-xxxl-4 col-12">
+
+        {# Customer Details #}
+        <div class="box">
+            <div class="box-body">
+                <div class="d-flex align-items-center">
+                    <img class="mr-10 rounded-circle avatar avatar-xl b-2 border-primary" src="../images/avatar/1.jpg"
+                        alt="">
+                    <div>
+                        <h4 class="mb-0">{{details[0]}}</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="box-body border-bottom">
+                <div class="d-flex align-items-center">
+                    <i class="fa fa-envelope mr-10 font-size-24"></i>
+                    <h4 class="mb-0">{{details[1]}}</h4>
+                </div>
+            </div>
+            <div class="box-body border-bottom">
+                <div class="d-flex align-items-center">
+                    <i class="fa fa-phone mr-10 font-size-24"></i>
+                    <h4 class="mb-0">{{details[2]}}</h4>
+                </div>
+            </div>
+            <div class="box-body border-bottom">
+                <div class="d-flex align-items-center">
+                    <i class="fa fa-calendar mr-10 font-size-24"></i>
+                    <h4 class="mb-0 text-black">{{details[3]}}</h4>
+                </div>
+            </div>
+            <div class="box-body border-bottom">
+                <div class="d-flex align-items-center">
+                    <i class="fa fa-map-marker mr-10 font-size-24"></i>
+                    <h4 class="mb-0 text-black">{{details[5]}}, {{details[6]}}, {{details[7]}}-{{details[8]}},
+                        {{details[9]}}</h4>
+                </div>
+            </div>
+            {% if details[4] %}
+            <div class="box-body">
+                <h4 class="mb-10">Order Notes</h4>
+                <p>{{details[4]}}</p>
+            </div>
+            {% endif %}
+        </div>
+
+        {# Customer Favorites #}
+        <div class="row">
+            <div class="col-xxxl-12 col-lg-6 col-12">
+                <div class="box">
+                    <div class="box-header no-border">
+                        <h4 class="box-title">
+                            Customer Favourite
+                        </h4>
+                    </div>
+                    <div class="box-body text-center">
+                        <div class="bar mx-auto"
+                            data-peity='{ "fill": ["#2196f3", "#3da643", "#FDAC42"], "height": 150, "width": 320, "padding":0.2 }'>
+                            52,38,24</div>
+                        <div class="d-flex justify-content-center mt-30">
+                            <div class="d-flex text-left">
+                                <i class="fa fa-circle text-info mr-5"></i>
+                                <h4 class="font-weight-600">25% <br><small class="text-fade">Pizza</small></h4>
+                            </div>
+                            <div class="d-flex text-left mx-50">
+                                <i class="fa fa-circle text-danger mr-5"></i>
+                                <h4 class="font-weight-600">15% <br><small class="text-fade">Juice
+                                    </small></h4>
+                            </div>
+                            <div class="d-flex text-left">
+                                <i class="fa fa-circle text-primary mr-5"></i>
+                                <h4 class="font-weight-600">21% <br><small class="text-fade">Dessert
+                                    </small></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Order tracker #}
+    <div class="col-xxxl-8 col-12">
+        <div class="box">
+            <div class="box-body">
+                <ol class="c-progress-steps">
+                    {% if details[11]=='Placed' %}
+                    <li class="c-progress-steps__step current"><span>Placed</span></li>
+                    <li class="c-progress-steps__step"><span>Accepted</span></li>
+                    <li class="c-progress-steps__step"><span>Out for Delivery</span></li>
+                    <li class="c-progress-steps__step"><span>Delivered</span></li>
+                    {% elseif details[11]=='Accepted' %}
+                    <li class="c-progress-steps__step current"><span>Placed</span></li>
+                    <li class="c-progress-steps__step current"><span>Accepted</span></li>
+                    <li class="c-progress-steps__step"><span>Out for Delivery</span></li>
+                    <li class="c-progress-steps__step"><span>Delivered</span></li>
+                    {% elseif details[11]=='Out for Delivery' %}
+                    <li class="c-progress-steps__step current"><span>Placed</span></li>
+                    <li class="c-progress-steps__step current"><span>Accepted</span></li>
+                    <li class="c-progress-steps__step current"><span>Out for Delivery</span></li>
+                    <li class="c-progress-steps__step"><span>Delivered</span></li>
+                    {% elseif details[11]=='Delivered' %}
+                    <li class="c-progress-steps__step current"><span>Placed</span></li>
+                    <li class="c-progress-steps__step current"><span>Accepted</span></li>
+                    <li class="c-progress-steps__step current"><span>Out for Delivery</span></li>
+                    <li class="c-progress-steps__step current"><span>Delivered</span></li>
+                    {% else %}
+                    <li class="c-progress-steps__step done"></li>
+                    <li class="c-progress-steps__step done"></li>
+                    <li class="c-progress-steps__step done"></li>
+                    <li class="c-progress-steps__step done"><span>Cancelled</span></li>
+                    {% endif %}
+
+
+                </ol>
+            </div>
+        </div>
+
+        {# Order products #}
+        <div class="box">
+            <div class="box-body">
+                <div class="table-responsive-xl">
+                    <table class="table product-overview">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th style="min-width: 300px;">Product info</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th style="text-align:center">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for product in products %}
+                            <tr>
+                                <td><img src={{product[0]}} alt="" width="80">
+                                </td>
+                                <td>
+                                    <h4>{{product[1]}}</h4>
+                                    <h6>{{product[2]}}</h6>
+                                </td>
+                                <td>₹{{product[3]}}</td>
+                                <td width="70">
+                                    <input type="number" class="form-control" placeholder="1" min="0" max="100"
+                                        value={{product[4]}}>
+                                </td>
+                                <td width="100" align="center" class="font-weight-900">₹{{product[5]}}</td>
+                            </tr>
+                            {% endfor %}
+                            {% if details[12]>0 or coupon %}
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <h4><strong>Total</strong></h4>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td width="100" align="center" class="font-weight-900">
+                                    <h4><strong>₹{{total}}</strong></h4>
+                                </td>
+                            </tr>
+                            {% endif %}
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            {% if coupon %}
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <h4>Coupon used</h4>
+                                </td>
+                                <td>{{coupon[0]}}</td>
+                                <td></td>
+                                <td width="100" align="center" class="font-weight-900">
+                                    <h5>- ₹{{coupon[1]}}</h5>
+                                </td>
+                            </tr>
+                            {% endif %}
+                            {% if details[12]>0 %}
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <h4>Loyalty points used</h4>
+                                </td>
+                                <td>{{details[12]}} pts</td>
+                                <td></td>
+                                <td width="100" align="center" class="font-weight-900">
+                                    <h5>- ₹{{details[12]}}</h5>
+                                </td>
+                            </tr>
+                            {% endif %}
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <h4><strong>FINAL AMOUNT</strong></h4>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td width="100" align="center" class="font-weight-900">
+                                    <h4><strong>₹{{details[10]}}</strong></h4>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

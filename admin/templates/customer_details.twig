@@ -1,0 +1,131 @@
+{% extends "template.twig" %}
+
+{% block title %}Admin | Customer Details{% endblock %}
+{% block content %}
+<section class="content"><br>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="box">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-xl-4 col-md-4">
+                            <!-- Widget: user widget style 1 -->
+                            <div class="box box-widget widget-user-2">
+                                <!-- Add the bg color to the header using any of the bg-* classes -->
+                                <div class="widget-user-header bg-primary">
+                                    <div class="widget-user-image">
+                                        <img class="rounded-circle bg-success-light"
+                                            src="/admin/images/avatar/avatar-5.png" alt="User Avatar">
+                                    </div>
+                                    <!-- /.widget-user-image -->
+                                    <h3 class="widget-user-username">{{details[0]}}</h3>
+                                    <h6 class="widget-user-desc">{{details[1]}} | {{details[2]}}</h6>
+                                </div>
+                                <div class="box-footer no-padding">
+                                    <ul class="nav d-block nav-stacked">
+                                        <li class="nav-item"><a href="#" class="nav-link">Orders placed
+                                                <span
+                                                    class="pull-right badge bg-info-light"><b>{{details[3]}}</b></span></a>
+                                        </li>
+                                        <li class="nav-item"><a href="#" class="nav-link">Items in cart <span
+                                                    class="pull-right badge bg-success-light"><b>{{details[4]}}</b></span></a>
+                                        </li>
+                                        <li class="nav-item"><a href="#" class="nav-link">Items in wishlist
+                                                <span
+                                                    class="pull-right badge bg-warning-light"><b>{{details[5]}}</b></span></a>
+                                        </li>
+                                        <li class="nav-item"><a href="#" class="nav-link">Revenue
+                                                <span
+                                                    class="pull-right badge bg-danger-light"><b>₹{{details[6]}}</b></span></a>
+                                        </li>
+                                        <li class="nav-item"><a href="#" class="nav-link">Loyalty Points
+                                                <span
+                                                    class="pull-right badge bg-info-light"><b>{{details[7]}}</b></span></a>
+                                        </li>
+                                        <li class="nav-item"><a href="#" class="nav-link">Referral Code
+                                            <span
+                                            class="pull-right"><b>{{details[8]}}</b></span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="box">
+                                <div class="box-body px-0">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="table-responsive rounded card-table">
+                                            <table class="table border-no" id="example1">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Order ID</th>
+                                                        <th>Date</th>
+                                                        <th>Location</th>
+                                                        <th>Amount</th>
+                                                        <th>Status Order</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for order in orders %}
+                                                    <tr class="hover-primary">
+                                                        <td>{{order[0]}}</td>
+                                                        <td>{{order[1]}}</td>
+                                                        <td>{{order[2]}}, {{order[3]}}, {{order[4]}}-{{order[5]}},
+                                                            {{order[6]}}</td>
+                                                        <td>{{order[7]}}</td>
+                                                        {% if order[8] == 'Placed' %}
+                                                        <td>
+                                                            <span
+                                                                class="badge badge-pill badge-danger-light">Placed</span>
+                                                        </td>
+                                                        {% elseif order[8] == 'Accepted' %}
+                                                        <td>
+                                                            <span
+                                                                class="badge badge-pill badge-info-light">Accepted</span>
+                                                        </td>
+                                                        {% elseif order[8] == 'Out' %}
+                                                        <td>
+                                                            <span class="badge badge-pill badge-warning-light">Our for
+                                                                Delivery</span>
+                                                        </td>
+                                                        {% elseif order[8] == 'Delivered' %}
+                                                        <td>
+                                                            <span
+                                                                class="badge badge-pill badge-success-light">Delivered</span>
+                                                        </td>
+                                                        {% else %}
+                                                        <td>
+                                                            <span
+                                                                class="badge badge-pill badge-primary-light">Cancelled</span>
+                                                        </td>
+                                                        {% endif %}
+                                                        <td>
+                                                            <div class="btn-group">
+                                                                <a class="hover-primary dropdown-toggle no-caret"
+                                                                    data-toggle="dropdown"><i
+                                                                        class="fa fa-ellipsis-h"></i></a>
+                                                                <div class="dropdown-menu">
+                                                                    <a class="dropdown-item" href="#">Accept
+                                                                        Order</a>
+                                                                    <a class="dropdown-item" href="#">Reject
+                                                                        Order</a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
