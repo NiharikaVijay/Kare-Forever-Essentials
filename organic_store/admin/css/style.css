@@ -12468,7 +12468,7 @@ Height property
   transition: all 0.3s ease-in-out;
   overflow: hidden;
   border-radius: 0;
-  margin-right: 340px; }
+  margin-right: 10px; }
 
 .main-footer {
   -moz-transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
@@ -12628,7 +12628,7 @@ Height property
     margin-top: 5px; }
 
 .main-header {
-  margin-right: 361px;
+  margin-right: 30px;
   -moz-transition: margin-left 0.3s ease-in-out;
   -o-transition: margin-left 0.3s ease-in-out;
   -webkit-transition: margin-left 0.3s ease-in-out;
