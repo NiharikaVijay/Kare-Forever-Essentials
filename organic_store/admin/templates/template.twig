@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from multipurposethemes.com/admin/riday-admin-template/bs4/main/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 May 2021 18:12:32 GMT -->
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,23 +8,17 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../media/general/favicon.png">
-
     <title>{% block title %}{% endblock %}</title>
-
     <!-- Vendors Style-->
     <link rel="stylesheet" href="css/vendors_css.css">
-
     <!-- Style-->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/skin_color.css">
-
 </head>
 
 <body class="hold-transition light-skin sidebar-mini theme-danger fixed">
-
     <div class="wrapper">
         <div id="loader"></div>
-
         <header class="main-header">
             <div class="d-flex align-items-center logo-box justify-content-start">
                 <a href="#"
@@ -41,7 +33,6 @@
                     <div class="logo-lg">
                         <span class="light-logo"><img src="../media/general/logo.png" alt="logo"></span>
                         <span class="dark-logo"><img src="../media/general/logo.png" alt="logo"></span>
-
                     </div>
                 </a>
             </div>
@@ -305,7 +296,7 @@
                                     <a class="dropdown-item" href="#"><i class="ti-settings text-muted mr-2"></i>
                                         Settings</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#"><i class="ti-lock text-muted mr-2"></i> Logout</a>
+                                    <a class="dropdown-item" href="logout.php"><i class="ti-lock text-muted mr-2"></i> Logout</a>
                                 </li>
                             </ul>
                         </li>
@@ -348,7 +339,8 @@
                                 </a>
                                 <ul class="treeview-menu">
                                     <li><a href="product_index.php"><i class="icon-Commit"><span
-                                                    class="path1"></span><span class="path2"></span></i>Products List</a>
+                                                    class="path1"></span><span class="path2"></span></i>Products
+                                            List</a>
                                     </li>
                                     <li><a href="product_add.php"><i class="icon-Commit"><span
                                                     class="path1"></span><span class="path2"></span></i>Add
@@ -402,41 +394,44 @@
                 </section>
             </div>
         </div>
-    
-    <!-- Vendor JS -->
-    <script src="/admin/js/vendors.min.js"></script>
-    <script src="/admin/js/pages/chat-popup.js"></script>
-    <script src="/admin/assets/vendor_components/apexcharts-bundle/dist/apexcharts.min.js"></script>
-    <script src="/admin/assets/icons/feather-icons/feather.min.js"></script>
-    <script src="/admin/assets/icons/icomoon/fonts/icomoon4a27.ttf"></script>
-    <script src="/admin/assets/vendor_components/datatable/datatables.min.js"></script>
-    <script src="/admin/assets/vendor_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
-    <script src="/admin/assets/vendor_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js"></script>
-    <script src="/admin/assets/vendor_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
-    <script src="/admin/assets/vendor_components/select2/dist/js/select2.full.js"></script>
-    <script src="/admin/assets/vendor_plugins/input-mask/jquery.inputmask.js"></script>
-    <script src="/admin/assets/vendor_plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-    <script src="/admin/assets/vendor_plugins/input-mask/jquery.inputmask.extensions.js"></script>
-    <script src="/admin/assets/vendor_components/moment/min/moment.min.js"></script>
-    <script src="/admin/assets/vendor_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-    <script src="/admin/assets/vendor_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-    <script src="/admin/assets/vendor_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
-    <script src="/admin/assets/vendor_plugins/timepicker/bootstrap-timepicker.min.js"></script>
-    <script src="/admin/assets/vendor_plugins/iCheck/icheck.min.js"></script>
-    <script src="/admin/assets/vendor_components/dropzone/dropzone.js"></script>
-    <script src="/admin/assets/vendor_components/OwlCarousel2/dist/owl.carousel.js"></script>
-    {#
-    <script src="../../../../../cdn.amcharts.com/lib/4/core.js"></script>
-    <script src="../../../../../cdn.amcharts.com/lib/4/maps.js"></script>
-    <script src="../../../../../cdn.amcharts.com/lib/4/geodata/worldLow.js"></script>
-    <script src="../../../../../cdn.amcharts.com/   lib/4/themes/kelly.js"></script>
-    <script src="../../../../../cdn.amcharts.com/lib/4/themes/animated.js"></script> #}
-    <!-- Riday App -->
-    <script src="/admin/js/template.js"></script>
-    <script src="/admin/js/pages/dashboard.js"></script>
-    <script src="/admin/js/pages/ecommerce_details.js"></script>
-    <script src="/admin/js/pages/order.js"></script>
-    <script src="/admin/js/pages/order-details.js"></script>
-    <script src="/admin/js/pages/advanced-form-element.js"></script>
+
+        <!-- Vendor JS -->
+        <script src="/admin/js/vendors.min.js"></script>
+        <script src="/admin/js/pages/chat-popup.js"></script>
+        <script src="/admin/assets/vendor_components/apexcharts-bundle/dist/apexcharts.min.js"></script>
+        <script src="/admin/assets/icons/feather-icons/feather.min.js"></script>
+        <script src="/admin/assets/icons/icomoon/fonts/icomoon4a27.ttf"></script>
+        <script src="/admin/assets/vendor_components/datatable/datatables.min.js"></script>
+        <script src="/admin/assets/vendor_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
+        <script src="/admin/assets/vendor_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js"></script>
+        <script
+            src="/admin/assets/vendor_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+        <script src="/admin/assets/vendor_components/select2/dist/js/select2.full.js"></script>
+        <script src="/admin/assets/vendor_plugins/input-mask/jquery.inputmask.js"></script>
+        <script src="/admin/assets/vendor_plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+        <script src="/admin/assets/vendor_plugins/input-mask/jquery.inputmask.extensions.js"></script>
+        <script src="/admin/assets/vendor_components/moment/min/moment.min.js"></script>
+        <script src="/admin/assets/vendor_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+        <script src="/admin/assets/vendor_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+        <script
+            src="/admin/assets/vendor_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+        <script src="/admin/assets/vendor_plugins/timepicker/bootstrap-timepicker.min.js"></script>
+        <script src="/admin/assets/vendor_plugins/iCheck/icheck.min.js"></script>
+        <script src="/admin/assets/vendor_components/dropzone/dropzone.js"></script>
+        <script src="/admin/assets/vendor_components/OwlCarousel2/dist/owl.carousel.js"></script>
+        {#
+        <script src="../../../../../cdn.amcharts.com/lib/4/core.js"></script>
+        <script src="../../../../../cdn.amcharts.com/lib/4/maps.js"></script>
+        <script src="../../../../../cdn.amcharts.com/lib/4/geodata/worldLow.js"></script>
+        <script src="../../../../../cdn.amcharts.com/   lib/4/themes/kelly.js"></script>
+        <script src="../../../../../cdn.amcharts.com/lib/4/themes/animated.js"></script> #}
+        <!-- Riday App -->
+        <script src="/admin/js/template.js"></script>
+        <script src="/admin/js/pages/dashboard.js"></script>
+        <script src="/admin/js/pages/ecommerce_details.js"></script>
+        <script src="/admin/js/pages/order.js"></script>
+        <script src="/admin/js/pages/order-details.js"></script>
+        <script src="/admin/js/pages/advanced-form-element.js"></script>
 </body>
+
 </html>
