@@ -41,6 +41,7 @@ $details = $customerModel->getCustomerDetails($cxid);
 $orders = $customerModel->getCustomerOrders($cxid);
 // echo var_dump($details);
 echo $twig->render('customer_details.twig', [
+    'user' => $_SESSION,
     'page_title' => 'Customer Details',
     'section' => 'Customer',
     'subsection' => 'Details',

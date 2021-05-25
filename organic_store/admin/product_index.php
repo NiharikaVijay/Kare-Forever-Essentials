@@ -39,6 +39,7 @@ $productModel = new ProductModel($db);
 $products = $productModel->getAllProducts();
 // echo $products[0];
 echo $twig->render('product_index.twig', [
+    'user' => $_SESSION,
     'page_title' => 'Product List',
     'section' => 'Product',
     'subsection' => 'Product List',

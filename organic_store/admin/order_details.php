@@ -39,6 +39,7 @@ $ordid = $_GET['ordid'];
 $order = $orderModel->getOrderDetails($ordid);
 
 echo $twig->render('order_details.twig', [
+    'user' => $_SESSION,
     'page_title' => 'Order Details',
     'section' => 'Order',
     'subsection' => 'Order Details',

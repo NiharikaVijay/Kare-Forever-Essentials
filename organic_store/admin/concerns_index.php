@@ -38,6 +38,7 @@ $concernModel = new ConcernModel($db);
 
 $concerns = $concernModel->getAllConcerns();
 echo $twig->render('concerns_index.twig', [
+    'user' => $_SESSION,
     'page_title' => 'Concern List',
     'section' => 'Concern',
     'subsection' => 'Concern List',

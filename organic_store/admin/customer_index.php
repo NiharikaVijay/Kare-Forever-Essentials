@@ -39,6 +39,7 @@ $customerModel = new CustomerModel($db);
 $customers = $customerModel->getAllCustomers();
 
 echo $twig->render('customer_index.twig', [
+    'user' => $_SESSION,
     'page_title' => 'Customer List',
     'section' => 'Customer',
     'subsection' => 'Customer List',

@@ -39,6 +39,7 @@ $details = $productModel->getCatCon();
 
 #Main code, changes for every view
 echo $twig->render('product_add.twig', [
+    'user' => $_SESSION,
     'page_title' => 'Add Product',
     'section' => 'Product',
     'subsection' => 'Add Product',

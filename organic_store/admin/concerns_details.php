@@ -40,6 +40,7 @@ $concid = $_GET['concid'];
 $products = $concernModel->getProducts($concid);
 
 echo $twig->render('product_index.twig', [
+    'user' => $_SESSION,
     'page_title' => 'Product List',
     'section' => 'Concern',
     'subsection' => $products['concern'],

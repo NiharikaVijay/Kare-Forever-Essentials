@@ -40,6 +40,7 @@ $products = $productModel->getProductDetails($pdid);
 
 // echo $products[0];
 echo $twig->render('product_details.twig', [
+    'user' => $_SESSION,
     'page_title' => 'Product Details',
     'section' => 'Product',
     'subsection' => 'Product Details',

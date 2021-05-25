@@ -40,6 +40,7 @@ $details = $productModel->getEditProductDetails($pdid);
 
 #Main code, changes for every view
 echo $twig->render('product_edit.twig', [
+    'user' => $_SESSION,
     'page_title' => 'Edit Product',
     'section' => 'Edit Product',
     'subsection' => $details['general'][0],

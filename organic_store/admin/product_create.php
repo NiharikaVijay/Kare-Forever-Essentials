@@ -68,26 +68,3 @@ $productModel->addProduct(
 
 header('Location: product_index.php');
 die();
-// print_r($media);
-// foreach ($_POST as $val) {/
-//     if (gettype($val) == 'array') {
-//         foreach ($val as $v) {
-//             echo $v . " " . gettype($v) . "<br>";
-//         }
-//         echo "<br>";
-//     } else {
-//         echo $val . " " . gettype($val) . "<br><br>";
-//     }
-// }
-
-// print_r($_FILES);
-// foreach ($_FILES as $val) {
-//     if (gettype($val) == 'array') {
-//         foreach ($val as $v) {
-//             echo $v . " " . gettype($v) . "<br>";
-//         }
-//         echo "<br>";
-//     } else {
-//         echo $val . " " . gettype($val) . "<br><br>";
-//     }
-// }

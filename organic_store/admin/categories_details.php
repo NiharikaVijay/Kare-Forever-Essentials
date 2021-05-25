@@ -40,6 +40,7 @@ $catid = $_GET['catid'];
 $products = $productModel->getProducts($catid);
 
 echo $twig->render('product_index.twig', [
+    'user' => $_SESSION,
     'page_title' => 'Product List',
     'section' => 'Category',
     'subsection' => $products['category'],

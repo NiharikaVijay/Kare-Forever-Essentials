@@ -38,6 +38,7 @@ $categoryModel = new CategoryModel($db);
 
 $categories = $categoryModel->getAllCategories();
 echo $twig->render('categories_index.twig', [
+    'user' => $_SESSION,
     'page_title' => 'Category List',
     'section' => 'Category',
     'subsection' => 'Category List',

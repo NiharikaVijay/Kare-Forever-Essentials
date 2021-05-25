@@ -38,6 +38,7 @@ $orderModel = new OrderModel($db);
 
 $orders = $orderModel->getAllOrders();
 echo $twig->render('order_index.twig', [
+    'user' => $_SESSION,
     'page_title' => 'Order List',
     'section' => 'Order',
     'subsection' => 'Order List',
