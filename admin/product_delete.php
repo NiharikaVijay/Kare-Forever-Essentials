@@ -12,7 +12,7 @@ if (!isset($_SESSION['loggedin'])) {
 	exit;
 }
 
-require __DIR__ . '/vendor/autoload.php';
+require dirname(dirname(__FILE__)). '/vendor/autoload.php';
 include 'models/ProductModels.php';
 
 use Twig\Environment;
@@ -33,16 +33,11 @@ $db = new PDO('mysql:dbname=' . $dbname . ';host=' . $host . ';port=' . $port . 
 $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 $db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 
-$productModel = new ProductModel($db);
-
-$details = $productModel->getCatCon();
-
 #Main code, changes for every view
-echo $twig->render('product_add.twig', [
-    'user' => $_SESSION,
-    'page_title' => 'Add Product',
-    'section' => 'Product',
-    'subsection' => 'Add Product',
-    'categories' => $details['cat'],
-    'concerns' => $details['conc']
-]);
+$productModel = new ProductModel($db);
+$pdid = $_GET['pdid'];
+
+$productModel->deleteProduct($pdid);
+
+header("Location: product_index.php");
+die();

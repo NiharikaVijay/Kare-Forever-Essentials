@@ -12,8 +12,8 @@ if (!isset($_SESSION['loggedin'])) {
 	exit;
 }
 
-require __DIR__ . '/vendor/autoload.php';
-include 'models/OrderModels.php';
+require dirname(dirname(__FILE__)). '/vendor/autoload.php';
+include 'models/ProductModels.php';
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
@@ -34,10 +34,39 @@ $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 $db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 
 #Main code, changes for every view
-$orderModel = new OrderModel($db);
-$ordid = $_GET['ordid'];
-$status = $_GET['status'];
-$orderModel->updateOrderStatus($ordid, $status);
+$productModel = new ProductModel($db);
 
-header("Location: order_index.php");
+$pdid = $_POST['pdid'];
+$pdname = $_POST['pdname'];
+$ing = $_POST['ingredients'];
+$ben = $_POST['benefits'];
+$app = $_POST['application'];
+$tags = $_POST['tags'];
+$p30 = $_POST['30ml'];
+$p50 = $_POST['50ml'];
+$p100 = $_POST['100ml'];
+$p250 = $_POST['250ml'];
+$cat = $_POST['categories'];
+$conc = $_POST['concerns'];
+$discount = $_POST['discount'];
+$media = $_FILES['media'];
+
+$productModel->editProduct(
+    $pdid,
+    $pdname,
+    $ing,
+    $ben,
+    $app,
+    $tags,
+    $p30,
+    $p50,
+    $p100,
+    $p250,
+    $cat,
+    $conc,
+    $discount,
+    $media
+);
+
+header('Location: product_index.php');
 die();

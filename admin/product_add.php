@@ -12,8 +12,8 @@ if (!isset($_SESSION['loggedin'])) {
 	exit;
 }
 
-require __DIR__ . '/vendor/autoload.php';
-include 'models/CategoryModels.php';
+require dirname(dirname(__FILE__)). '/vendor/autoload.php';
+include 'models/ProductModels.php';
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
@@ -33,16 +33,16 @@ $db = new PDO('mysql:dbname=' . $dbname . ';host=' . $host . ';port=' . $port . 
 $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 $db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 
+$productModel = new ProductModel($db);
+
+$details = $productModel->getCatCon();
+
 #Main code, changes for every view
-$productModel = new CategoryModel($db);
-$catid = $_GET['catid'];
-
-$products = $productModel->getProducts($catid);
-
-echo $twig->render('product_index.twig', [
+echo $twig->render('product_add.twig', [
     'user' => $_SESSION,
-    'page_title' => 'Product List',
-    'section' => 'Category',
-    'subsection' => $products['category'],
-    'products' => $products['list']
+    'page_title' => 'Add Product',
+    'section' => 'Product',
+    'subsection' => 'Add Product',
+    'categories' => $details['cat'],
+    'concerns' => $details['conc']
 ]);

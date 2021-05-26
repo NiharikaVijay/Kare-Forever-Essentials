@@ -12,7 +12,7 @@ if (!isset($_SESSION['loggedin'])) {
 	exit;
 }
 
-require __DIR__ . '/vendor/autoload.php';
+require dirname(dirname(__FILE__)). '/vendor/autoload.php';
 include 'models/ProductModels.php';
 
 use Twig\Environment;
@@ -36,12 +36,35 @@ $db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 #Main code, changes for every view
 $productModel = new ProductModel($db);
 
-$products = $productModel->getAllProducts();
-// echo $products[0];
-echo $twig->render('product_index.twig', [
-    'user' => $_SESSION,
-    'page_title' => 'Product List',
-    'section' => 'Product',
-    'subsection' => 'Product List',
-    'products' => $products
-]);
+$pdname = $_POST['pdname'];
+$ing = $_POST['ingredients'];
+$ben = $_POST['benefits'];
+$app = $_POST['application'];
+$tags = $_POST['tags'];
+$p30 = $_POST['30ml'];
+$p50 = $_POST['50ml'];
+$p100 = $_POST['100ml'];
+$p250 = $_POST['250ml'];
+$cat = $_POST['categories'];
+$conc = $_POST['concerns'];
+$discount = $_POST['discount'];
+$media = $_FILES['media'];
+
+$productModel->addProduct(
+    $pdname,
+    $ing,
+    $ben,
+    $app,
+    $tags,
+    $p30,
+    $p50,
+    $p100,
+    $p250,
+    $cat,
+    $conc,
+    $discount,
+    $media
+);
+
+header('Location: product_index.php');
+die();

@@ -12,8 +12,8 @@ if (!isset($_SESSION['loggedin'])) {
 	exit;
 }
 
-require __DIR__ . '/vendor/autoload.php';
-include 'models/ProductModels.php';
+require dirname(dirname(__FILE__)). '/vendor/autoload.php';
+include 'models/ConcernModels.php';
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
@@ -34,39 +34,14 @@ $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 $db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 
 #Main code, changes for every view
-$productModel = new ProductModel($db);
+$concernModel = new ConcernModel($db);
 
-$pdid = $_POST['pdid'];
-$pdname = $_POST['pdname'];
-$ing = $_POST['ingredients'];
-$ben = $_POST['benefits'];
-$app = $_POST['application'];
-$tags = $_POST['tags'];
-$p30 = $_POST['30ml'];
-$p50 = $_POST['50ml'];
-$p100 = $_POST['100ml'];
-$p250 = $_POST['250ml'];
-$cat = $_POST['categories'];
-$conc = $_POST['concerns'];
-$discount = $_POST['discount'];
-$media = $_FILES['media'];
+$concerns = $concernModel->getAllConcerns();
+echo $twig->render('concerns_index.twig', [
+    'user' => $_SESSION,
+    'page_title' => 'Concern List',
+    'section' => 'Concern',
+    'subsection' => 'Concern List',
+    'concerns' => $concerns
+]);
 
-$productModel->editProduct(
-    $pdid,
-    $pdname,
-    $ing,
-    $ben,
-    $app,
-    $tags,
-    $p30,
-    $p50,
-    $p100,
-    $p250,
-    $cat,
-    $conc,
-    $discount,
-    $media
-);
-
-header('Location: product_index.php');
-die();

@@ -12,8 +12,8 @@ if (!isset($_SESSION['loggedin'])) {
 	exit;
 }
 
-require __DIR__ . '/vendor/autoload.php';
-include 'models/ProductModels.php';
+require dirname(dirname(__FILE__)). '/vendor/autoload.php';
+include 'models/CustomerModels.php';
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
@@ -34,17 +34,17 @@ $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 $db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 
 #Main code, changes for every view
-$productModel = new ProductModel($db);
-$pdid = $_GET['pdid'];
-$products = $productModel->getProductDetails($pdid);
+$customerModel = new CustomerModel($db);
 
-// echo $products[0];
-echo $twig->render('product_details.twig', [
+$cxid = $_GET['cxid'];
+$details = $customerModel->getCustomerDetails($cxid);
+$orders = $customerModel->getCustomerOrders($cxid);
+// echo var_dump($details);
+echo $twig->render('customer_details.twig', [
     'user' => $_SESSION,
-    'page_title' => 'Product Details',
-    'section' => 'Product',
-    'subsection' => 'Product Details',
-    'details' => $products['details'],
-    'media' => $products['media'],
-    'reviews' => $products['reviews']
+    'page_title' => 'Customer Details',
+    'section' => 'Customer',
+    'subsection' => 'Details',
+    'details' => $details,
+    'orders' => $orders
 ]);

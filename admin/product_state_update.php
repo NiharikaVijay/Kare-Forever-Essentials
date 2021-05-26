@@ -12,8 +12,8 @@ if (!isset($_SESSION['loggedin'])) {
 	exit;
 }
 
-require __DIR__ . '/vendor/autoload.php';
-include 'models/ConcernModels.php';
+require dirname(dirname(__FILE__)). '/vendor/autoload.php';
+include 'models/ProductModels.php';
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
@@ -34,14 +34,9 @@ $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 $db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 
 #Main code, changes for every view
-$concernModel = new ConcernModel($db);
+$productModel = new ProductModel($db);
 
-$concerns = $concernModel->getAllConcerns();
-echo $twig->render('concerns_index.twig', [
-    'user' => $_SESSION,
-    'page_title' => 'Concern List',
-    'section' => 'Concern',
-    'subsection' => 'Concern List',
-    'concerns' => $concerns
-]);
+$isActive = $_GET['isActive'];
+$pdid = $_GET['isActive'];
 
+$productModel->changeState($isActive, $pdid);

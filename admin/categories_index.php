@@ -12,8 +12,8 @@ if (!isset($_SESSION['loggedin'])) {
 	exit;
 }
 
-require __DIR__ . '/vendor/autoload.php';
-include 'models/OrderModels.php';
+require dirname(dirname(__FILE__)). '/vendor/autoload.php';
+include 'models/CategoryModels.php';
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
@@ -34,17 +34,14 @@ $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 $db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 
 #Main code, changes for every view
-$orderModel = new OrderModel($db);
-$ordid = $_GET['ordid'];
-$order = $orderModel->getOrderDetails($ordid);
+$categoryModel = new CategoryModel($db);
 
-echo $twig->render('order_details.twig', [
+$categories = $categoryModel->getAllCategories();
+echo $twig->render('categories_index.twig', [
     'user' => $_SESSION,
-    'page_title' => 'Order Details',
-    'section' => 'Order',
-    'subsection' => 'Order Details',
-    'details' => $order['details'],
-    'products' => $order['products'],
-    'coupon' => $order['coupon'],
-    'total'=> $order['total']
+    'page_title' => 'Category List',
+    'section' => 'Category',
+    'subsection' => 'Category List',
+    'categories' => $categories
 ]);
+
