@@ -1,0 +1,7 @@
+{
+    "require": {
+        "twig/twig": "^3.0",
+        "heroku/heroku-buildpack-php": "^192.0",
+        "php": "^7.2.0"
+    }
+}
