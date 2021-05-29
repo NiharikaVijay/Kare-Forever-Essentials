@@ -39,6 +39,9 @@ $customerModel = new CustomerModel($db);
 $cxid = $_GET['cxid'];
 $details = $customerModel->getCustomerDetails($cxid);
 $orders = $customerModel->getCustomerOrders($cxid);
+$cart = $customerModel->getCustomerCart($cxid);
+$wishlist = $customerModel->getCustomerWishlist($cxid);
+
 // echo var_dump($details);
 echo $twig->render('customer_details.twig', [
     'user' => $_SESSION,
@@ -46,5 +49,7 @@ echo $twig->render('customer_details.twig', [
     'section' => 'Customer',
     'subsection' => 'Details',
     'details' => $details,
-    'orders' => $orders
+    'orders' => $orders,
+    'cart' => $cart,
+    'wishlist' => $wishlist
 ]);

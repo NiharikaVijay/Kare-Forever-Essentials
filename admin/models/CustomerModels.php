@@ -51,11 +51,37 @@ class CustomerModel
         o.finamt, o.status 
         FROM orders AS o LEFT OUTER JOIN address AS a
         ON a.cxid=o.cxid
-        where o.cxid= :cxid ';
+        where o.cxid= :cxid ;';
         $prep = $this->db->prepare($sql);
         $prep->execute(['cxid' => $cxid]);
         $orders = $prep->fetchAll();
 
         return $orders;
     }
+
+    public function getCustomerCart($cxid){
+        $sql = 'SELECT m.path,
+        p.pdname, c.pdvolume, p.30ml,
+        p.50ml, p.100ml, p.250ml, c.pdqty
+        FROM cart c  LEFT OUTER JOIN product p ON c.pdid=p.pdid
+        LEFT OUTER JOIN (SELECT pdid, path FROM media WHERE isimage=TRUE AND isdefault=TRUE) m ON m.pdid=c.pdid WHERE c.cxid= :cxid;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute(['cxid' => $cxid]);
+        $cart = $prep->fetchAll();
+
+        return $cart;
+    }
+
+    public function getCustomerWishlist($cxid){
+        $sql = 'SELECT m.path,
+        p.pdname, w.pdvolume
+        FROM wishlist w  LEFT OUTER JOIN product p ON w.pdid=p.pdid
+        LEFT OUTER JOIN (SELECT pdid, path FROM media WHERE isimage=TRUE AND isdefault=TRUE) m ON m.pdid=w.pdid WHERE w.cxid= :cxid;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute(['cxid' => $cxid]);
+        $wishlist = $prep->fetchAll();
+
+        return $wishlist;
+    }
+
 }

@@ -12,7 +12,7 @@ if (!isset($_SESSION['loggedin'])) {
 	exit;
 }
 
-require dirname(dirname(__FILE__)). '/vendor/autoload.php';
+require dirname(dirname(__FILE__)) . '/vendor/autoload.php';
 include 'models/OrderModels.php';
 
 use Twig\Environment;
@@ -39,5 +39,5 @@ $ordid = $_GET['ordid'];
 $status = $_GET['status'];
 $orderModel->updateOrderStatus($ordid, $status);
 
-header("Location: order_index.php");
+header("Location: " . $_SERVER['HTTP_REFERER']);
 die();
