@@ -1,0 +1,242 @@
+{% extends "template.twig" %}
+
+{% block title %}Admin | Coupons List{% endblock %}
+{% block content %}
+<div class="row">
+    {% for coupon in coupons %}
+    {# Edit coupon modal #}
+    <div class="modal center-modal fade" id="modal-edit-{{coupon[0]}}" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{coupon[0]}}</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="coupons_edit.php" method="POST">
+                        <div class="form-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Coupon ID</label>
+                                        <input type="text" class="form-control" value={{coupon[0]}} name="cpid"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea rows="2" cols="5" class="form-control" name="cpdesc"
+                                            required>{{coupon[1]}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Min Order</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">₹
+                                            </div>
+                                            <input type="number" class="form-control" value={{coupon[2]}} name="minord"
+                                                required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Max Discount</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">₹
+                                            </div>
+                                            <input type="number" class="form-control" value={{coupon[3]}} name="maxdisc"
+                                                required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Discount</label>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" max="100" min="0"
+                                                value={{coupon[4]}} name="discount" required>
+                                            <div class="input-group-addon">%
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Usage Limit</label>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" value={{coupon[5]}} name="maxuse"
+                                                required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions mt-10">
+                            <center><button type="submit" class="btn btn-primary"> <i class="fa fa-check"></i>Save
+                                    changes</button></center>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Delete coupon modal #}
+    <div class="modal center-modal fade" id="modal-delete-{{coupon[0]}}" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Are you sure you want to delete this coupon?</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>{{coupon[0]}}</p>
+                </div>
+                <div class="modal-footer modal-footer-uniform">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a href="coupons_delete.php?cpid={{coupon[0]}}"><button type="button"
+                            class="btn btn-primary float-right">Delete</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Card content #}
+    <div class="col-xl-4 col-12">
+        <div class="box">
+            <div class="box-header with-border">
+                <h4 class="box-title"><strong>{{coupon[0]}}</strong></h4>
+            </div>
+            <div class="box-body">
+                <p>{{coupon[1]}}</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Min Order</th>
+                            <th>Max Discount</th>
+                            <th>Discount</th>
+                            <th>Usage Limit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>₹{{coupon[2]}}</td>
+                            <td>₹{{coupon[3]}}</td>
+                            {% if coupon[4]==100 %}
+                            <td>-</td>
+                            {% else %}
+                            <td>{{coupon[4]}}%</td>
+                            {% endif %}
+                            <td>{{coupon[5]}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="box-footer text-right">
+                <button class="btn btn-rounded btn-secondary" data-toggle="modal"
+                    data-target="#modal-edit-{{coupon[0]}}">Edit</button>
+                <button class="btn btn-rounded btn-primary" data-toggle="modal"
+                    data-target="#modal-delete-{{coupon[0]}}">Delete</button>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {# <button type="button" class="btn btn-lg btn-primary" data-dismiss="modal">Add Coupon</button> #}
+</div>
+<div class="modal center-modal fade" id="modal-add" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{coupon[0]}}</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="coupons_add.php" method="POST">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Coupon ID</label>
+                                    <input type="text" class="form-control" placeholder="Enter coupon ID" name="cpid"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea rows="2" cols="5" class="form-control" name="cpdesc" placeholder="Enter coupon description" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Min Order</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">₹
+                                        </div>
+                                        <input type="number" class="form-control" value=100 name="minord" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Max Discount</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">₹
+                                        </div>
+                                        <input type="number" class="form-control" value=100 name="maxdisc" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Discount</label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" max="100" min="0" value=10
+                                            name="discount" required>
+                                        <div class="input-group-addon">%
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Usage Limit</label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" value=5 name="maxuse" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions mt-10">
+                        <center><button type="submit" class="btn btn-primary"> <i class="fa fa-check"></i>Add
+                                coupon</button></center>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card bg-primary hover-light" data-toggle="modal" data-target="#modal-add">
+    <div class="card-header text-center">
+        <h4 class="card-title text-center">Add Coupon</h4>
+    </div>
+</div>
+{% endblock %}

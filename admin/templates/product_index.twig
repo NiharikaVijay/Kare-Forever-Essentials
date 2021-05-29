@@ -49,57 +49,62 @@
                     <strong>Categories: </strong>{{product[5]}}<br>
                     <strong>Concerns: </strong>{{product[6]}}
                 </p>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            {% if product[8] %}
-                            <th>30 mL</th>
-                            {% endif %}
-                            {% if product[9] %}
-                            <th>50 mL</th>
-                            {% endif %}
-                            {% if product[10] %}
-                            <th>100 mL</th>
-                            {% endif %}
-                            {% if product[11] %}
-                            <th>250 mL</th>
-                            {% endif %}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><b>MRP</b></td>
-                            {% if product[8] %}
-                            <td>₹{{product[8]}}</td>
-                            {% endif %}
-                            {% if product[9] %}
-                            <td>₹{{product[9]}}</td>
-                            {% endif %}
-                            {% if product[10] %}
-                            <td>₹{{product[10]}}</td>
-                            {% endif %}
-                            {% if product[11] %}
-                            <td>₹{{product[11]}}</td>
-                            {% endif %}
-                        </tr>
-                        <tr>
-                            <td><b>Final</b></td>
-                            {% if product[12] %}
-                            <td>₹{{product[12]}}</td>
-                            {% endif %}
-                            {% if product[13] %}
-                            <td>₹{{product[13]}}</td>
-                            {% endif %}
-                            {% if product[14] %}
-                            <td>₹{{product[14]}}</td>
-                            {% endif %}
-                            {% if product[15] %}
-                            <td>₹{{product[15]}}</td>
-                            {% endif %}
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="box">
+                    <div class="box-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    {% if product[8] %}
+                                    <th>30 mL</th>
+                                    {% endif %}
+                                    {% if product[9] %}
+                                    <th>50 mL</th>
+                                    {% endif %}
+                                    {% if product[10] %}
+                                    <th>100 mL</th>
+                                    {% endif %}
+                                    {% if product[11] %}
+                                    <th>250 mL</th>
+                                    {% endif %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><b>MRP</b></td>
+                                    {% if product[8] %}
+                                    <td>₹{{product[8]}}</td>
+                                    {% endif %}
+                                    {% if product[9] %}
+                                    <td>₹{{product[9]}}</td>
+                                    {% endif %}
+                                    {% if product[10] %}
+                                    <td>₹{{product[10]}}</td>
+                                    {% endif %}
+                                    {% if product[11] %}
+                                    <td>₹{{product[11]}}</td>
+                                    {% endif %}
+                                </tr>
+                                <tr>
+                                    <td><b>Final</b></td>
+                                    {% if product[12] %}
+                                    <td>₹{{product[12]}}</td>
+                                    {% endif %}
+                                    {% if product[13] %}
+                                    <td>₹{{product[13]}}</td>
+                                    {% endif %}
+                                    {% if product[14] %}
+                                    <td>₹{{product[14]}}</td>
+                                    {% endif %}
+                                    {% if product[15] %}
+                                    <td>₹{{product[15]}}</td>
+                                    {% endif %}
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
             </div>
             <div class="modal center-modal fade" id="modal-center-{{product[7]}}" tabindex="-1">
                 <div class="modal-dialog">
@@ -115,7 +120,8 @@
                         </div>
                         <div class="modal-footer modal-footer-uniform">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <a href="product_delete.php?pdid={{product[7]}}"><button type="button" class="btn btn-primary float-right">Delete</button></a>
+                            <a href="product_delete.php?pdid={{product[7]}}"><button type="button"
+                                    class="btn btn-primary float-right">Delete</button></a>
                         </div>
                     </div>
                 </div>
