@@ -23,12 +23,19 @@ class ProductModel
     public function getAllProducts()
     {
         $sql = 'SELECT p.discount, m.path, p.pdid,
-        p.pdname, p.30ml,p.50ml,p.100ml,p.250ml
+        p.pdname, IFNULL(p.30ml,100000),IFNULL(p.50ml,100000),IFNULL(p.100ml,100000),IFNULL(p.250ml, 100000)
         FROM product p LEFT OUTER JOIN
         (SELECT pdid,path FROM media WHERE isimage=TRUE AND isdefault=TRUE) m ON m.pdid=p.pdid;';
         $prep = $this->db->prepare($sql);
         $prep->execute();
         $products = $prep->fetchAll();
+
+        for ($i = 0; $i < sizeof($products); $i++) {
+            $products[$i][4] = min($products[$i][4], $products[$i][5], $products[$i][6], $products[$i][7]);
+            $products[$i][5] = $products[$i][4] * (100 - $products[$i][0]) / 100;
+            unset($products[$i][6]);
+            unset($products[$i][7]);
+        }
 
         $sql = 'SELECT concid, concname FROM concern;';
         $prep = $this->db->prepare($sql);

@@ -1,0 +1,116 @@
+{% extends "template.twig" %}
+
+{% block content %}
+<div class="hero-wrap hero-bread" style="background-image: url('/media/concerns/bg_1.jpg');">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Products</span></p>
+                <h1 class="mb-0 bread">{{title}}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10 mb-5 text-center">
+                <ul class="product-category">
+                    <li><a href="#" class="active">All</a></li>
+                    <li><a href="haircare.php">Hair Care</a></li>
+                    <li><a href="skincare.php">Skin Care</a></li>
+                    <li><a href="bathsalts.php">Bath Salts</a></li>
+                    <li><a href="specialkare.php">Special Kare</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-8 col-sm-12 col-sx-12">
+                    <div class="row">
+                        {% for product in products %}
+                        <div class="col-md-4 col-sm-6 col-xs-12 ftco-animate">
+                            <div class="product">
+                                <a href="product-single.html" class="img-prod"><img class="img-fluid" src={{product[1]}}
+                                        alt="Colorlib Template">
+                                    {% if product[0]>0 %}
+                                    <span class="status">{{product[0]}}%</span>
+                                    {% endif %}
+                                    <div class="overlay"></div>
+                                </a>
+                                <div class="text py-3 pb-4 px-3 text-center">
+                                    <h3><a href="">{{product[3]}}</a></h3>
+                                    <div class="d-flex">
+                                        <div class="pricing">
+                                            <p class="price"><span class="mr-2 price-dc">₹{{product[4]}}</span><span
+                                                    class="price-sale">₹{{product[5]}}</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="bottom-area d-flex px-3">
+                                        <div class="m-auto d-flex">
+                                            <a href="#"
+                                                class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                                <span><i class="ion-ios-cart"></i></span>
+                                            </a>
+                                            <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                                <span><i class="ion-ios-heart"></i></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 sidebar_styleTwo">
+                    <div class="wrapper">
+                        <div class="sidebar_search">
+                            <form action="#">
+                                <input type="text">
+                                <button class="tran3s color1_bg"><i class="fa fa-search"
+                                        aria-hidden="true"></i></button>
+                            </form>
+                        </div> <!-- End of .sidebar_styleOne -->
+                        <div class="sidebar_categories">
+                            <div class="theme_inner_title">
+                                <h4>Shop By Concern</h4>
+                            </div>
+                            <ul>
+                                <li><a href="#" class="tran3s">Nourishing Creams</a></li>
+                                <li><a href="#" class="tran3s">Face Scrubs</a></li>
+                                <li><a href="#" class="tran3s">Hair Care</a></li>
+                                <li><a href="#" class="tran3s">Special Kare Essentials</a></li>
+                            </ul>
+                        </div> <!-- End of .sidebar_categories -->
+                        <div class="price_filter wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                            <div class="theme_inner_title">
+                                <h4>Filter By Price</h4>
+                            </div>
+                            <div class="single-sidebar price-ranger">
+                                <div id="slider-range"
+                                    class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+                                    <div class="ui-slider-range ui-widget-header ui-corner-all"
+                                        style="left: 6.31579%; width: 40%;">
+                                    </div>
+                                    <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"
+                                        style="left: 6.31579%;"></span>
+                                    <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"
+                                        style="left: 46.3158%;"></span>
+                                </div>
+                                <div class="ranger-min-max-block">
+                                    <input type="submit" value="Filter">
+                                    <span>Price:</span>
+                                    <input type="text" readonly="" class="min">
+                                    <span>0 - 2000</span>
+                                    <input type="text" readonly="" class="max">
+                                </div>
+                            </div> <!-- /price-ranger -->
+                        </div> <!-- /price_filter -->
+                    </div> <!-- End of .wrapper -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
