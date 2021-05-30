@@ -13,13 +13,13 @@ if (!isset($_SESSION['loggedin'])) {
 }
 
 require dirname(dirname(__FILE__)). '/vendor/autoload.php';
-include 'models/ProductModels.php';
+include dirname(dirname(__FILE__)) . '/models/admin/ProductModels.php';
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
 #Setting up Twig
-$loader = new FilesystemLoader(__DIR__ . '/templates');
+$loader = new FilesystemLoader(dirname(dirname(__FILE__)) . '/templates/admin');
 $twig = new Environment($loader);
 
 #Setting up PDO

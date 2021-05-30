@@ -8,18 +8,18 @@ error_reporting(E_ALL);
 session_start();
 // If the user is not logged in redirect to the login page...
 if (!isset($_SESSION['loggedin'])) {
-	header('Location: login.php');
-	exit;
+    header('Location: login.php');
+    exit;
 }
 
-require dirname(dirname(__FILE__)). '/vendor/autoload.php';
-include 'models/ConcernModels.php';
+require dirname(dirname(__FILE__)) . '/vendor/autoload.php';
+include dirname(dirname(__FILE__)) . '/models/admin/ConcernModels.php';
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
 #Setting up Twig
-$loader = new FilesystemLoader(__DIR__ . '/templates');
+$loader = new FilesystemLoader(dirname(dirname(__FILE__)) . '/templates/admin');
 $twig = new Environment($loader);
 
 #Setting up PDO
@@ -44,4 +44,3 @@ echo $twig->render('concerns_index.twig', [
     'subsection' => 'Concern List',
     'concerns' => $concerns
 ]);
-
