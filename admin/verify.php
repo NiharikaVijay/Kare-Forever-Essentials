@@ -7,7 +7,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 require dirname(dirname(__FILE__)). '/vendor/autoload.php';
-include 'models/AdminModels.php';
+include dirname(dirname(__FILE__)) . '/models/admin/AdminModels.php';
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;

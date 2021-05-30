@@ -13,7 +13,7 @@ if (!isset($_SESSION['loggedin'])) {
 }
 
 require dirname(dirname(__FILE__)). '/vendor/autoload.php';
-include 'models/ConcernModels.php';
+include dirname(dirname(__FILE__)) . '/models/admin/ConcernModels.php';
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
