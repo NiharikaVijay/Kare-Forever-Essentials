@@ -5295,8 +5295,8 @@ button.bg-light:hover,
 button.bg-light:focus {
   background-color: #dae0e5 !important; }
 
-.bg-dark {
-  background-color: #343a40 !important; }
+/*.bg-dark {
+  background-color: #343a40 !important; }*/
 
 a.bg-dark:hover, a.bg-dark:focus,
 button.bg-dark:hover,
@@ -10434,7 +10434,8 @@ input,textarea {display: block; outline: none; box-shadow: none;-webkit-transiti
   top:50px;
   width:100%;
   height:10px;
-  background:url(../images/logo/sep.png) center left no-repeat;
+  background:url
+
 }
 
 .theme_title.center:after {
@@ -16449,3 +16450,180 @@ footer .bottom_footer ul li a:hover,footer .bottom_footer p a,.about_us_main_con
 .my-float{
   margin-top:16px;
 }
+
+/* Login.html
+/* Made with love by Mutiullah Samim*/
+
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+html,body{
+background-image: url(C:\Users\vijaykum\Documents\GitHub\Kare-Forever-Essentials\USER END\preview.colorlib.com\Theme\Kare\main\images\login.jpg) center left no-repeat;
+background-size: cover;
+background-repeat: no-repeat;
+height: 100%;
+font-family: 'Numans', sans-serif;
+}
+
+.container{
+height: 100%;
+align-content: center;
+}
+
+.card{
+height: 370px;
+margin-top: auto;
+margin-bottom: auto;
+width: 400px;
+background-color: #f4f2e4 !important;
+}
+
+.social_icon span{
+font-size: 60px;
+margin-left: 10px;
+color: #B76F4E;
+}
+
+.social_icon span:hover{
+color: white;
+cursor: pointer;
+}
+
+.card-header h3{
+color: black;
+}
+
+.social_icon{
+position: absolute;
+right: 20px;
+top: -45px;
+}
+
+.input-group-prepend span{
+width: 50px;
+background-color: #B76F4E;
+color: black;
+border:0 !important;
+}
+
+input:focus{
+outline: 0 0 0 0  !important;
+box-shadow: 0 0 0 0 !important;
+
+}
+
+.remember{
+color: black;
+}
+
+.remember input
+{
+width: 20px;
+height: 20px;
+margin-left: 15px;
+margin-right: 5px;
+}
+
+.login_btn{
+color: black;
+background-color: #B76F4E;
+width: 100px;
+}
+
+.login_btn:hover{
+color: black;
+background-color: white;
+}
+
+.links{
+color: black;
+}
+
+.links a{
+margin-left: 4px;
+}
+
+/* SIGN UP CSS */
+
+.form-control {
+  height: 40px;
+  box-shadow: none;
+  color: #969fa4;
+}
+.form-control:focus {
+  border-color: #5cb85c;
+}
+.form-control, .btn {        
+  border-radius: 3px;
+}
+.signup-form {
+  width: 450px;
+  margin: 0 auto;
+  padding: 30px 0;
+    font-size: 15px;
+}
+.signup-form h2 {
+  color: #636363;
+  margin: 0 0 15px;
+  position: relative;
+  text-align: center;
+}
+.signup-form h2:before, .signup-form h2:after {
+  content: "";
+  height: 2px;
+  width: 30%;
+  background: #B76F4E;
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+} 
+.signup-form h2:before {
+  left: 0;
+}
+.signup-form h2:after {
+  right: 0;
+}
+.signup-form .hint-text {
+  color: #999;
+  margin-bottom: 30px;
+  text-align: center;
+}
+.signup-form form {
+  color: #999;
+  border-radius: 3px;
+  margin-bottom: 15px;
+  background: #f4f2e4;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+}
+.signup-form .form-group {
+  margin-bottom: 20px;
+}
+.signup-form input[type="checkbox"] {
+  margin-top: 3px;
+}
+.signup-form .btn {        
+  font-size: 16px;
+  font-weight: bold;    
+  min-width: 140px;
+  outline: none !important;
+}
+.signup-form .row div:first-child {
+  padding-right: 10px;
+}
+.signup-form .row div:last-child {
+  padding-left: 10px;
+}     
+.signup-form a {
+  color: #fff;
+  text-decoration: underline;
+}
+.signup-form a:hover {
+  text-decoration: none;
+}
+.signup-form form a {
+  color: #B76F4E;
+  text-decoration: none;
+} 
+.signup-form form a:hover {
+  text-decoration: underline;
+}  
