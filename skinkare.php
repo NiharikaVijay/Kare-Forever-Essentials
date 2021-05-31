@@ -34,7 +34,7 @@ $products = $productModel->getProductsByCategory('cat2');
 
 echo $twig->render('menu.twig', [
     'title' => 'Skin Kare',
-    'banner' => '/media/categories/skincare.jpg',
+    'banner' => '/media/categories/skinkare.jpg',
     'products' => $products['products'],
     'concerns' => $products['concerns']
 ]);

@@ -8,11 +8,11 @@ error_reporting(E_ALL);
 session_start();
 // If the user is not logged in redirect to the login page...
 if (!isset($_SESSION['loggedin'])) {
-	header('Location: login.php');
-	exit;
+    header('Location: login.php');
+    exit;
 }
 
-require dirname(dirname(__FILE__)). '/vendor/autoload.php';
+require dirname(dirname(__FILE__)) . '/vendor/autoload.php';
 include dirname(dirname(__FILE__)) . '/models/admin/ProductModels.php';
 
 use Twig\Environment;
@@ -49,6 +49,19 @@ $cat = $_POST['categories'];
 $conc = $_POST['concerns'];
 $discount = $_POST['discount'];
 $media = $_FILES['media'];
+
+if ($p30 == 0) {
+    $p30 = null;
+}
+if ($p50 == 0) {
+    $p50 = null;
+}
+if ($p100 == 0) {
+    $p100 = null;
+}
+if ($p250 == 0) {
+    $p250 = null;
+}
 
 $productModel->addProduct(
     $pdname,

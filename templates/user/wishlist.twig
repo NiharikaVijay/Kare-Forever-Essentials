@@ -1,0 +1,77 @@
+{% extends 'template.twig' %}
+
+{% block content %}
+<div class="hero-wrap hero-bread" style="background-image: url('/media/categories/all-products.jpg');">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Wishlist</span></p>
+                <h1 class="mb-0 bread">Wishlist</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="ftco-section ftco-cart">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 ftco-animate">
+                <div class="cart-list">
+                    <table class="table">
+                        <thead class="thead-primary">
+                            <tr class="text-center">
+                                <th></th>
+                                <th>Item Details</th>
+                                <th colspan="4">Price</th>
+                                <th></th>
+                            </tr>
+                            <tr class="text-center">
+                                <th></th>
+                                <th></th>
+                                <th>30mL</th>
+                                <th>50mL</th>
+                                <th>100mL</th>
+                                <th>250mL</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in wishlist %}
+                            <tr class="text-center">
+                                <td class="image-prod">
+                                    <div class="img" style="background-image:url({{item[0]}});"></div>
+                                </td>
+                                <td class="product-name">
+                                    <h3>{{item[1]}}</h3>
+                                    <p>{{item[2]}}</p>
+                                </td>
+                                {% if item[4] %}
+                                <td class="price">₹{{item[4]}}</td>
+                                {% else %}
+                                <td>-</td>
+                                {% endif %}
+                                {% if item[5] %}
+                                <td class="price">₹{{item[5]}}</td>
+                                {% else %}
+                                <td>-</td>
+                                {% endif %}
+                                {% if item[6] %}
+                                <td class="price">₹{{item[6]}}</td>
+                                {% else %}
+                                <td>-</td>
+                                {% endif %}
+                                {% if item[7] %}
+                                <td class="price">₹{{item[7]}}</td>
+                                {% else %}
+                                <td>-</td>
+                                {% endif %}
+                                <td class="product-remove"><a href="wishlist_remove.php?prodid={{item[3]}}"><span class="ion-ios-close"></span></a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

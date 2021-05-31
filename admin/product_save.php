@@ -51,6 +51,19 @@ $conc = $_POST['concerns'];
 $discount = $_POST['discount'];
 $media = $_FILES['media'];
 
+if ($p30 == 0) {
+    $p30 = null;
+}
+if ($p50 == 0) {
+    $p50 = null;
+}
+if ($p100 == 0) {
+    $p100 = null;
+}
+if ($p250 == 0) {
+    $p250 = null;
+}
+
 $productModel->editProduct(
     $pdid,
     $pdname,

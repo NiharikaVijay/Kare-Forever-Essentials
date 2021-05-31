@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 
 require __DIR__ . '/vendor/autoload.php';
 #Include whatever model you want here
-include __DIR__ . '/models/user/ProductModels.php';
+include __DIR__ . '/models/user/CustomerModels.php';
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
@@ -28,13 +28,12 @@ $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 $db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 
 #Main code, changes for every view
-$productModel = new ProductModel($db);
+$customerModel = new CustomerModel($db);
 
-$products = $productModel->getProductsByCategory('cat1');
+// Change the customer ID to login based in the end
+$cxid = 'a001';
+$wishlist = $customerModel->getWishlist($cxid);
 
-echo $twig->render('menu.twig', [
-    'title' => 'Hair Kare',
-    'banner' => '/media/categories/hairkare.jpg',
-    'products' => $products['products'],
-    'concerns' => $products['concerns']
+echo $twig->render('wishlist.twig', [
+    'wishlist' => $wishlist
 ]);
