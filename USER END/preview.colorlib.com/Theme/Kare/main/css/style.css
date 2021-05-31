@@ -8566,11 +8566,11 @@ h1, h2, h3, h4, h5,
         background: #B76F4E;
         color: #fff; }
   .btn.btn-black {
-    background: #000000;
+    background: #B76F4E;
     border: 1px solid #000000;
     color: #fff; }
     .btn.btn-black:hover {
-      background: #B76F4E;
+      background: #F4F2E4;
       border: 1px solid #B76F4E;
       color: #fff; }
     .btn.btn-black.btn-outline-white {
