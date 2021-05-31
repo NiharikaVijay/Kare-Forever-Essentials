@@ -1,7 +1,7 @@
 {% extends "template.twig" %}
 
 {% block content %}
-<div class="hero-wrap hero-bread" style="background-image: url('/media/concerns/bg_1.jpg');">
+<div class="hero-wrap hero-bread" style="background-image: url({{banner}});">
     <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
             <div class="col-md-9 ftco-animate text-center">
@@ -16,11 +16,35 @@
         <div class="row justify-content-center">
             <div class="col-md-10 mb-5 text-center">
                 <ul class="product-category">
+                    {% if title=='products' %}
                     <li><a href="#" class="active">All</a></li>
-                    <li><a href="haircare.php">Hair Care</a></li>
-                    <li><a href="skincare.php">Skin Care</a></li>
+                    {% else %}
+                    <li><a href="all-products.php">All</a></li>
+                    {% endif %}
+
+                    {% if title=='Hair Kare' %}
+                    <li><a href="#" class="active">Hair Kare</a></li>
+                    {% else %}
+                    <li><a href="hairkare.php">Hair Kare</a></li>
+                    {% endif %}
+
+                    {% if title=='Skin Kare' %}
+                    <li><a href="#" class="active">Skin Kare</a></li>
+                    {% else %}
+                    <li><a href="skinkare.php">Skin Kare</a></li>
+                    {% endif %}
+
+                    {% if title=='Bath Salts' %}
+                    <li><a href="#" class="active">Bath Salts</a></li>
+                    {% else %}
                     <li><a href="bathsalts.php">Bath Salts</a></li>
+                    {% endif %}
+
+                    {% if title=='Special Kare' %}
+                    <li><a href="#" class="active">Special Kare</a></li>
+                    {% else %}
                     <li><a href="specialkare.php">Special Kare</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
@@ -79,7 +103,7 @@
                             <ul>
                                 <li><a href="#" class="tran3s">Nourishing Creams</a></li>
                                 <li><a href="#" class="tran3s">Face Scrubs</a></li>
-                                <li><a href="#" class="tran3s">Hair Care</a></li>
+                                <li><a href="#" class="tran3s">Hair Kare</a></li>
                                 <li><a href="#" class="tran3s">Special Kare Essentials</a></li>
                             </ul>
                         </div> <!-- End of .sidebar_categories -->

@@ -3384,6 +3384,14 @@ input[type="button"].btn-block {
     pointer-events: none;
     cursor: default; }
 
+.nav-link:hover
+{
+background-image:none !important;
+background-color:#f4f2e4 !important;
+}
+
+
+
 .nav-tabs {
   border-bottom: 1px solid #dee2e6; }
   .nav-tabs .nav-item {
@@ -8142,7 +8150,8 @@ h1, h2, h3, h4, h5,
         color: #fff;
         background: #B76F4E; } }
   .ftco-navbar-light .navbar-nav > .nav-item.active > a {
-    color: #000000; }
+    color: #000000;
+    background-color: white; }
     @media (max-width: 991.98px) {
       .ftco-navbar-light .navbar-nav > .nav-item.active > a {
         color: #fff; } }
@@ -16305,7 +16314,7 @@ footer .bottom_footer ul li a:hover,footer .bottom_footer p a,.about_us_main_con
 .shop_single_page .product_details .product-review-tab .item_review_content .text .sec_up ul li,.contact_page_address ul.social_icon li a,
 .shop_single_page .product_details .product_top_section .item_description>ul>li i,.contact_page_address .carousel-inner .item  ul li span:before,
 .account_page .single_checkbox input[type="checkbox"]:checked + label:before,.request_callBack .right_half button:hover  {
-  color:#B76F4E;
+  color:#ceb57f;
 }
 
 
@@ -16335,7 +16344,7 @@ footer .bottom_footer ul li a:hover,footer .bottom_footer p a,.about_us_main_con
 .cart_table .payment_system a:hover,.contact_page_address #contact-slider .carousel-indicators li.active,
 .testimonial .owl-theme .owl-dots .owl-dot.active span,.testimonial .owl-theme .owl-dots .owl-dot:hover span,.contact_us_form #error button,
 .contact_us_form #success button,.switcher .switch_btn button,.switcher .switch_menu h5.title   {
-  background: #B76F4E;
+  background: #ceb57f;
 }
 
 
@@ -16352,7 +16361,7 @@ footer .bottom_footer ul li a:hover,footer .bottom_footer p a,.about_us_main_con
 .service-tab .nav-pills li.active a,.sidebar_categories ul li a:before,#related_project_slider .owl-nav [class*=owl-]:hover,
 #related_project_slider .owl-nav [class*=owl-]:hover:before,.team_grid .team_member .opacity:before,.team_grid .team_member .opacity:after,
 .testimonial .owl-theme .owl-dots .owl-dot span  {
-  border-color:#B76F4E;
+  border-color:#ceb57f;
 }
 
 

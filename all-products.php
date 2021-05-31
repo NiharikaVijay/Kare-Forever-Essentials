@@ -34,6 +34,7 @@ $products = $productModel->getAllProducts();
 
 echo $twig->render('menu.twig', [
     'title' => 'products',
+    'banner'=>'/media/categories/all-products.jpg',
     'products' => $products['products'],
     'concerns' => $products['concerns']
 ]);
