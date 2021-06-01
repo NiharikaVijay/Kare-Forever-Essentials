@@ -19,14 +19,11 @@
                     <table class="table">
                         <thead class="thead-primary">
                             <tr class="text-center">
-                                <th></th>
-                                <th>Item Details</th>
+                                <th rowspan="2" colspan="2">Item Details</th>
                                 <th colspan="4">Price</th>
                                 <th></th>
                             </tr>
                             <tr class="text-center">
-                                <th></th>
-                                <th></th>
                                 <th>30mL</th>
                                 <th>50mL</th>
                                 <th>100mL</th>
@@ -64,7 +61,10 @@
                                 {% else %}
                                 <td>-</td>
                                 {% endif %}
-                                <td class="product-remove"><a href="wishlist_remove.php?prodid={{item[3]}}"><span class="ion-ios-close"></span></a></td>
+                                <td class="product-remove"><a href="wishlist_cart.php?prodid={{item[3]}}" title="Move to cart"><span
+                                            class="icon-shopping_cart"></span></a><a
+                                        href="wishlist_remove.php?prodid={{item[3]}}" title="Remove from wishlist"><span
+                                            class="ion-ios-close"></span></a></td>
                             </tr>
                             {% endfor %}
                         </tbody>
