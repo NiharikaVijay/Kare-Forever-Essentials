@@ -1,6 +1,29 @@
 {% extends 'template.twig' %}
 
 {% block content %}
+{% for item in wishlist %}
+<div class="modal" id="modal-{{item[3]}}">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h6 style="color:white;" class="modal-title">Are you sure you want to remove
+                this item from wishlist?</h6>
+        </div>
+        <div class="modal-body">
+            {{item[1]}}
+        </div>
+        <div class="modal-body">
+            <button type="button" class="btn border" data-dismiss="modal">
+                Cancel
+            </button>
+            <a href="wishlist_delete.php?pdid={{item[3]}}"><button type="button" class="btn bg-primary right-content"
+                    style="color:white;" data-dismiss="modal">
+                    Delete
+                </button></a>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
 <div class="hero-wrap hero-bread" style="background-image: url('/media/categories/all-products.jpg');">
     <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
@@ -61,9 +84,10 @@
                                 {% else %}
                                 <td>-</td>
                                 {% endif %}
-                                <td class="product-remove"><a href="wishlist_cart.php?prodid={{item[3]}}" title="Move to cart"><span
-                                            class="icon-shopping_cart"></span></a><a
-                                        href="wishlist_remove.php?prodid={{item[3]}}" title="Remove from wishlist"><span
+                                <td class="product-remove"><a href="wishlist_cart.php?prodid={{item[3]}}"
+                                        title="Move to cart"><span class="icon-shopping_cart"></span></a><a
+                                        href="wishlist_remove.php?prodid={{item[3]}}" title="Remove from wishlist"
+                                        data-toggle="modal" data-target="#modal-{{item[3]}}"><span
                                             class="ion-ios-close"></span></a></td>
                             </tr>
                             {% endfor %}

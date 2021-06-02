@@ -86,4 +86,13 @@ class CustomerModel
             'pdid' => $pdid
         ]);
     }
+    public function removeFromWishlist($cxid, $pdid)
+    {
+        $sql = 'DELETE FROM wishlist WHERE c.cxid= :cxid AND pdid= :pdid;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute([
+            'cxid' => $cxid,
+            'pdid' => $pdid
+        ]);
+    }
 }
