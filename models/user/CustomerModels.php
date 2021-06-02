@@ -76,4 +76,14 @@ class CustomerModel
             'delivery' => $delivery,
         ];
     }
+
+    public function removeFromCart($cxid, $pdid)
+    {
+        $sql = 'DELETE FROM cart WHERE c.cxid= :cxid AND pdid= :pdid;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute([
+            'cxid' => $cxid,
+            'pdid' => $pdid
+        ]);
+    }
 }

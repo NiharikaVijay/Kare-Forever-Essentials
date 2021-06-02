@@ -1,6 +1,30 @@
 {% extends 'template.twig' %}
 
 {% block content %}
+
+{% for item in cart %}
+<div class="modal" id="modal-{{item[3]}}">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h6 style="color:white;" class="modal-title">Are you sure you want to remove
+                this item from cart?</h6>
+        </div>
+        <div class="modal-body">
+            Item name
+        </div>
+        <div class="modal-body">
+            <button type="button" class="btn border" data-dismiss="modal">
+                Cancel
+            </button>
+            <a href="cart_delete.php?pdid={{item[3]}}"><button type="button" class="btn bg-primary right-content"
+                    style="color:white;" data-dismiss="modal">
+                    Delete
+                </button></a>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
 <div class="hero-wrap hero-bread" style="background-image: url('/media/categories/all-products.jpg');">
     <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
@@ -49,7 +73,8 @@
                                     </div>
                                 </td>
                                 <td class="total">₹{{item[7]}}</td>
-                                <td class="product-remove"><a href="#" title="Remove from cart"><span
+                                <td class="product-remove"><a href="#" data-toggle="modal"
+                                        data-target="#modal-{{item[3]}}" title="Remove from cart"><span
                                             class="ion-ios-close"></span></a></td>
                             </tr>
                             {% endfor %}

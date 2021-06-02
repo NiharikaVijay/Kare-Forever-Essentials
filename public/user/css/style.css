@@ -4609,7 +4609,7 @@ a.close.disabled {
   z-index: 1050;
   display: none;
   width: 25%;
-  height: 40%;
+  height: fit-content;
   padding:20px;
   overflow: hidden;
   outline: 0;
@@ -4686,6 +4686,7 @@ background-color: #fff; }
     opacity: 0.5; }
 
 .modal-header {
+  background-color: #B76F4E;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4702,6 +4703,9 @@ background-color: #fff; }
   .modal-header .close {
     padding: 1rem 1rem;
     margin: -1rem -1rem -1rem auto; }
+  .modal-header h1 h2 h3 h4 h5 h6{
+    color: white;
+  }
 
 .modal-title {
   margin-bottom: 0;
