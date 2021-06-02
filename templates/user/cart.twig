@@ -43,12 +43,14 @@
                                 <td class="Volume">{{item[4]}}</td>
                                 <td class="quantity">
                                     <div class="input-group mb-3">
-                                        <input type="text" name="quantity" class="quantity form-control input-number"
-                                            value={{item[5]}} min="1" max="100">
+                                        <input type="text" name="quantity" onchange="qtyChanged()"
+                                            class="quantity form-control input-number" value={{item[5]}} min="1"
+                                            max="100">
                                     </div>
                                 </td>
                                 <td class="total">₹{{item[7]}}</td>
-                                <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
+                                <td class="product-remove"><a href="#" title="Remove from cart"><span
+                                            class="ion-ios-close"></span></a></td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -75,22 +77,22 @@
                     <h3>Cart Totals</h3>
                     <p class="d-flex">
                         <span>Subtotal</span>
-                        <span>₹{{subtotal}}</span>
+                        <span name="subtotal">₹{{subtotal}}</span>
                     </p>
                     <p class="d-flex">
                         <span>Delivery charges</span>
-                        <span>₹{{delivery}}</span>
+                        <span name="delivery">₹{{delivery}}</span>
                     </p>
                     {% if discount %}
                     <p class="d-flex">
-                        <span>Discount</span>
-                        <span>5%</span>
+                        <span>Discount(5%)</span>
+                        <span name="discount">- ₹200</span>
                     </p>
                     {% endif %}
                     <hr>
                     <p class="d-flex total-price">
                         <span>Total</span>
-                        <span>₹{{total}}</span>
+                        <span name="total">₹{{total}}</span>
                     </p>
                 </div>
                 <p><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
@@ -98,4 +100,32 @@
         </div>
     </div>
 </section>
+{% endblock %}
+
+{% block js %}
+<script>
+    function qtyChanged() {
+        var qtys = document.getElementsByName("quantity");
+        var totals = document.getElementsByClassName("total");
+        var prices = document.getElementsByClassName("price");
+        var subtotal = 0;
+
+        for (i = 0; i < qtys.length; i++) {
+            var qty = Number(qtys[i].value);
+            var price = Number(prices[i].innerHTML.slice(1));
+            totals[i].innerHTML = "₹" + (qty * price).toString();
+
+            subtotal += (qty * price);
+        }
+
+        document.getElementsByName("subtotal")[0].innerHTML = "₹" + subtotal.toString();
+
+        delivery = Number(document.getElementsByName("delivery")[0].innerHTML.slice(1));
+        total = delivery + subtotal;
+        if (document.getElementsByName("discount").length > 0) {
+            total -= Number(document.getElementsByName("discount")[0].innerHTML.slice(3));
+        }
+        document.getElementsByName("total")[0].innerHTML = "₹" + total.toString();
+    }
+</script>
 {% endblock %}
