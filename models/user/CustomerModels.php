@@ -35,7 +35,7 @@ class CustomerModel
         return $wishlist;
     }
 
-    public function getCart(String $cxid)
+    public function getCart(String $cxid, String $coupon = '')
     {
         $sql = 'SELECT m.path,
         p.pdname, p.ingredients, p.pdid,
@@ -69,12 +69,26 @@ class CustomerModel
             unset($cart[$i][9]);
         }
 
+        $discount = null;
+        // Change this 
+        if ($coupon) {
+            $discount = 100;
+        }
+
         $delivery = 150 * ceil($volume / 500);
-        return [
+
+        $data = [
             'items' => $cart,
             'subtotal' => $subtotal,
-            'delivery' => $delivery,
+            'delivery' => $delivery
         ];
+
+        if ($discount) {
+            $data += array(
+                'discount' => $discount
+            );
+        }
+        return $data;
     }
 
     public function removeFromCart($cxid, $pdid)
@@ -94,5 +108,20 @@ class CustomerModel
             'cxid' => $cxid,
             'pdid' => $pdid
         ]);
+    }
+
+    public function cartUpdate($cxid, $data)
+    {
+        foreach ($data as $key => $value) {
+            if ($key != 'submit_type' and $key != 'form-total' and $key != 'coupon') {
+                $sql = 'UPDATE cart SET pdqty= :pdqty WHERE cxid= :cxid AND pdid= :pdid;';
+                $prep = $this->db->prepare($sql);
+                $prep->execute([
+                    'pdqty' => $value,
+                    'cxid' => $cxid,
+                    'pdid' => $key
+                ]);
+            }
+        }
     }
 }

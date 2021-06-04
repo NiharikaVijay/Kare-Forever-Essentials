@@ -35,7 +35,10 @@
         </div>
     </div>
 </div>
-<form id="cart-form"></form>
+<form id="cart-form" method="POST" action="cart_update.php">
+    <input type="hidden" id="submit_type" name="submit_type" value="checkout">
+    <input type="hidden" id="form-total" name="form-total" value="{{total}}">
+</form>
 <section class="ftco-section ftco-cart">
     <div class="container">
         <div class="row">
@@ -67,9 +70,17 @@
                                 <td class="Volume">{{item[4]}}</td>
                                 <td class="quantity">
                                     <div class="input-group mb-3">
-                                        <input type="text" name="quantity" onchange="qtyChanged()"
-                                            class="quantity form-control input-number" value={{item[5]}} min="1"
-                                            max="100">
+                                        <button type="button" class="quantity-left-minus btn" data-type="minus"
+                                            data-field="" onclick="qtyDec('{{item[3]}}')">
+                                            <i class="ion-ios-remove"></i>
+                                        </button>
+                                        <input form="cart-form" type="text" id="quantity-{{item[3]}}" name="{{item[3]}}"
+                                            onchange="qtyChanged()" class="quantity form-control input-number"
+                                            value={{item[5]}} min="1" max="100">
+                                        <button type="button" class="quantity-right-plus btn" data-type="plus"
+                                            data-field="" onclick="qtyInc('{{item[3]}}')">
+                                            <i class="ion-ios-add"></i>
+                                        </button>
                                     </div>
                                 </td>
                                 <td class="total">₹{{item[7]}}</td>
@@ -88,14 +99,14 @@
                 <div class="cart-total mb-3">
                     <h3>Coupon Code</h3>
                     <p>Enter your coupon code if you have one</p>
-                    <form action="#" class="info">
-                        <div class="form-group">
-                            <label for="">Coupon code</label>
-                            <input type="text" class="form-control text-left px-3" placeholder="">
-                        </div>
-                    </form>
+                    <div class="form-group">
+                        <label for="">Coupon code</label>
+                        <input form="cart-form" type="text" name="coupon" value="{{coupon}}" class="form-control text-left px-3"
+                            placeholder="">
+                    </div>
                 </div>
-                <p><a href="checkout.html" class="btn btn-primary py-3 px-4">Apply Coupon</a></p>
+                <p><button class="btn btn-primary py-3 px-4" onclick="formSubmit('coupon')">Apply
+                        Coupon</button></p>
             </div>
             <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
                 <div class="cart-total mb-3">
@@ -110,8 +121,8 @@
                     </p>
                     {% if discount %}
                     <p class="d-flex">
-                        <span>Discount(5%)</span>
-                        <span name="discount">- ₹200</span>
+                        <span>Discount</span>
+                        <span name="discount">- ₹{{discount}}</span>
                     </p>
                     {% endif %}
                     <hr>
@@ -120,7 +131,8 @@
                         <span name="total">₹{{total}}</span>
                     </p>
                 </div>
-                <p><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+                <p><button class="btn btn-primary py-3 px-4" onclick="formSubmit('checkout')">Proceed to
+                        Checkout</button></p>
             </div>
         </div>
     </div>
@@ -130,7 +142,7 @@
 {% block js %}
 <script>
     function qtyChanged() {
-        var qtys = document.getElementsByName("quantity");
+        var qtys = document.getElementsByClassName("input-number");
         var totals = document.getElementsByClassName("total");
         var prices = document.getElementsByClassName("price");
         var subtotal = 0;
@@ -151,6 +163,30 @@
             total -= Number(document.getElementsByName("discount")[0].innerHTML.slice(3));
         }
         document.getElementsByName("total")[0].innerHTML = "₹" + total.toString();
+        document.getElementById("form-total").value = total;
+    }
+</script>
+
+<script>
+    function qtyDec(pdid) {
+        var n = Number(document.getElementById('quantity-' + pdid).value);
+        if (n > 0) {
+            document.getElementById('quantity-' + pdid).value = (n - 1).toString();
+        }
+        qtyChanged();
+    }
+    function qtyInc(pdid) {
+        document.getElementById('quantity-' + pdid).value = (Number(document.getElementById('quantity-' + pdid).value) + 1).toString();
+        qtyChanged();
+    }
+    function formSubmit(type) {
+        if (type == 'coupon') {
+            document.getElementById('submit_type').value = 'coupon';
+        }
+        else if (type == 'checkout') {
+            document.getElementById('submit_type').value = 'checkout';
+        }
+        document.getElementById('cart-form').submit();
     }
 </script>
 {% endblock %}

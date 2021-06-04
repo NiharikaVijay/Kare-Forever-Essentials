@@ -32,21 +32,13 @@ $customerModel = new CustomerModel($db);
 
 // Change the customer ID to login based in the end
 $cxid = 'a001';
-if (isset($_GET['coupon'])) {
-    $cart = $customerModel->getCart($cxid, $_GET['coupon']);
-    // print_r($cart);
-} else {
-    $cart = $customerModel->getCart($cxid);
+// print_r($_POST);
+if($_POST['submit_type']=='coupon'){
+    $customerModel->cartUpdate($cxid, $_POST);
+    header('Location: cart.php?coupon='.$_POST['coupon']);
+    die();
 }
-$params = [
-    'cart' => $cart['items'],
-    'subtotal' => $cart['subtotal'],
-    'delivery' => $cart['delivery'],
-    'total' => $cart['subtotal'] + $cart['delivery']
-];
-if (isset($cart['discount'])) {
-    $params += array('discount' => $cart['discount'], 'coupon' => $_GET['coupon']);
-}
-echo $twig->render('cart.twig', $params);
-// print_r(sizeof($params));
-// print_r($_GET);
+// $customerModel->($cxid, $pdid);
+
+// header('Location: cart.php');
+// die();
