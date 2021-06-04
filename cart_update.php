@@ -27,18 +27,14 @@ $db = new PDO('mysql:dbname=' . $dbname . ';host=' . $host . ';port=' . $port . 
 $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 $db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 
-#Main code, changes for every view
-$customerModel = new CustomerModel($db);
-
 // Change the customer ID to login based in the end
 $cxid = 'a001';
-// print_r($_POST);
-if($_POST['submit_type']=='coupon'){
-    $customerModel->cartUpdate($cxid, $_POST);
-    header('Location: cart.php?coupon='.$_POST['coupon']);
+$customerModel = new CustomerModel($db);
+$customerModel->cartUpdate($cxid, $_POST);
+if ($_POST['submit_type'] == 'coupon') {
+    header('Location: cart.php?coupon=' . $_POST['coupon']);
+    die();
+} elseif ($_POST['submit_type'] == 'checkout') {
+    header('Lcoation: checkout.php');
     die();
 }
-// $customerModel->($cxid, $pdid);
-
-// header('Location: cart.php');
-// die();
