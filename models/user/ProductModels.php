@@ -76,4 +76,16 @@ class ProductModel
             'concerns' => $concerns
         ];
     }
+
+    public function getProduct(String $pdid)
+    {
+        $sql = 'SELECT p.discount, m.path, p.pdid,
+        p.pdname, IFNULL(p.30ml,100000),IFNULL(p.50ml,100000),IFNULL(p.100ml,100000),IFNULL(p.250ml, 100000)
+        FROM prodcat pc LEFT OUTER JOIN product p on pc.pdid=p.pdid
+        LEFT OUTER JOIN (SELECT pdid,path FROM media WHERE isimage=TRUE AND isdefault=TRUE) m ON m.pdid=pc.pdid 
+        WHERE pc.catid= :catid;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute(['catid' => $catid]);
+        $product = $prep->fetchAll();
+    }
 }
