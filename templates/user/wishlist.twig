@@ -2,7 +2,69 @@
 
 {% block content %}
 {% for item in wishlist %}
-<div class="modal" id="modal-{{item[3]}}">
+
+<div class="modal" id="cart-modal-{{item[3]}}">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h6 style="color:white;" class="modal-title">Moving to your cart</h6>
+        </div>
+        <div class="modal-body">
+            <form action="wishlist_cart.php" id="cart-form" class="billing-form">
+                <h3 class="mb-4 billing-heading">{{item[1]}}</h3>
+                <div class="row align-items-end">
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="country">Volume</label>
+                            <div class="select-wrap">
+                                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                <select id="volume-{{item[3]}}" name="volume" class="form-control">
+                                    {% if item[4] %}
+                                    <option value="30ml">30ml</option>
+                                    {% endif %}
+                                    {% if item[5] %}
+                                    <option value="50ml">50ml</option>
+                                    {% endif %}
+                                    {% if item[6] %}
+                                    <option value="100ml">100ml</option>
+                                    {% endif %}
+                                    {% if item[7] %}
+                                    <option value="250ml">250ml</option>
+                                    {% endif %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    {# <div class="w-100"></div> #}
+                    <div class="col-xl-6">
+                        <label for="quantity-{{item[3]}}">Quantity</label><br>
+                        <div class="input-group xl-6">
+                            <button type="button" class="quantity-left-minus btn" data-type="minus" data-field=""
+                                onclick="qtyDec('{{item[3]}}')">
+                                <i class="ion-ios-remove"></i>
+                            </button>
+                            <input type="text" id="quantity-{{item[3]}}" name="{{item[3]}}"
+                                class="quantity form-control input-number" value=1>
+                            <button type="button" class="quantity-right-plus btn" data-type="plus" data-field=""
+                                onclick="qtyInc('{{item[3]}}')">
+                                <i class="ion-ios-add"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="w-100"></div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn border" data-dismiss="modal">
+                Cancel
+            </button>
+            <button type="submit" form="cart-form" class="btn bg-primary right-content" style="color:white;">Move
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="delete-modal-{{item[3]}}">
     <div class="modal-content">
         <div class="modal-header">
             <h6 style="color:white;" class="modal-title">Are you sure you want to remove
@@ -11,7 +73,7 @@
         <div class="modal-body">
             {{item[1]}}
         </div>
-        <div class="modal-body">
+        <div class="modal-footer">
             <button type="button" class="btn border" data-dismiss="modal">
                 Cancel
             </button>
@@ -26,7 +88,7 @@
 
 <div class="hero-wrap hero-bread" style="background-image: url('/media/categories/all-products.jpg');">
     <div class="container">
-        <div class="row no-gutters slider-text align-items-center justify-content-center">
+        <div class="row no-gutters slider-text align-itedeletems-center justify-content-center">
             <div class="col-md-9 ftco-animate text-center">
                 <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span></p>
                 <h1 class="mb-0 bread">Wishlist</h1>
@@ -42,11 +104,7 @@
                     <table class="table">
                         <thead class="thead-primary">
                             <tr class="text-center">
-                                <th rowspan="2" colspan="2">Item Details</th>
-                                <th colspan="4">Price</th>
-                                <th></th>
-                            </tr>
-                            <tr class="text-center">
+                                <th colspan="2">Item Details</th>
                                 <th>30ml</th>
                                 <th>50ml</th>
                                 <th>100ml</th>
@@ -84,11 +142,12 @@
                                 {% else %}
                                 <td>-</td>
                                 {% endif %}
-                                <td class="product-remove"><a href="wishlist_cart.php?prodid={{item[3]}}"
-                                        title="Move to cart"><span class="icon-shopping_cart"></span></a><a
-                                        href="wishlist_remove.php?prodid={{item[3]}}" title="Remove from wishlist"
-                                        data-toggle="modal" data-target="#modal-{{item[3]}}"><span
-                                            class="ion-ios-close"></span></a></td>
+                                <td class="product-remove"><a href="" title="Move to cart" data-toggle="modal"
+                                        data-target="#cart-modal-{{item[3]}}"><span
+                                            class="icon-shopping_cart"></span></a><a href=""
+                                        title="Remove from wishlist" data-toggle="modal"
+                                        data-target="#delete-modal-{{item[3]}}"><span class="ion-ios-close"></span></a>
+                                </td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -98,4 +157,37 @@
         </div>
     </div>
 </section>
+{% endblock %}
+
+{% block js %}
+<script>
+    function setCartPrice(pdid, p30, p50, p100, p250) {
+        vol = document.getElementById('volume-' + pdid).value;
+        if (vol == '30ml') {
+            document.getElementById('cost-' + pdid).value = '₹' + p30;
+        }
+        else if (vol == '50ml') {
+            document.getElementById('cost-' + pdid).value = '₹' + p50;
+        }
+        else if (vol == '100ml') {
+            document.getElementById('cost-' + pdid).value = '₹' + p100;
+        }
+        else if (vol == '250ml') {
+            document.getElementById('cost-' + pdid).value = '₹' + p250;
+        }
+    }
+
+    function qtyDec(pdid) {
+        var n = Number(document.getElementById('quantity-' + pdid).value);
+        if (n > 0) {
+            document.getElementById('quantity-' + pdid).value = (n - 1).toString();
+        }
+        qtyChanged();
+    }
+
+    function qtyInc(pdid) {
+        document.getElementById('quantity-' + pdid).value = (Number(document.getElementById('quantity-' + pdid).value) + 1).toString();
+        qtyChanged();
+    }
+</script>
 {% endblock %}
