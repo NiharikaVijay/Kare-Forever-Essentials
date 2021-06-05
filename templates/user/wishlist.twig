@@ -9,7 +9,8 @@
             <h6 style="color:white;" class="modal-title">Moving to your cart</h6>
         </div>
         <div class="modal-body">
-            <form action="wishlist_cart.php" id="cart-form" class="billing-form">
+            <form action="wishlist_cart.php" method="POST" id="cart-form" class="billing-form">
+                <input name="pdid" type="hidden" value="{{item[3]}}">
                 <h3 class="mb-4 billing-heading">{{item[1]}}</h3>
                 <div class="row align-items-end">
                     <div class="col-xl-6">
@@ -42,7 +43,7 @@
                                 onclick="qtyDec('{{item[3]}}')">
                                 <i class="ion-ios-remove"></i>
                             </button>
-                            <input type="text" id="quantity-{{item[3]}}" name="{{item[3]}}"
+                            <input type="text" id="quantity-{{item[3]}}" name="qty"
                                 class="quantity form-control input-number" value=1>
                             <button type="button" class="quantity-right-plus btn" data-type="plus" data-field=""
                                 onclick="qtyInc('{{item[3]}}')">

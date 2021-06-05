@@ -32,8 +32,8 @@ $customerModel = new CustomerModel($db);
 
 // Change the customer ID to login based in the end
 $cxid = 'a001';
-$pdid = $_GET['pdid'];
-$customerModel->moveToCart($cxid, $pdid);
+// $pdid = $_GET['pdid'];
+$customerModel->moveToCart($cxid, $_POST);
 
-header('Location: wishlist.php');
+header('Location: cart.php');
 die();

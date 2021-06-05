@@ -124,4 +124,23 @@ class CustomerModel
             }
         }
     }
+
+    public function moveToCart($cxid, $data)
+    {
+        $sql = 'INSERT into cart values(:cxid, :pdid, :pdvolume, :pdqty);';
+        $prep = $this->db->prepare($sql);
+        $prep->execute([
+            'cxid' => $cxid,
+            'pdid' => $data['pdid'],
+            'pdvolume' => $data['volume'],
+            'pdqty' => $data['qty']
+        ]);
+
+        $sql = 'DELETE FROM wishlist WHERE c.cxid= :cxid AND pdid= :pdid;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute([
+            'cxid' => $cxid,
+            'pdid' => $data['pdid']
+        ]);
+    }
 }
