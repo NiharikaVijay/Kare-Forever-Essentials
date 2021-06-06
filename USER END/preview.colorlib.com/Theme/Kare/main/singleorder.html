@@ -21,6 +21,7 @@
 	<link rel="stylesheet" href="css/flaticon.css">
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/icomoon.css">
+	<link rel="stylesheet" href="css/order-style.css">
 	<link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -28,9 +29,9 @@
 <body class="goto-here">
 	<div class="py-1 bg-primary">
 		<div class="container">
-			<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+			<div class="row order-row no-gutters d-flex align-items-start align-items-center px-md-0">
 				<div class="col-lg-12 d-block">
-					<div class="row d-flex">
+					<div class="row order-row d-flex">
 						<div class="col-md pr-4 d-flex topper align-items-center">
 							<div class="icon mr-2 d-flex justify-content-center align-items-center"></div>
 
@@ -44,7 +45,7 @@
 
 				<div class="bottom_header">
 				<div class="container">
-					<div class="row">
+					<div class="row order-row">
 						<div class="col-md-4 col-sm-12 col-xs-12">
 							<div class="search-box">
 								<form action="#" class="clearfix">
@@ -139,217 +140,95 @@
 
 		<!-- Login Modal Code -->
 
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header border-bottom-0">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="form-title text-center">
-          <h4>Login</h4>
-        </div>
-        <div class="d-flex flex-column text-center">
-          <form>
-            <div class="form-group">
-              <input type="email" class="form-control" id="email1"placeholder="Your email address...">
-            </div>
-            <div class="form-group">
-              <input type="password" class="form-control" id="password1" placeholder="Your password...">
-            </div>
-            <button type="button" class="btn btn-info btn-block btn-round">Login</button>
-          </form>
-          
-          <div class="text-center text-muted delimiter">or use a social network</div>
-          <div class="d-flex justify-content-center social-buttons">
-            <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Twitter">
-              <i class="fa fa-twitter"></i>
-            </button>
-            <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Facebook">
-              <i class="fa fa-facebook"></i>
-            </button>
-            <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Google">
-              <i class="fa fa-google"></i>
-            </button>
-          </di>
-        </div>
-      </div>
+
+<div class="d-flex flex-column justify-content-center align-items-center" id="order-heading">
+    <div class="text-uppercase">
+        <p>Order detail</p>
     </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <div class="signup-section">Not a member yet? <a href="#a" class="text-info"> Sign Up</a>.</div>
-      </div>
-  </div>
+    <div class="h4">Tuesday, December 08, 2020</div>
+    <div class="pt-1">
+        <p>Order #12615 is currently<b class="text-dark"> processing</b></p>
+    </div>
+    <div class="order-btn order-close text-white"> &times; </div>
 </div>
-</div>
-
-<!-- BODY -->
-
-<div class="container-fluid my-5 d-flex justify-content-center">
-    <div class="card card-1">
-        <div class="card-header bg-white">
-            <div class="media flex-sm-row flex-column-reverse justify-content-between ">
-                <div class="col my-auto">
-                    <h4 class="mb-0">Thanks for your Order,<span class="change-color">Anjali</span> !</h4>
-                </div>
-                <div class="col-auto text-center my-auto pl-0 pt-sm-4"> <img class="img-fluid my-auto align-items-center mb-0 pt-3" src="https://i.imgur.com/7q7gIzR.png" width="115" height="115">
-                    <p class="mb-4 pt-0 Glasses">Glasses For Everyone</p>
-                </div>
+<div class="ord-wrapper bg-white">
+    <div class="order-table-responsive">
+        <table class="order-table table-borderless">
+            <thead>
+                <tr class="text-uppercase text-muted">
+                    <th scope="col">product</th>
+                    <th scope="col" class="text-right">total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row" class="order-row">Babyblends: 1meal/day</th>
+                    <td class="text-right"><b>$69.86</b></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="d-flex justify-content-start align-items-center order-list py-1">
+        <div><b>1 </b></div>
+        <div class="mx-3"> <img src="images/bhs.jpg" alt="apple" class="rounded-circle" width="30" height="30"> </div>
+        <div class="order-item">Banana Hair Spa</div>
+    </div>
+    <div class="d-flex justify-content-start align-items-center order-list my-2 py-1">
+        <div><b>2 </b></div>
+        <div class="mx-3"> <img src="images/al.jpg" alt="apple" class="rounded-circle" width="30" height="30"> </div>
+        <div class="order-item">Alovera Combo Spa</div>
+    </div>
+    <div class="d-flex justify-content-start align-items-center order-list my-2 py-1">
+        <div><b>3 </b></div>
+        <div class="mx-3"> <img src="images/adg.jpg" alt="apple" class="rounded-circle" width="30" height="30"> </div>
+        <div class="order-item">Anti Dandruff Gel</div>
+    </div>
+    <div class="d-flex justify-content-start align-items-center order-list my-2 py-1">
+        <div><b>4 </b></div>
+        <div class="mx-3"> <img src="images/rfg.jpg" alt="apple" class="rounded-circle" width="30" height="30"> </div>
+        <div class="order-item">Rose Face Gel Pack</div>
+    </div>
+    <div class="pt-2 border-bottom mb-3"></div>
+    <div class="d-flex justify-content-start align-items-center pl-3">
+        <div class="text-muted">Payment Method</div>
+        <div class="ml-auto"> <img src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-logok-15.png" alt="" width="30" height="30"> <label>Mastercard ******5342</label> </div>
+    </div>
+    <div class="d-flex justify-content-start align-items-center py-1 pl-3">
+        <div class="text-muted">Shipping</div>
+        <div class="ml-auto"> <label>Free</label> </div>
+    </div>
+    <div class="d-flex justify-content-start align-items-center pb-4 pl-3 border-bottom">
+        <div class="text-muted"> <button class="text-white order-btn">50% Discount</button> </div>
+        <div class="ml-auto order-price"> -$34.94 </div>
+    </div>
+    <div class="d-flex justify-content-start align-items-center pl-3 py-3 mb-4 border-bottom">
+        <div class="text-muted"> Today's Total </div>
+        <div class="ml-auto h5"> $34.94 </div>
+    </div>
+    <div class="row order-row border rounded p-1 my-3">
+        <div class="col-md-6 py-3">
+            <div class="d-flex flex-column align-items start"> <b>Billing Address</b>
+                <p class="order-text-justify pt-2">James Thompson, 356 Jonathon Apt.220,</p>
+                <p class="order-text-justify">New York</p>
             </div>
         </div>
-        <div class="card-body">
-            <div class="row justify-content-between mb-3">
-                <div class="col-auto">
-                    <h6 class="color-1 mb-0 change-color">Receipt</h6>
-                </div>
-                <div class="col-auto "> <small>Receipt Voucher : 1KAU9-84UIL</small> </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="card card-2">
-                        <div class="card-body">
-                            <div class="media">
-                                <div class="sq align-self-center "> <img class="img-fluid my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0" src="https://i.imgur.com/RJOW4BL.jpg" width="135" height="135" /> </div>
-                                <div class="media-body my-auto text-right">
-                                    <div class="row my-auto flex-column flex-md-row">
-                                        <div class="col my-auto">
-                                            <h6 class="mb-0"> Jack Jacs</h6>
-                                        </div>
-                                        <div class="col-auto my-auto"> <small>Golden Rim </small></div>
-                                        <div class="col my-auto"> <small>Size : M</small></div>
-                                        <div class="col my-auto"> <small>Qty : 1</small></div>
-                                        <div class="col my-auto">
-                                            <h6 class="mb-0">&#8377;3,600.00</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr class="my-3 ">
-                            <div class="row">
-                                <div class="col-md-3 mb-3"> <small> Track Order <span><i class=" ml-2 fa fa-refresh" aria-hidden="true"></i></span></small> </div>
-                                <div class="col mt-auto">
-                                    <div class="progress my-auto">
-                                        <div class="progress-bar progress-bar rounded" style="width: 62%" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <div class="media row justify-content-between ">
-                                        <div class="col-auto text-right"><span> <small class="text-right mr-sm-2"></small> <i class="fa fa-circle active"></i> </span></div>
-                                        <div class="flex-col"> <span> <small class="text-right mr-sm-2">Out for delivary</small><i class="fa fa-circle active"></i></span></div>
-                                        <div class="col-auto flex-col-auto"><small class="text-right mr-sm-2">Delivered</small><span> <i class="fa fa-circle"></i></span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col">
-                    <div class="card card-2">
-                        <div class="card-body">
-                            <div class="media">
-                                <div class="sq align-self-center "> <img class="img-fluid my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0" src="https://i.imgur.com/fUWWpRS.jpg" width="135" height="135" /> </div>
-                                <div class="media-body my-auto text-right">
-                                    <div class="row my-auto flex-column flex-md-row">
-                                        <div class="col-auto my-auto ">
-                                            <h6 class="mb-0"> Michel Mark</h6>
-                                        </div>
-                                        <div class="col my-auto "> <small>Black Rim </small></div>
-                                        <div class="col my-auto "> <small>Size : L</small></div>
-                                        <div class="col my-auto "> <small>Qty : 1</small></div>
-                                        <div class="col my-auto ">
-                                            <h6 class="mb-0">&#8377;1,235.00</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr class="my-3 ">
-                            <div class="row ">
-                                <div class="col-md-3 mb-3"> <small> Track Order <span><i class=" ml-2 fa fa-refresh" aria-hidden="true"></i></span></small> </div>
-                                <div class="col mt-auto">
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar rounded" style="width: 18%" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <div class="media row justify-content-between ">
-                                        <div class="col-auto text-right"><span> <small class="text-right mr-sm-2"></small> <i class="fa fa-circle active"></i> </span></div>
-                                        <div class="flex-col"> <span> <small class="text-right mr-sm-2">Out for delivary</small><i class="fa fa-circle"></i></span></div>
-                                        <div class="col-auto flex-col-auto">
-                                            <smallclass="text-right mr-sm-2">Delivered</small><span> <i class="fa fa-circle"></i></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col">
-                    <div class="row justify-content-between">
-                        <div class="col-auto">
-                            <p class="mb-1 text-dark"><b>Order Details</b></p>
-                        </div>
-                        <div class="flex-sm-col text-right col">
-                            <p class="mb-1"><b>Total</b></p>
-                        </div>
-                        <div class="flex-sm-col col-auto">
-                            <p class="mb-1">&#8377;4,835</p>
-                        </div>
-                    </div>
-                    <div class="row justify-content-between">
-                        <div class="flex-sm-col text-right col">
-                            <p class="mb-1"> <b>Discount</b></p>
-                        </div>
-                        <div class="flex-sm-col col-auto">
-                            <p class="mb-1">&#8377;150</p>
-                        </div>
-                    </div>
-                    <div class="row justify-content-between">
-                        <div class="flex-sm-col text-right col">
-                            <p class="mb-1"><b>GST 18%</b></p>
-                        </div>
-                        <div class="flex-sm-col col-auto">
-                            <p class="mb-1">843</p>
-                        </div>
-                    </div>
-                    <div class="row justify-content-between">
-                        <div class="flex-sm-col text-right col">
-                            <p class="mb-1"><b>Delivery Charges</b></p>
-                        </div>
-                        <div class="flex-sm-col col-auto">
-                            <p class="mb-1">Free</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row invoice ">
-                <div class="col">
-                    <p class="mb-1"> Invoice Number : 788152</p>
-                    <p class="mb-1">Invoice Date : 22 Dec,2019</p>
-                    <p class="mb-1">Recepits Voucher:18KU-62IIK</p>
-                </div>
-            </div>
-        </div>
-        <div class="card-footer">
-            <div class="jumbotron-fluid">
-                <div class="row justify-content-between ">
-                    <div class="col-sm-auto col-auto my-auto"><img class="img-fluid my-auto align-self-center " src="https://i.imgur.com/7q7gIzR.png" width="115" height="115"></div>
-                    <div class="col-auto my-auto ">
-                        <h2 class="mb-0 font-weight-bold">TOTAL PAID</h2>
-                    </div>
-                    <div class="col-auto my-auto ml-auto">
-                        <h1 class="display-3 ">&#8377; 5,528</h1>
-                    </div>
-                </div>
-                <div class="row mb-3 mt-3 mt-md-0">
-                    <div class="col-auto border-line"> <small class="text-white">PAN:AA02hDW7E</small></div>
-                    <div class="col-auto border-line"> <small class="text-white">CIN:UMMC20PTC </small></div>
-                    <div class="col-auto "><small class="text-white">GSTN:268FD07EXX </small> </div>
-                </div>
+        <div class="col-md-6 py-3">
+            <div class="d-flex flex-column align-items start"> <b>Shipping Address</b>
+                <p class="order-text-justify pt-2">James Thompson, 356 Jonathon Apt.220,</p>
+                <p class="order-text-justify">New York</p>
             </div>
         </div>
     </div>
+    <div class="pl-3 font-weight-bold">Related Subsriptions</div>
+    <div class="d-sm-flex justify-content-between rounded my-3 subscriptions">
+        <div> <b>#9632</b> </div>
+        <div>December 08, 2020</div>
+        <div>Status: Processing</div>
+        <div> Total: <b> $68.8 for 10 items</b> </div>
+    </div>
 </div>
+ 
+</body>
 
 
 <!-- COMMON FOR ALL PAGES-->	        			
@@ -372,7 +251,7 @@
 	<footer>
 		<div class="main_footer">
 			<div class="container">
-				<div class="row">
+				<div class="row order-row">
 					<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 footer_logo">
 						<a href="index.html"><img src="images/logo.png" alt="Logo"></a>
 						<p>Kare Forever is strongly committed to protecting the environment by promoting
@@ -454,6 +333,7 @@
 		</div>
 
 	</footer>
+
 	<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
 			<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
 			<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"

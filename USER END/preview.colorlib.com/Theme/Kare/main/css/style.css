@@ -16742,124 +16742,149 @@ input[type=number]::-webkit-outer-spin-button {
 
 /*Order modal*/
 
-.mt-100 {
-    margin-top: 150px
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif
 }
 
-.order-modal-content {
-    border-radius: 0.7rem
+
+#order-heading {
+    background-color: #edf4f7;
+    position: relative;
+    border-top-left-radius: 25px;
+    max-width: 800px;
+    padding-top: 20px;
+    margin: 30px auto 0px
 }
 
-@media(width:1024px) {
-    .order-modal-dialog {
-        max-width: 700px
-    }
+#order-heading .text-uppercase {
+    font-size: 0.9rem;
+    color: #777;
+    font-weight: 600
 }
 
-.order-modal-title {
-    text-align: center;
-    font-size: 3vh;
-    font-weight: bold
+#order-heading .h4 {
+    font-weight: 600
 }
 
-.order-h4 {
-    margin-left: auto
+#order-heading .h4+div p {
+    font-size: 0.8rem;
+    color: #777
 }
 
-.order-modal-header {
-    border-bottom: none;
-    text-align: center;
-    padding-bottom: 0
+.order-close {
+    padding: 10px 15px;
+    background-color: #777;
+    border-radius: 50%;
+    position: absolute;
+    right: -15px;
+    top: -20px
 }
 
-.order-h6 {
-    color: rgb(2, 55, 230);
-    margin-top: 2vh;
+.ord-wrapper {
+    padding: 0px 50px 50px;
+    max-width: 800px;
+    margin: 0px auto 40px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px
+}
+
+.order-table th {
+    border-top: none
+}
+
+.order-table thead tr.text-uppercase th {
+    font-size: 0.8rem;
+    padding-left: 0px;
+    padding-right: 0px
+}
+
+.order-table tbody tr th,
+.order-table tbody tr td {
+    font-size: 0.9rem;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 5px
+}
+
+.order-table-responsive {
+    height: 100px
+}
+
+.order-list div b {
+    font-size: 0.8rem
+}
+
+.order-list .order-item {
+    font-weight: 600;
+    color: #6db3ec
+}
+
+.order-list:hover {
+    background-color: #f4f4f4;
+    cursor: pointer;
+    border-radius: 5px
+}
+
+
+.order-price {
+    color: #5cb99a;
+    font-weight: 700
+}
+
+
+label {
     margin-bottom: 0;
-    font-size: 2vh
+    padding: 0;
+    font-weight: 900
 }
 
-.order-modal-body {
-    padding: 2vh
+button.order-btn {
+    font-size: 0.9rem;
+    background-color: #66cdaa
 }
 
-.order-modal-footer {
-    border-top: none;
-    justify-content: center;
-    padding-top: 0
+button.order-btn:hover {
+    background-color: #5cb99a
 }
 
-.order-row {
-    border-bottom: 1px solid rgba(0, 0, 0, .2);
-    padding: 2vh 0 2vh 0;
-    justify-content: space-between;
-    flex-wrap: unset;
+p.order-text-justify {
+    font-size: 0.9rem;
     margin: 0
 }
 
-ul {
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around
+.order-row {
+    margin: 0px
 }
 
-ul li {
-    font-size: 2vh;
-    font-weight: bold;
-    line-height: 4vh
+.subscriptions {
+    border: 1px solid #ddd;
+    border-left: 5px solid #ffa500;
+    padding: 10px
 }
 
-.order-left {
-    float: left;
-    font-weight: normal;
-    color: rgb(126, 123, 123)
+.subscriptions div {
+    font-size: 0.9rem
 }
 
-.order-right {
-    float: right;
-    text-align: right
-}
-
-.order-col {
-    padding-left: 0
-}
-
-@media(min-width:1025px) {
-    img {
-        width: 70%
+@media(max-width: 425px) {
+    .ord-wrapper {
+        padding: 20px
     }
-}
 
-.btnn {
-    background-color: rgb(2, 55, 230);
-    border-color: rgb(2, 55, 230);
-    color: white;
-    width: 90%;
-    padding: 2vh;
-    margin-top: 0;
-    border-radius: 0.7rem;
-    box-shadow: none
-}
+    body {
+        font-size: 0.85rem
+    }
 
-.openmodal {
-    background-color: white;
-    color: black;
-    width: 30vw
-}
+    .subscriptions div {
+        padding-left: 5px
+    }
 
-:-moz-any-link:focus {
-    outline: none
-}
-
-.order-btn:active {
-    outline: none
-}
-
-.order-btn:focus {
-    outline: none
-}
-
-.order-btn:focus {
-    box-shadow: none
+    img+label {
+        font-size: 0.75rem
+    }
 }
