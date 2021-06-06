@@ -111,9 +111,11 @@
 <td class="price">Rs 550</td>
 <td class="Volume">50ml</td>
 <td class="quantity">
-<div class="input-group mb-3">
-<input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
-</div>
+ 			<div class="row qty-form">
+  					<div class="qty-value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
+					<input class="qty-input" type="number" id="number" value="0" style="width: 40px; text-align: center;" />
+					<div class="qty-value-button" id="increase" onclick="increaseValue()" value="Increase Value">+</div>
+			</div>
 </td>
 <td class="total">Rs 550</td>
 </tr>
@@ -308,41 +310,38 @@ Copyright &copy;<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728
 <script src="js/google-map.js"></script>
 <script src="js/main.js"></script>
 <script>
-		$(document).ready(function(){
+function increaseValue() {
+  var value = parseInt(document.getElementById('number').value, 10);
+  value = isNaN(value) ? 0 : value;
+  value++;
+  document.getElementById('number').value = value;
+}
 
-		var quantitiy=0;
-		   $('.quantity-right-plus').click(function(e){
-		        
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		            
-		            $('#quantity').val(quantity + 1);
-
-		          
-		            // Increment
-		        
-		    });
-
-		     $('.quantity-left-minus').click(function(e){
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		      
-		            // Increment
-		            if(quantity>0){
-		            $('#quantity').val(quantity - 1);
-		            }
-		    });
-		    
-		});
+function decreaseValue() {
+  var value = parseInt(document.getElementById('number').value, 10);
+  value = isNaN(value) ? 0 : value;
+  value < 1 ? value = 1 : '';
+  value--;
+  document.getElementById('number').value = value;
+}
 	</script>
+
+	<script type="text/javascript">
+	function increaseValue() {
+  var value = parseInt(document.getElementById('number').value, 10);
+  value = isNaN(value) ? 0 : value;
+  value++;
+  document.getElementById('number').value = value;
+}
+
+function decreaseValue() {
+  var value = parseInt(document.getElementById('number').value, 10);
+  value = isNaN(value) ? 0 : value;
+  value < 1 ? value = 1 : '';
+  value--;
+  document.getElementById('number').value = value;
+}
+</script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
 <script>
