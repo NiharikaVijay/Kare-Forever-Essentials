@@ -79,15 +79,15 @@
 	<div class=" slideshow-container col-lg-6 mb-5 ftco-animate">
 		<div class="mySlides fade">
 		
-			<a href="images/product-1.jpg" class="image-popup"><img src="images/rfg.jpg" class="img-fluid"></a>
+			<a href="images/rfg.jpg" class="image-popup"><img src="images/rfg.jpg" class="img-fluid"></a>
 		</div>
 		<div class="mySlides fade">
 		
-			<a href="images/product-1.jpg" class="image-popup"><img src="images/rmh.jpg" class="img-fluid" alt="Colorlib Template"></a>
+			<a href="images/rmh.jpg" class="image-popup"><img src="images/rmh.jpg" class="img-fluid" alt="Colorlib Template"></a>
 		</div>
 		<div class="mySlides fade">
 		
-			<a href="images/product-1.jpg" class="image-popup"><img src="images/rfg.jpg" class="img-fluid" alt="Colorlib Template"></a>
+			<a href="images/rfg.jpg" class="image-popup"><img src="images/rfg.jpg" class="img-fluid" alt="Colorlib Template"></a>
 		</div>
 			<br>
 
@@ -135,7 +135,7 @@
 		<table>
 	  <tbody>
 	  	<tr>
-		     <td><button> <p class="price"><span>Rs 550</span></button></p></td>
+		     <td><button class="btn btn-price"> Rs 550 </button></td>
 		</tr>
 	   </tbody>
 	</table>
@@ -149,30 +149,28 @@
 			<div class="form-group d-flex">
 			<div class="select-wrap">
 				<div class="icon"></div>
-					<select name="" id="" class="form-control">
-						<option value="">50ml</option>
-					</select>
+					
+					<button class="btn btn-qty">50 Ml</button>
+					<button class="btn btn-qty">100 Ml</button>
+					<button class="btn btn-qty">250 Ml</button>
+
 				</div>				
 			</div>
 		</div>
 		
 
 		<div class="input-group col-md-6 d-flex mb-3">
-			<!-- <span class="input-group-btn mr-2"> -->
-				<button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
-					<i class="ion-ios-remove"></i>
-				</button>
-		<!-- 	</span> -->
-		<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
-			<!-- <span class="input-group-btn ml-2"> -->
-				<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
-					<i class="ion-ios-add"></i>
-				</button>
-			<!-- </span> -->
+		
+			  <div class="value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
+			  <input class="quantity" type="number" id="number" value="0" />
+			  <div class="value-button" id="increase" onclick="increaseValue()" value="Increase Value">+</div>
+			
+
+
 		</div>
-	<p><a href="cart.html" class="btn btn-black py-3 px-5">Add to Cart</a>
+	<p><a href="#" class="btn btn-black py-3 px-5">Add to Cart</a>
 		<span>  </span>
-	<a href="checkout.html" class="btn btn-black py-3 px-5">Buy Now</a></p>
+	<a href="#" class="btn btn-black py-3 px-5">Buy Now</a></p>
 	</div>
 	</div>
 	</div>
@@ -430,42 +428,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&amp;sensor=false"></script>
 <script src="js/google-map.js"></script>
 <script src="js/main.js"></script>
-<script>
-		$(document).ready(function(){
 
-		var quantitiy=0;
-		   $('.quantity-right-plus').click(function(e){
-		        
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		            
-		            $('#quantity').val(quantity + 1);
-
-		          
-		            // Increment
-		        
-		    });
-
-		     $('.quantity-left-minus').click(function(e){
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		      
-		            // Increment
-		            if(quantity>0){
-		            $('#quantity').val(quantity - 1);
-		            }
-		    });
-		    
-		});
-	</script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
 <script>
@@ -495,6 +458,23 @@ function showSlides() {
   slides[slideIndex-1].style.display = "block";  
   dots[slideIndex-1].className += " active";
   setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
+</script>
+
+<script type="text/javascript">
+	function increaseValue() {
+  var value = parseInt(document.getElementById('number').value, 10);
+  value = isNaN(value) ? 0 : value;
+  value++;
+  document.getElementById('number').value = value;
+}
+
+function decreaseValue() {
+  var value = parseInt(document.getElementById('number').value, 10);
+  value = isNaN(value) ? 0 : value;
+  value < 1 ? value = 1 : '';
+  value--;
+  document.getElementById('number').value = value;
 }
 </script>
 
