@@ -8672,6 +8672,9 @@ h1, h2, h3, h4, h5,
   padding-bottom: 2em;
   position: relative; }
 
+
+
+
 .product {
   display: block;
   width: 100%;
@@ -8756,7 +8759,11 @@ h1, h2, h3, h4, h5,
   .product .text {
     background: #fff;
     position: relative;
-    width: 100%; }
+    width: 100%; 
+  min-height: 110px;
+    max-height: 110px;}
+
+
     .product .text h3 {
       font-size: 14px;
       margin-bottom: 5px;
