@@ -45,6 +45,12 @@
                     {% else %}
                     <li><a href="specialkare.php">Special Kare</a></li>
                     {% endif %}
+
+                    {% if title=='Gifting' %}
+                    <li><a href="#" class="active">Gifting</a></li>
+                    {% else %}
+                    <li><a href="gifting.php">Gifting</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
@@ -98,18 +104,18 @@
                         </div> <!-- End of .sidebar_styleOne -->
                         <div class="sidebar_categories">
                             <div class="theme_inner_title">
-                                <h4>Shop By Concern</h4>
+                                <h5><b>Shop By Concern</b></h5>
                             </div>
                             <ul>
-                                <li><a href="#" class="tran3s">Nourishing Creams</a></li>
-                                <li><a href="#" class="tran3s">Face Scrubs</a></li>
-                                <li><a href="#" class="tran3s">Hair Kare</a></li>
-                                <li><a href="#" class="tran3s">Special Kare Essentials</a></li>
+                                {% for concern in concerns %}
+                                <li><label><input type="checkbox" value="{{concern[0]}}"
+                                            onchange="filterbyConcern()" id="{{concern[0]}}" class="concern"><span>{{concern[1]}}</span></label></li>
+                                {% endfor %}
                             </ul>
                         </div> <!-- End of .sidebar_categories -->
                         <div class="price_filter wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
                             <div class="theme_inner_title">
-                                <h4>Filter By Price</h4>
+                                <h5><b>Filter By Price</b></h5>
                             </div>
                             <div class="single-sidebar price-ranger">
                                 <div id="slider-range"
@@ -137,4 +143,13 @@
         </div>
     </div>
 </section>
+{% endblock %}
+
+{% block js %}
+<script>
+    function filterbyConcern(){
+        products = '{{products}}';
+        alert(products.length);
+    }
+</script>
 {% endblock %}

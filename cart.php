@@ -32,11 +32,21 @@ $customerModel = new CustomerModel($db);
 
 // Change the customer ID to login based in the end
 $cxid = 'a001';
-$cart = $customerModel->getCart($cxid);
-
-echo $twig->render('cart.twig', [
+if (isset($_GET['coupon'])) {
+    $cart = $customerModel->getCart($cxid, $_GET['coupon']);
+    // print_r($cart);
+} else {
+    $cart = $customerModel->getCart($cxid);
+}
+$params = [
     'cart' => $cart['items'],
     'subtotal' => $cart['subtotal'],
     'delivery' => $cart['delivery'],
     'total' => $cart['subtotal'] + $cart['delivery']
-]);
+];
+if (isset($cart['discount'])) {
+    $params += array('discount' => $cart['discount'], 'coupon' => $_GET['coupon']);
+}
+echo $twig->render('cart.twig', $params);
+// print_r(sizeof($params));
+// print_r($_GET);
