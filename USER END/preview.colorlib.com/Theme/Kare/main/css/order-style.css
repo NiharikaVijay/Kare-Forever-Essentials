@@ -65,7 +65,7 @@ body {
 .order-table tbody tr th,
 .order-table tbody tr td {
     font-size: 0.9rem;
-    padding-left: 0px;
+    padding-left: 1px;
     padding-right: 0px;
     padding-bottom: 5px
 }
@@ -89,32 +89,34 @@ body {
     border-radius: 5px
 }
 
-label {
-    margin-bottom: 0;
-    padding: 0;
-    font-weight: 900
-}
-
-button.btn {
-    font-size: 0.9rem;
-    background-color: #66cdaa
-}
-
-button.btn:hover {
-    background-color: #5cb99a
-}
 
 .order-price {
     color: #5cb99a;
     font-weight: 700
 }
 
-p.text-justify {
+
+label {
+    margin-bottom: 0;
+    padding: 0;
+    font-weight: 900
+}
+
+button.order-btn {
+    font-size: 0.9rem;
+    background-color: #66cdaa
+}
+
+button.order-btn:hover {
+    background-color: #5cb99a
+}
+
+p.order-text-justify {
     font-size: 0.9rem;
     margin: 0
 }
 
-.row {
+.order-row {
     margin: 0px
 }
 
@@ -129,7 +131,7 @@ p.text-justify {
 }
 
 @media(max-width: 425px) {
-    .wrapper {
+    .ord-wrapper {
         padding: 20px
     }
 

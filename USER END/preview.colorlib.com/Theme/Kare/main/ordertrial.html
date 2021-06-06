@@ -21,27 +21,21 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="goto-here">
-<div class="py-1 bg-primary">
-<div class="container">
-<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
-<div class="col-lg-12 d-block">
-<div class="row d-flex">
-<div class="col-md pr-4 d-flex topper align-items-center">
-<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
-<span class="text">+ 1235 2355 98</span>
-</div>
-<div class="col-md pr-4 d-flex topper align-items-center">
-<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
-<span class="text"><a href="https://preview.colorlib.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="81f8eef4f3e4ece0e8edc1e4ece0e8edafe2eeec">[email&#160;protected]</a></span>
-</div>
-<div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
-<span class="text">3-5 Business days delivery &amp; Free Returns</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+	<div class="py-1 bg-primary">
+		<div class="container">
+			<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+				<div class="col-lg-12 d-block">
+					<div class="row d-flex">
+						<div class="col-md pr-4 d-flex topper align-items-center">
+							<div class="icon mr-2 d-flex justify-content-center align-items-center"></div>
+
+							<span class="text"><marquee behavior="scroll" direction="left">FLAT 25% OFF ON YOUR FIRST ORDER</marquee></a></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 <div class="container">
 <a href="index.html" class="pull-left logo"><img src="images/logo.png" alt="LOGO" width="238" height="56"></a>
@@ -73,66 +67,123 @@
 </div>
 </nav>
 
-<div class="hero-wrap hero-bread" style="background-image: url('images/bg_1.jpg');">
-<div class="container">
-<div class="row no-gutters slider-text align-items-center justify-content-center">
-<div class="col-md-9 ftco-animate text-center">
-<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Cart</span></p>
-<h1 class="mb-0 bread">My Cart</h1>
+<div class="d-flex flex-column justify-content-center align-items-center" id="order-heading">
+    <div class="text-uppercase">
+        <p>Order detail</p>
+    </div>
+    <div class="h4">Tuesday, December 08, 2020</div>
+    <div class="pt-1">
+        <p>Order #12615 is currently<b class="text-dark"> processing</b></p>
+    </div>
+    <a href="orders.html"><button class="order-btn order-close text-white"> &times; </button> </a>
 </div>
-</div>
-</div>
-</div>
-<section class="ftco-section ftco-cart">
-<div class="container">
-<div class="row">
-<div class="col-md-12 ftco-animate">
-<div class="cart-list">
-<table class="table">
-<thead class="thead-primary">
-<tr class="text-center">
+<div class="ord-wrapper bg-white">
+<!--     <div class="order-table-responsive">
+        <table class="order-table table-borderless">
+            <thead>
+                <tr class="text-uppercase text-muted">
+                    <th scope="col">product</th>
+                    <th scope="col" class="text-right">total</th>
+                </tr>
+            </thead>
+             <tbody>
+                <tr>
+                    <th scope="row" class="order-row">Babyblends: 1meal/day</th>
+                    <td class="text-right"><b>$69.86</b></td>
+                </tr>
+            </tbody>
+        </table>
+    </div> --> 
+    <div class="d-flex justify-content-start align-items-center order-list py-1">
+        <div class="order-item order-item-sn"><b>SN: </b></div>
+        <div class="mx-3">  </div>
+        <div class="order-item order-item-prod"><b>PRODUCT</b></div>
+        <span>
+        <div class="order-item order-item-price">PRICE</div>
+        </span>
+    </div>
+    <br>
+    <div class="d-flex justify-content-start align-items-center order-list py-1">
+        <div><b>1 </b></div>
+        <div class="mx-3"> <img src="images/bhs.jpg" alt="apple" class="rounded-circle" width="30" height="30"> </div>
+        <div class="order-item">Banana Hair Spa</div>
+        <div class="order-item">Rs 450</div>
+    </div>
+    <div class="d-flex justify-content-start align-items-center order-list my-2 py-1">
+        <div><b>2 </b></div>
+        <div class="mx-3"> <img src="images/al.jpg" alt="apple" class="rounded-circle" width="30" height="30"> </div>
+        <div class="order-item align-items-center">Alovera Combo Spa</div>
+    </div>
+    <div class="d-flex justify-content-start align-items-center order-list my-2 py-1">
+        <div><b>3 </b></div>
+        <div class="mx-3"> <img src="images/adg.jpg" alt="apple" class="rounded-circle" width="30" height="30"> </div>
+        <div class="order-item">Anti Dandruff Gel</div>
+    </div>
+    <div class="d-flex justify-content-start align-items-center order-list my-2 py-1">
+        <div><b>4 </b></div>
+        <div class="mx-3"> <img src="images/rfg.jpg" alt="apple" class="rounded-circle" width="30" height="30"> </div>
+        <div class="order-item">Rose Face Gel Pack</div>
+    </div>
 
-<th>&nbsp;</th>
-<th>Order ID</th>
-<th>Delivery Address</th>
-<th>Total</th>
-<th>Order details</th>
-</tr>
-</thead>
-<tbody>
-	<tr class="text-center">
 
-			<td class="image-prod"><div class="img" style="background-image:url(images/bhs.jpg);"></div></td>
-			<td>ORD001</td>
-			<td class="product-name">
-			<h3>Niharika</h3>
-			<p>123 5th Block Bangalore 560095</p>
-			</td>
-			<td class="price">Rs 550</td>
-			<td class="ord-details">
-			<a href="singleorder.html"><button> Order details</button>
+    <div class="pt-2 border-bottom mb-3"></div>
+    <div class="d-flex justify-content-start align-items-center pl-3">
+        <div class="text-muted">Payment Method</div>
+        <div class="ml-auto"> <img src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-logok-15.png" alt="" width="30" height="30"> <label>Mastercard ******5342</label> </div>
+    </div>
 
-			</td>
+    <div class="d-flex justify-content-start align-items-center py-1 pl-3">
+        <div class="text-muted">Shipping</div>
+        <div class="ml-auto"> <label>Free</label> </div>
+    </div>
 
-			</tr>
-			<tr class="text-center">
+    <div class="d-flex justify-content-start align-items-center pb-4 pl-3 border-bottom">
+        <div class="text-muted"> <button class="text-white order-btn">50% Discount</button> </div>
+        <div class="ml-auto order-price"> -Rs 2450 </div>
+    </div>
 
-				<td class="image-prod"><div class="img" style="background-image:url(images/bhs.jpg);"></div></td>
-				<td>ORD002</td>
-				<td class="product-name">
-				<h3>Amodh</h3>
-				<p>455 8th Block Indiranager Bangalore 560095</p>
-				</td>
-				<td class="price">Rs 550</td>
-				<td class="ord-details">
-			</tr>
-	</tbody>
-</table>
-</div>
-</div>
-</div>
+    <div class="d-flex justify-content-start align-items-center pl-3 py-3 mb-4 border-bottom">
+        <div class="text-muted"> Order Total </div>
+        <div class="ml-auto h5">Rs 2450 </div>
+    </div>
 
-</section>
+    <div class="row order-row border rounded p-1 my-3">
+        <div class="col-md-6 py-3">
+            <div class="d-flex flex-column align-items start"> <b>Billing Address</b>
+                <p class="order-text-justify pt-2">James Thompson, 356 Jonathon Apt.220,</p>
+                <p class="order-text-justify">New York</p>
+            </div>
+        </div>
+        <div class="col-md-6 py-3">
+            <div class="d-flex flex-column align-items start"> <b>Shipping Address</b>
+                <p class="order-text-justify pt-2">James Thompson, 356 Jonathon Apt.220,</p>
+                <p class="order-text-justify">New York</p>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="pl-3 font-weight-bold">TRACKING</div>
+    <div class="d-sm-flex justify-content-between rounded my-3 subscriptions">
+            
+                <ul id="progressbar">
+                    <li class="step0 active " id="step1">PLACED</li>
+                    <li class="step0 active text-center" id="step2">SHIPPED</li>
+                    <li class="step0 text-muted text-right" id="step3">DELIVERED</li>
+                </ul>
+           
+        
+    </div> -->
+    <div class="pl-3 font-weight-bold">Summary</div>
+    <div class="d-sm-flex justify-content-between rounded my-3 subscriptions">
+        <div> <b>#9632</b> </div>
+        <div>December 08, 2020</div>
+        <div>Status: Processing</div>
+        <div> Total: <b> Rs 2450 for 10 items</b> </div>
+    </div>
+	</div>
+	</div>
+
+
+</body>
 
 
 <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>

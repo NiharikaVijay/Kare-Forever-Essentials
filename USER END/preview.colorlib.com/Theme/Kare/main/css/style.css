@@ -16753,7 +16753,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 
 #order-heading {
-    background-color: #edf4f7;
+    background-color: #F4F2E4;
     position: relative;
     border-top-left-radius: 25px;
     max-width: 800px;
@@ -16778,7 +16778,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .order-close {
     padding: 10px 15px;
-    background-color: #777;
+    background-color: #B76F4E;
     border-radius: 50%;
     position: absolute;
     right: -15px;
@@ -16809,6 +16809,7 @@ input[type=number]::-webkit-outer-spin-button {
     padding-left: 0px;
     padding-right: 0px;
     padding-bottom: 5px
+    background-color: #F4F2E4;
 }
 
 .order-table-responsive {
@@ -16817,11 +16818,12 @@ input[type=number]::-webkit-outer-spin-button {
 
 .order-list div b {
     font-size: 0.8rem
+
 }
 
 .order-list .order-item {
     font-weight: 600;
-    color: #6db3ec
+    color: #B76F4E
 }
 
 .order-list:hover {
@@ -16830,6 +16832,18 @@ input[type=number]::-webkit-outer-spin-button {
     border-radius: 5px
 }
 
+.order-list .order-item-sn {
+    float: left;
+
+  }
+
+.order-list .order-item-prod {
+    float: center;
+  }
+.order-list .order-item-price {
+    float: right;
+    text-align: right;
+  }
 
 .order-price {
     color: #5cb99a;
@@ -16845,11 +16859,11 @@ label {
 
 button.order-btn {
     font-size: 0.9rem;
-    background-color: #66cdaa
+    background-color: #B76F4E
 }
 
 button.order-btn:hover {
-    background-color: #5cb99a
+    background-color: #D5AC93
 }
 
 p.order-text-justify {
@@ -16859,6 +16873,7 @@ p.order-text-justify {
 
 .order-row {
     margin: 0px
+
 }
 
 .subscriptions {
@@ -16888,3 +16903,5 @@ p.order-text-justify {
         font-size: 0.75rem
     }
 }
+
+
