@@ -66,9 +66,11 @@ class ProductModel
             unset($products[$i][7]);
         }
 
-        $sql = 'SELECT concid, concname FROM concern;';
+        $sql = 'SELECT c.concid, c.concname
+        FROM concern c RIGHT OUTER JOIN
+        (SELECT DISTINCT(concid) FROM prodconc WHERE pdid IN (SELECT pdid FROM prodcat WHERE catid= :catid)) pc ON pc.concid=c.concid;';
         $prep = $this->db->prepare($sql);
-        $prep->execute();
+        $prep->execute(['catid' => $catid]);
         $concerns = $prep->fetchAll();
 
         return [
