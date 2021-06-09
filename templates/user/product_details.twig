@@ -1,0 +1,382 @@
+{% extends 'template.twig' %}
+
+{% block content %}
+<div class="Container">
+    <div class="ProductMeta">
+        <div class="custom_reviews">
+            <section class="ftco-section">
+                <div class="container">
+                    <div class="row">
+                        <div class=" slideshow-container col-lg-6 mb-5 ftco-animate">
+                            {% for img in media %}
+                            <div class="mySlides fade">
+                                <a href="{{img[0]}}" class="image-popup"><img src="{{img[0]}}" class="img-fluid"></a>
+                            </div>
+                            {% endfor %}
+                            <br>
+                            <div style="text-align:center">
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 product-details pl-md-5 ftco-animate">
+                            <div class="rating d-flex">
+                                <p class="text-left mr-4">
+                                    {% if details[1]!=0 %}
+                                    <a href="#" class="mr-2">{{details[1]}}</a>
+                                    {% else %}
+                                    <a href="#" class="mr-2">5.0</a>
+                                    {% endif %}
+                                    {% for i in 1..(details[1]|round(0,'floor')) %}
+                                    <a href="#"><span class="ion-ios-star"></span></a>
+                                    {% endfor %}
+                                    {% if details[1]-(details[1]|round(0,'floor')) >= 0.5 %}
+                                    <a href="#"><span class="ion-ios-star-half"></span></a>
+                                    {% endif %}
+                                    {% for i in 1..(5-details[1]|round(0,'ceil')) %}
+                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                    {% endfor %}
+                                </p>
+                            </div>
+                            <h3><b>{{details[0]}}</b></h3>
+                            <table>
+                                <tbody>
+                                    {% for ben in details[4] %}
+                                    <tr>
+                                        <td> <img
+                                                src="https://cdn.shopify.com/s/files/1/0058/7779/2832/files/Right_Icon.png?v=1616486636"
+                                                alt=""> </td>
+                                        <td>&ensp;{{ben}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table><br>
+                            <div class="intro-line">
+                                <p>{{details[6]}}</p>
+                            </div>
+                            <div class="table">
+                                <table>
+                                    <tbody>
+                                        {% if details[14] %}
+                                        <tr>
+                                            <td><button class="btn btn-price" name="price">₹ {{details[14]}}</button>
+                                            </td>
+                                        </tr>
+                                        {% elseif details[15] %}
+                                        <tr>
+                                            <td><button class="btn btn-price" name="price">₹ {{details[15]}}</button>
+                                            </td>
+                                        </tr>
+                                        {% elseif details[16] %}
+                                        <tr>
+                                            <td><button class="btn btn-price" name="price">₹ {{details[16]}}</button>
+                                            </td>
+                                        </tr>
+                                        {% elseif details[17] %}
+                                        <tr>
+                                            <td><button class="btn btn-price" name="price">₹ {{details[17]}}</button>
+                                            </td>
+                                        </tr>
+                                        {% endif %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p><b>INGREDIENTS:</b>&ensp;{{details[3]}}</p>
+                            <p><b>APPLICATION:</b>&ensp;{{details[5]}}</p>
+                            <div class="row mt-4">
+                                <div class="col-md-6">
+                                    <div class="form-group d-flex">
+                                        <div class="select-wrap">
+                                            {% if details[14] %}
+                                            <button class="btn btn-qty"
+                                                onclick="changePrice('{{details[14]}}')">30ml</button>
+                                            {% endif %}
+                                            {% if details[15] %}
+                                            <button class="btn btn-qty"
+                                                onclick="changePrice('{{details[15]}}')">50ml</button>
+                                            {% endif %}
+                                            {% if details[16] %}
+                                            <button class="btn btn-qty"
+                                                onclick="changePrice('{{details[16]}}')">100ml</button>
+                                            {% endif %}
+                                            {% if details[17] %}
+                                            <button class="btn btn-qty"
+                                                onclick="changePrice('{{details[17]}}')">250ml</button>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p><a href="#" class="btn btn-black py-3 px-5">Add to Cart</a>
+                                    <span> </span>
+                                    <a href="#" class="btn btn-black py-3 px-5">Buy Now</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+            <!-- <section class="ftco-section">
+                <div class="container">
+                    <div class="row justify-content-center mb-3 pb-3">
+                        <div class="col-md-12 heading-section text-center ftco-animate">
+                            <span class="subheading">Ingredients</span>
+                            <h2 class="mb-4">Main Ingredients used</h2>
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3 ftco-animate">
+                            <div class="product">
+                                <a href="#" class="img-prod"><img class="img-fluid" src="images/product-8.jpg"
+                                        alt="Kare Forever">
+                                    <div class="overlay"></div>
+                                </a>
+                                <div class="text py-3 pb-4 px-3 text-center" style="min-height: 160px;">
+                                    <h3><a href="#">Almond extract</a></h3>
+                                    <div class="d-flex">
+                                        <div class="Ing-details">
+                                            <p class="ingredient-det"><span class="ing-sale">Almond oil is a good source
+                                                    of the antioxidant vitamin E and unsaturated fats.</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 ftco-animate">
+                            <div class="product">
+                                <a href="#" class="img-prod"><img class="img-fluid" src="images/product-8.jpg"
+                                        alt="Kare Forever">
+                                    <div class="overlay"></div>
+                                </a>
+                                <div class="text py-3 pb-4 px-3 text-center" style="min-height: 160px;">
+                                    <h3><a href="#">Almond extract</a></h3>
+                                    <div class="d-flex">
+                                        <div class="Ing-details">
+                                            <p class="ingredient-det"><span class="ing-sale">Almond oil is a good source
+                                                    of the antioxidant vitamin E and unsaturated fats.</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 ftco-animate">
+                            <div class="product">
+                                <a href="#" class="img-prod"><img class="img-fluid" src="images/product-8.jpg"
+                                        alt="Kare Forever">
+                                    <div class="overlay"></div>
+                                </a>
+                                <div class="text py-3 pb-4 px-3 text-center" style="min-height: 160px;">
+                                    <h3><a href="#">Almond extract</a></h3>
+                                    <div class="d-flex">
+                                        <div class="Ing-details">
+                                            <p class="ingredient-det"><span class="ing-sale">Almond oil is a good source
+                                                    of the antioxidant vitamin E and unsaturated fats.</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 ftco-animate">
+                            <div class="product">
+                                <a href="#" class="img-prod"><img class="img-fluid" src="images/product-8.jpg"
+                                        alt="Kare Forever">
+                                    <div class="overlay"></div>
+                                </a>
+                                <div class="text py-3 pb-4 px-3 text-center" style="min-height: 160px;">
+                                    <h3><a href="#">Almond extract</a></h3>
+                                    <div class="d-flex">
+                                        <div class="Ing-details">
+                                            <p class="ingredient-det"><span class="ing-sale">Almond oil is a good source
+                                                    of the antioxidant vitamin E and unsaturated fats.</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section> -->
+            <section class="ftco-section">
+                <div class="container">
+                    <div class="row justify-content-center mb-3 pb-3">
+                        <div class="col-md-12 heading-section text-center ftco-animate">
+                            <span class="subheading">Products</span>
+                            <h2 class="mb-4">Related Products</h2>
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3 ftco-animate">
+                            <div class="product">
+                                <a href="#" class="img-prod"><img class="img-fluid" src="images/rmh.jpg"
+                                        alt="Colorlib Template">
+                                    <span class="status">30%</span>
+                                    <div class="overlay"></div>
+                                </a>
+                                <div class="text py-3 pb-4 px-3 text-center">
+                                    <h3><a href="#">Rosemary Methi Hair Gel</a></h3>
+                                    <div class="d-flex">
+                                        <div class="pricing">
+                                            <p class="price"><span class="mr-2 price-dc">Rs 520.00</span><span
+                                                    class="price-sale">Rs 450.00</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="bottom-area d-flex px-3">
+                                        <div class="m-auto d-flex">
+                                            <a href="#"
+                                                class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                                <span><i class="ion-ios-menu"></i></span>
+                                            </a>
+                                            <a href="#"
+                                                class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                                <span><i class="ion-ios-cart"></i></span>
+                                            </a>
+                                            <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                                <span><i class="ion-ios-heart"></i></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 ftco-animate">
+                            <div class="product">
+                                <a href="#" class="img-prod"><img class="img-fluid" src="images/rmh.jpg"
+                                        alt="Colorlib Template">
+                                    <span class="status">30%</span>
+                                    <div class="overlay"></div>
+                                </a>
+                                <div class="text py-3 pb-4 px-3 text-center">
+                                    <h3><a href="#">Rosemary Methi Hair Gel</a></h3>
+                                    <div class="d-flex">
+                                        <div class="pricing">
+                                            <p class="price"><span class="mr-2 price-dc">Rs 520.00</span><span
+                                                    class="price-sale">Rs 450.00</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="bottom-area d-flex px-3">
+                                        <div class="m-auto d-flex">
+                                            <a href="#"
+                                                class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                                <span><i class="ion-ios-menu"></i></span>
+                                            </a>
+                                            <a href="#"
+                                                class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                                <span><i class="ion-ios-cart"></i></span>
+                                            </a>
+                                            <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                                <span><i class="ion-ios-heart"></i></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 ftco-animate">
+                            <div class="product">
+                                <a href="#" class="img-prod"><img class="img-fluid" src="images/rmh.jpg"
+                                        alt="Colorlib Template">
+                                    <div class="overlay"></div>
+                                </a>
+                                <div class="text py-3 pb-4 px-3 text-center">
+                                    <h3><a href="#">Rosemary Methi Hair Gel</a></h3>
+                                    <div class="d-flex">
+                                        <div class="pricing">
+                                            <p class="price"><span>Rs 520.00</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="bottom-area d-flex px-3">
+                                        <div class="m-auto d-flex">
+                                            <a href="#"
+                                                class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                                <span><i class="ion-ios-menu"></i></span>
+                                            </a>
+                                            <a href="#"
+                                                class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                                <span><i class="ion-ios-cart"></i></span>
+                                            </a>
+                                            <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                                <span><i class="ion-ios-heart"></i></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 ftco-animate">
+                            <div class="product">
+                                <a href="#" class="img-prod"><img class="img-fluid" src="images/rmh.jpg"
+                                        alt="Colorlib Template">
+                                    <div class="overlay"></div>
+                                </a>
+                                <div class="text py-3 pb-4 px-3 text-center">
+                                    <h3><a href="#">Rosemary Methi Hair Gel</a></h3>
+                                    <div class="d-flex">
+                                        <div class="pricing">
+                                            <p class="price"><span>Rs 520.00</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="bottom-area d-flex px-3">
+                                        <div class="m-auto d-flex">
+                                            <a href="#"
+                                                class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                                <span><i class="ion-ios-menu"></i></span>
+                                            </a>
+                                            <a href="#"
+                                                class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                                <span><i class="ion-ios-cart"></i></span>
+                                            </a>
+                                            <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                                <span><i class="ion-ios-heart"></i></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-23581568-13');
+    var slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) { slideIndex = 1 }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+        setTimeout(showSlides, 2000); // Change image every 2 seconds
+    }
+
+    function changePrice(price){
+        document.getElementsByName('price')[0].innerHTML = '₹' + price;
+    }
+</script>
+{% endblock %}

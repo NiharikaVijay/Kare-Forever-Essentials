@@ -76,7 +76,6 @@ class ProductModel
             'details' => $details[0],
             'media' => $media,
             'reviews' => $reviews
-
         ];
     }
 

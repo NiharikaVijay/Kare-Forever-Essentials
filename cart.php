@@ -41,8 +41,7 @@ $db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 #Main code, changes for every view
 $customerModel = new CustomerModel($db);
 
-// Change the customer ID to login based in the end
-$cxid = 'a001';
+$cxid = $_SESSION['cxid'];
 if (isset($_GET['coupon'])) {
     $cart = $customerModel->getCart($cxid, $_GET['coupon']);
     // print_r($cart);

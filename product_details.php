@@ -1,6 +1,4 @@
 <?php
-
-
 session_start();
 
 if (!isset($_SESSION['cxid'])) {
@@ -42,11 +40,10 @@ $db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 $productModel = new ProductModel($db);
 
 // Change the customer ID to login based in the end
-$cxid = 'a001';
 $pdid = $_GET['pdid'];
 $product = $productModel->getProduct($pdid);
 
-echo $twig->render('product_single.twig', [
+echo $twig->render('product_details.twig', [
     'account' => $_SESSION,
     'details' => $product['details'],
     'media' => $product['media']

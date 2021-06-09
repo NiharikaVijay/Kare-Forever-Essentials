@@ -38,8 +38,7 @@ $db = new PDO('mysql:dbname=' . $dbname . ';host=' . $host . ';port=' . $port . 
 $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 $db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 
-// Change the customer ID to login based in the end
-$cxid = 'a001';
+$cxid = $_SESSION['cxid'];
 $customerModel = new CustomerModel($db);
 $customerModel->cartUpdate($cxid, $_POST);
 if ($_POST['submit_type'] == 'coupon') {

@@ -39,7 +39,7 @@ $db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 $customerModel = new CustomerModel($db);
 
 // Change the customer ID to login based in the end
-$cxid = 'a001';
+$cxid = $_SESSION['cxid'];
 $wishlist = $customerModel->getWishlist($cxid);
 
 echo $twig->render('wishlist.twig', [

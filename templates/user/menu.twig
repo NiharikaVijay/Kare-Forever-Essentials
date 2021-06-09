@@ -61,7 +61,7 @@
                         {% for product in products %}
                         <div class="col-md-4 col-sm-6 col-xs-12 ftco-animate">
                             <div class="product">
-                                <a href="product-single.html" class="img-prod"><img class="img-fluid" src={{product[1]}}
+                                <a href="product_details.php?pdid={{product[2]}}" class="img-prod"><img class="img-fluid" src={{product[1]}}
                                         alt="Colorlib Template">
                                     {% if product[0]>0 %}
                                     <span class="status">{{product[0]}}%</span>

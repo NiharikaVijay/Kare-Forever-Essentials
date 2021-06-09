@@ -26,7 +26,7 @@ $loader = new FilesystemLoader(__DIR__ . '/templates/user');
 $twig = new Environment($loader);
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    echo $twig->render('login.twig');
+    echo $twig->render('login.twig', ['account' => $_SESSION]);
 } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
     #Setting up PDO
     $dbname = 'kare2';
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if ($_POST['email']) {
         $email = $_POST['email'];
     }
-    
+
     $recp = $customerModel->setOTP($email, $tel, $cxid);
     echo $twig->render('otp.twig', [
         'account' => $_SESSION,
