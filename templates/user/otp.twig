@@ -1,0 +1,56 @@
+{% extends 'template.twig' %}
+
+{% block content %}
+<div class="signup-form">
+    <form action="otp.php" method="post">
+        <h2>Verify</h2>
+        <p class="hint-text">Please enter the 4-digit OTP sent to {{recp}}</p>
+        <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
+            <input class="m-2 text-center form-control rounded" type="text" id="first" name="first" maxlength="1" />
+            <input class="m-2 text-center form-control rounded" type="text" id="second" name="second" maxlength="1" />
+            <input class="m-2 text-center form-control rounded" type="text" id="third" name="third" maxlength="1" />
+            <input class="m-2 text-center form-control rounded" type="text" id="fourth" name="fourth" maxlength="1" />
+        </div><br>
+        <div class="form-group">
+            <button href="index.html" type="submit" class="btn-register btn-lg btn-block"
+                style="background-color:#B76F4E; color:white;">Verify OTP</button>
+        </div>
+        <div style="align-content: center;">
+            Didn't receive the code?<br />
+            <a href="otp_resend.php">Send code again</a>&emsp;
+            <a href="login.php">Change phone number/email</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        function OTPInput() {
+            const inputs = document.querySelectorAll('#otp > *[id]');
+            for (let i = 0; i < inputs.length; i++) {
+                inputs[i].addEventListener('keydown', function (event) {
+                    if (event.key === "Backspace") {
+                        inputs[i].value = ''; if (i !== 0) inputs[i - 1].focus();
+                    } else {
+                        if (i === inputs.length - 1 && inputs[i].value !== '') {
+                            return true;
+                        } else if (event.keyCode > 47 && event.keyCode < 58) {
+                            inputs[i].value = event.key;
+                            if (i !== inputs.length - 1)
+                                inputs[i + 1].focus();
+                            event.preventDefault();
+                        } else if (event.keyCode > 64 && event.keyCode < 91) {
+                            inputs[i].value = String.fromCharCode(event.keyCode);
+                            if (i !== inputs.length - 1)
+                                inputs[i + 1].focus();
+                            event.preventDefault();
+                        }
+                    }
+                });
+            }
+        } OTPInput();
+    });
+</script>
+{% endblock %}

@@ -1,6 +1,15 @@
 <?php
+session_start();
 
-#To be removed during deployment
+if (!isset($_SESSION['cxid'])) {
+    include __DIR__ . '/models/user/HelperModels.php';
+
+    $helperModel = new HelperModel($db);
+    $_SESSION['cxloggedin'] = false;
+    $_SESSION['cxid'] = $helperModel->generateRandomString(5);
+}
+
+#TODO To be removed during deployment
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -16,24 +25,36 @@ use Twig\Loader\FilesystemLoader;
 $loader = new FilesystemLoader(__DIR__ . '/templates/user');
 $twig = new Environment($loader);
 
-#Setting up PDO
-$dbname = 'kare2';
-$host = 'localhost';
-$port = '3306';
-$charset = 'utf8';
-$username = 'root';
-$password = '';
-$db = new PDO('mysql:dbname=' . $dbname . ';host=' . $host . ';port=' . $port . ';charset=' . $charset, $username, $password);
-$db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-$db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    echo $twig->render('login.twig');
+} elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    #Setting up PDO
+    $dbname = 'kare2';
+    $host = 'localhost';
+    $port = '3306';
+    $charset = 'utf8';
+    $username = 'root';
+    $password = '';
+    $db = new PDO('mysql:dbname=' . $dbname . ';host=' . $host . ';port=' . $port . ';charset=' . $charset, $username, $password);
+    $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+    $db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 
-#Main code, changes for every view
-$customerModel = new CustomerModel($db);
+    #Main code, changes for every view
+    $customerModel = new CustomerModel($db);
 
-// Change the customer ID to login based in the end
-$cxid = 'a001';
-$wishlist = $customerModel->getWishlist($cxid);
-
-echo $twig->render('wishlist.twig', [
-    'wishlist' => $wishlist
-]);
+    $cxid = $_SESSION['cxid'];
+    $tel = null;
+    $email = null;
+    if ($_POST['tel']) {
+        $tel = $_POST['tel'];
+    }
+    if ($_POST['email']) {
+        $email = $_POST['email'];
+    }
+    
+    $recp = $customerModel->setOTP($email, $tel, $cxid);
+    echo $twig->render('otp.twig', [
+        'account' => $_SESSION,
+        'recp' => $recp
+    ]);
+}

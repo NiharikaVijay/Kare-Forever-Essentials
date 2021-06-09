@@ -21,7 +21,8 @@
 <link rel="stylesheet" href="/public/user/css/font-awesome.min.css">
 <link rel="stylesheet" href="/public/user/css/icomoon.css">
 <link rel="stylesheet" href="/public/user/css/style.css">
-<link rel="icon" href="../media/general/favicon.png">
+<link rel="icon" href="/media/general/favicon.png">
+{% block css %}{% endblock %}
 </head>
 
 <body class="goto-here">
@@ -60,14 +61,24 @@
 					<li class="nav-item"><a href="gifting.php" class="nav-link">Gifting</a></li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">Log In</a>
+							aria-haspopup="true" aria-expanded="false">
+							{% if account['cxloggedin']== false %}
+							Log In
+							{% else %}
+							Hi {{account['fname']}}
+							{% endif %}
+						</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown04">
+							{% if account['cxloggedin']== false %}
 							<a class="dropdown-item" href="login.php">Log In / Register</a>
+							{% endif %}
 							<a class="dropdown-item" href="profile.php">My Profile</a>
 							<a class="dropdown-item" href="myorders.php">My Orders</a>
 							<a class="dropdown-item" href="wishlist.php">Wishlist</a>
 							<a class="dropdown-item" href="cart.php">Cart</a>
-
+							{% if account['cxloggedin']== true %}
+							<a class="dropdown-item" href="logout.php">Logout</a>
+							{% endif %}
 						</div>
 					</li>
 

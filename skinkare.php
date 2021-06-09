@@ -1,4 +1,13 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['cxid'])) {
+    include __DIR__ . '/models/user/HelperModels.php';
+
+    $helperModel = new HelperModel($db);
+    $_SESSION['cxloggedin'] = false;
+    $_SESSION['cxid'] = $helperModel->generateRandomString(5);
+}
 
 #To be removed during deployment
 ini_set('display_errors', 1);
@@ -33,6 +42,7 @@ $productModel = new ProductModel($db);
 $products = $productModel->getProductsByCategory('cat2');
 
 echo $twig->render('menu.twig', [
+    'account'=> $_SESSION,
     'title' => 'Skin Kare',
     'banner' => '/media/categories/skinkare.jpg',
     'products' => $products['products'],

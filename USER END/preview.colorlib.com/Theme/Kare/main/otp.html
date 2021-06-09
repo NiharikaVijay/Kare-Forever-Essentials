@@ -78,30 +78,30 @@ body {
 </nav>
 
 <div class="signup-form">
-    <form action="/examples/actions/confirmation.php" method="post">
-    <h2>Verify</h2>
-    <p class="hint-text">Please enter the one time password sent to *******9897</p>
+  <form action="otp.php" method="post">
+      <h2>Verify</h2>
+      <p class="hint-text">Please enter the 4-digit OTP sent to {{recp}}</p>
 
-       
-          <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2"> 
-                  <input class="m-2 text-center form-control rounded" type="text" id="first" maxlength="1" /> 
-                  <input class="m-2 text-center form-control rounded" type="text" id="second" maxlength="1" /> 
-                  <input class="m-2 text-center form-control rounded" type="text" id="third" maxlength="1" /> 
-                  <input class="m-2 text-center form-control rounded" type="text" id="fourth" maxlength="1" /> 
-          </div>
 
-          <br>
-        <div class="form-group">
-            <button href="index.html" type="submit" class="btn-register btn-lg btn-block" style="background-color:#B76F4E">Verify OTP</button>
-        </div>
+      <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
+          <input class="m-2 text-center form-control rounded" type="text" id="first" maxlength="1" />
+          <input class="m-2 text-center form-control rounded" type="text" id="second" maxlength="1" />
+          <input class="m-2 text-center form-control rounded" type="text" id="third" maxlength="1" />
+          <input class="m-2 text-center form-control rounded" type="text" id="fourth" maxlength="1" />
+      </div>
 
-        <div style="align-content: center;">
-              Didn't receive the code?<br />
-              <a href="#">Send code again</a><br />
-              <a href="login.html">Change phone number</a>
-        </div>
-    </form>
-  <div class="text-center" style="color:black">Already have an account? <a href="login.html" style="color:#B76F4E">Sign in</a></div>
+      <br>
+      <div class="form-group">
+          <button href="index.html" type="submit" class="btn-register btn-lg btn-block"
+              style="background-color:#B76F4E; color:white;">Verify OTP</button>
+      </div>
+
+      <div style="align-content: center;">
+          Didn't receive the code?<br />
+          <a href="otp_resend.php">Send code again</a>&emsp;
+          <a href="login.php">Change phone number/email</a>
+      </div>
+  </form>
 </div>
 </body>
 

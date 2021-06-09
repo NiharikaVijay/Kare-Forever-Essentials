@@ -143,4 +143,84 @@ class CustomerModel
             'pdid' => $data['pdid']
         ]);
     }
+
+    public function setOTP($email, $tel, $cxid)
+    {
+        $sql = 'SELECT cxid, cxphone, cxemail FROM customer WHERE
+        cxemail= :email OR
+        cxphone= :tel;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute([
+            'email' => $email,
+            'tel' => $tel
+        ]);
+        $cxdeets = $prep->fetchAll();
+        //If customer is already present, reset cxid in session
+        if (sizeof($cxdeets) > 0) {
+            $_SESSION['cxid'] = $cxdeets[0][0];
+            $cxid = $_SESSION['cxid'];
+            $email = $cxdeets[0][2];
+            $tel = $cxdeets[0][1];
+        }
+
+        //generate OTP
+        $otp = rand(1000, 9999);
+
+        //Insert into OTP Table
+        $sql = 'REPLACE INTO otp VALUES(:cxid, :otp, NOW());';
+        $prep = $this->db->prepare($sql);
+        $prep->execute([
+            'cxid' => $cxid,
+            'otp' => $otp
+        ]);
+
+        //Deleting from OTP table where time has expired mroe than 5 mins
+        $sql = 'DELETE FROM otp WHERE NOW()-timestamp>5*60;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute();
+
+        $recp = null;
+        //Send mail or tel
+        if ($email) {
+            require dirname(dirname(dirname(__FILE__))) . '/models/user/HelperModels.php';
+
+            $myfile = fopen(dirname(dirname(dirname(__FILE__))) . "/templates/mail/otp.html", "r") or die("Unable to open file!");
+            $content = str_replace('otpgoeshere', $otp, fread($myfile, filesize(dirname(dirname(dirname(__FILE__))) . "/templates/mail/otp.html")));
+            fclose($myfile);
+
+            $subject = 'Kare Forever Essentials | OTP for logging in';
+
+            $helperObject = new HelperModel();
+            $helperObject->sendMail($content, $subject, $email);
+
+            $recp = $email;
+        }
+        // elseif ($tel) {
+        //     //Enter code to send OTP through sms
+        // }
+        return $recp;
+    }
+
+    public function verifyOTP($cxid, $otp)
+    {
+        $sql = 'SELECT c.cxid, IFNULL(c.cxname,"customer") FROM otp o LEFT OUTER JOIN  customer c on c.cxid=o.cxid
+        WHERE o.cxid= :cxid AND o.otp= :otp AND NOW()-o.timestamp<=5*60;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute([
+            'cxid' => $cxid,
+            'otp' => $otp
+        ]);
+        $customer = $prep->fetchAll();
+
+        if (sizeof($customer) > 0) {
+            return [
+                'isValid' => true,
+                'details' => $customer[0]
+            ];
+        } else {
+            return [
+                'isValid' => false
+            ];
+        }
+    }
 }

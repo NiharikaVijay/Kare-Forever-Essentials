@@ -1,6 +1,17 @@
 <?php
 
-#To be removed during deployment
+
+session_start();
+
+if (!isset($_SESSION['cxid'])) {
+    include __DIR__ . '/models/user/HelperModels.php';
+
+    $helperModel = new HelperModel($db);
+    $_SESSION['cxloggedin'] = false;
+    $_SESSION['cxid'] = $helperModel->generateRandomString(5);
+}
+
+# TODO To be removed during deployment
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -39,6 +50,7 @@ if (isset($_GET['coupon'])) {
     $cart = $customerModel->getCart($cxid);
 }
 $params = [
+    'account' => $_SESSION,
     'cart' => $cart['items'],
     'subtotal' => $cart['subtotal'],
     'delivery' => $cart['delivery'],

@@ -1,6 +1,4 @@
 <?php
-
-
 session_start();
 
 if (!isset($_SESSION['cxid'])) {
@@ -11,14 +9,14 @@ if (!isset($_SESSION['cxid'])) {
     $_SESSION['cxid'] = $helperModel->generateRandomString(5);
 }
 
-# TODO To be removed during deployment
+#TODO to be removed during deployment
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 require __DIR__ . '/vendor/autoload.php';
 #Include whatever model you want here
-include __DIR__ . '/models/user/ProductModels.php';
+include __DIR__ . '/models/user/CustomerModels.php';
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
@@ -39,14 +37,22 @@ $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 $db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 
 #Main code, changes for every view
-$productModel = new ProductModel($db);
+$customerModel = new CustomerModel($db);
 
-$products = $productModel->getProductsByCategory('cat1');
+$cxid = $_SESSION['cxid'];
+$otp = $_POST['first'] . $_POST['second'] . $_POST['third'] . $_POST['fourth'];
 
-echo $twig->render('menu.twig', [
-    'account' => $_SESSION,
-    'title' => 'Hair Kare',
-    'banner' => '/media/categories/hairkare.jpg',
-    'products' => $products['products'],
-    'concerns' => $products['concerns']
-]);
+$result = $customerModel->verifyOTP($cxid, $otp);
+
+if ($result['isValid']) {
+    $_SESSION['cxid'] = $result['details'][0];
+    $_SESSION['fname'] = explode(" ",$result['details'][1])[0];
+    $_SESSION['cxloggedin'] = true;
+    // TODO change to index.php when done
+    header("Location: skinkare.php");
+    die();
+} else {
+    $_SESSION['error'] = 'Invalid OTP';
+    header("Location: login.php");
+    die();
+}
