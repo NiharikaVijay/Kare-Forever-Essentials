@@ -235,4 +235,17 @@ class CustomerModel
             ];
         }
     }
+
+    public function getOrders($cxid){
+        $sql = 'SELECT o.ordid, DATE_FORMAT(o.timestamp, "%e %M %Y"), a.*, o.finamt
+        FROM orders o LEFT OUTER JOIN  (SELECT addid, line1, line2, city, pincode, state FROM address) a
+        ON o.adid=a.addid WHERE o.cxid= :cxid;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute([
+            'cxid' => $cxid
+        ]);
+        $orders = $prep->fetchAll();
+
+        return $orders;
+    }
 }
