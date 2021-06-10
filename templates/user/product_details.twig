@@ -1,6 +1,68 @@
 {% extends 'template.twig' %}
 
 {% block content %}
+<div class="modal" id="cart-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h6 style="color:white;" class="modal-title">Moving to your cart</h6>
+        </div>
+        <div class="modal-body">
+            <form action="cart_add.php" method="POST" id="cart-form" class="billing-form">
+                <input name="pdid" type="hidden" value="{{details[11]}}">
+                <h3 class="mb-4 billing-heading">{{details[0]}}</h3>
+                <div class="row align-items-end">
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="country">Volume</label>
+                            <div class="select-wrap">
+                                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                <select id="volume" name="volume" class="form-control">
+                                    {% if details[14] %}
+                                    <option value="30ml">30ml</option>
+                                    {% endif %}
+                                    {% if details[15] %}
+                                    <option value="50ml">50ml</option>
+                                    {% endif %}
+                                    {% if details[16] %}
+                                    <option value="100ml">100ml</option>
+                                    {% endif %}
+                                    {% if details[17] %}
+                                    <option value="250ml">250ml</option>
+                                    {% endif %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    {# <div class="w-100"></div> #}
+                    <div class="col-xl-6">
+                        <label for="cart-quantity">Quantity</label><br>
+                        <div class="input-group xl-6">
+                            <button type="button" class="quantity-left-minus btn" data-type="minus" data-field=""
+                                onclick="qtyDec()">
+                                <i class="ion-ios-remove"></i>
+                            </button>
+                            <input type="text" id="cart-quantity" name="qty" class="quantity form-control input-number"
+                                value=1>
+                            <button type="button" class="quantity-right-plus btn" data-type="plus" data-field=""
+                                onclick="qtyInc()">
+                                <i class="ion-ios-add"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="w-100"></div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn border" data-dismiss="modal">
+                Cancel
+            </button>
+            <button type="submit" form="cart-form" class="btn bg-primary right-content" style="color:white;">Move
+            </button>
+        </div>
+    </div>
+</div>
+
 <div class="Container">
     <div class="ProductMeta">
         <div class="custom_reviews">
@@ -107,8 +169,8 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <p><a href="#" class="btn btn-black py-3 px-5">Add to Cart</a>
+                                <p><a href="#" class="btn btn-black py-3 px-5" data-toggle="modal"
+                                        data-target="#cart-modal">Add to Cart</a>
                                     <span> </span>
                                     <a href="#" class="btn btn-black py-3 px-5">Buy Now</a>
                                 </p>
@@ -375,8 +437,21 @@
         setTimeout(showSlides, 2000); // Change image every 2 seconds
     }
 
-    function changePrice(price){
-        document.getElementsByName('price')[0].innerHTML = '₹' + price;
+    function changePrice(price) {
+        document.getElementsByName('price')[0].innerHTML = '₹ ' + price;
+    }
+
+    function qtyDec() {
+        var n = Number(document.getElementById('cart-quantity').value);
+        if (n > 0) {
+            document.getElementById('cart-quantity').value = (n - 1).toString();
+        }
+        qtyChanged();
+    }
+
+    function qtyInc() {
+        document.getElementById('cart-quantity').value = (Number(document.getElementById('cart-quantity').value) + 1).toString();
+        qtyChanged();
     }
 </script>
 {% endblock %}

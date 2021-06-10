@@ -127,7 +127,7 @@ class CustomerModel
 
     public function moveToCart($cxid, $data)
     {
-        $sql = 'INSERT into cart values(:cxid, :pdid, :pdvolume, :pdqty);';
+        $sql = 'INSERT INTO cart VALUES(:cxid, :pdid, :pdvolume, :pdqty);';
         $prep = $this->db->prepare($sql);
         $prep->execute([
             'cxid' => $cxid,
@@ -141,6 +141,18 @@ class CustomerModel
         $prep->execute([
             'cxid' => $cxid,
             'pdid' => $data['pdid']
+        ]);
+    }
+
+    public function addToCart($cxid, $data)
+    {
+        $sql = 'REPLACE INTO cart VALUES(:cxid, :pdid, :pdvolume, :pdqty);';
+        $prep = $this->db->prepare($sql);
+        $prep->execute([
+            'cxid' => $cxid,
+            'pdid' => $data['pdid'],
+            'pdvolume' => $data['volume'],
+            'pdqty' => $data['qty']
         ]);
     }
 
