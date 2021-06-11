@@ -236,7 +236,8 @@ class CustomerModel
         }
     }
 
-    public function getOrders($cxid){
+    public function getOrders($cxid)
+    {
         $sql = 'SELECT o.ordid, DATE_FORMAT(o.timestamp, "%e %M %Y"), a.*, o.finamt
         FROM orders o LEFT OUTER JOIN  (SELECT addid, line1, line2, city, pincode, state FROM address) a
         ON o.adid=a.addid WHERE o.cxid= :cxid;';
@@ -247,5 +248,40 @@ class CustomerModel
         $orders = $prep->fetchAll();
 
         return $orders;
+    }
+
+    public function getOrderDetails($cxid, $ordid)
+    {
+        $sql = 'SELECT DATE_FORMAT(o.timestamp, "%e %M %Y"), o.ordid, o.notes,
+        a.line1, a.line2, a.city, a.pincode, a.state,
+        o.finamt, o.status, o.lptsused, o.delivery
+        FROM orders o LEFT OUTER JOIN address a ON a.addid=o.adid WHERE o.ordid= :ordid and o.cxid= :cxid;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute([
+            'ordid' => $ordid,
+            'cxid' => $cxid
+        ]);
+        $details = $prep->fetchAll();
+
+        $sql = 'SELECT m.path, 
+        p.pdname, 
+        o.pdvolume, o.pdprice, o.pdqty, o.pdqty*o.pdprice, SUM(o.pdqty*o.pdprice)
+        FROM orderproducts o LEFT OUTER JOIN product p ON o.pdid=p.pdid
+        LEFT OUTER JOIN (SELECT path, pdid FROM media WHERE isimage=TRUE AND isdefault=TRUE) m ON m.pdid=p.pdid WHERE o.orderid= :ordid;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute(['ordid' => $ordid]);
+        $products = $prep->fetchAll();
+
+        $sql = 'SELECT cpid, amount
+        FROM couponsused WHERE ordid= :ordid;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute(['ordid' => $ordid]);
+        $coupon = $prep->fetchAll();
+
+        return [
+            'details' => $details[0],
+            'products' => $products,
+            'coupon' => $coupon[0]
+        ];
     }
 }
