@@ -26,7 +26,7 @@ class OrderModel
         $sql = 'SELECT  c.cxname, c.cxemail, c.cxphone,
         DATE_FORMAT(o.timestamp, "%e %M %Y, %r"), o.notes,
         a.line1, a.line2, a.city, a.pincode, a.state,
-        o.finamt, o.status, o.lptsused
+        o.finamt, o.status, o.lptsused, o.delivery
         FROM orders o LEFT OUTER JOIN customer c ON c.cxid=o.cxid LEFT OUTER JOIN address a ON a.cxid=c.cxid WHERE o.ordid= :ordid;';
         $prep = $this->db->prepare($sql);
         $prep->execute(['ordid' => $ordid]);

@@ -38,6 +38,7 @@ $productModel = new ProductModel($db);
 
 $pdid = $_POST['pdid'];
 $pdname = $_POST['pdname'];
+$desc = $_POST['description'];
 $ing = $_POST['ingredients'];
 $ben = $_POST['benefits'];
 $app = $_POST['application'];
@@ -68,6 +69,7 @@ if ($p250 == 0) {
 $productModel->editProduct(
     $pdid,
     $pdname,
+    $desc,
     $ing,
     $ben,
     $app,

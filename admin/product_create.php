@@ -37,6 +37,7 @@ $db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 $productModel = new ProductModel($db);
 
 $pdname = $_POST['pdname'];
+$desc = $_POST['description'];
 $ing = $_POST['ingredients'];
 $ben = $_POST['benefits'];
 $app = $_POST['application'];
@@ -66,6 +67,7 @@ if ($p250 == 0) {
 
 $productModel->addProduct(
     $pdname,
+    $desc,
     $ing,
     $ben,
     $app,

@@ -51,7 +51,7 @@ class ProductModel
         pcn.concerns,
         IFNULL(o.itemcount,0), IFNULL(o.ordcount,0),
         ROUND(p.30ml*(100-p.discount)/100,2), ROUND(p.50ml*(100-p.discount)/100, 2), ROUND(p.100ml*(100-p.discount)/100,2), ROUND(p.250ml*(100-p.discount)/100,2),
-        p.discount, p.tags, p.isfeatured
+        p.discount, p.tags, p.isfeatured, p.description
         FROM product p LEFT OUTER JOIN (SELECT pdid, round(avg(rating),1) AS rtg, count(rating) AS rtgcount FROM reviews GROUP BY pdid) r ON r.pdid=p.pdid
         LEFT OUTER JOIN (SELECT p.pdid, group_concat(p.name) AS concerns FROM  (SELECT pc.pdid AS pdid, c.concname AS name FROM prodconc pc LEFT OUTER JOIN concern c ON pc.concid=c.concid) p GROUP BY p.pdid) pcn ON p.pdid=pcn.pdid
         LEFT OUTER JOIN (SELECT p.pdid, group_concat(p.name) AS categories FROM  (SELECT pc.pdid AS pdid, c.catname AS name FROM prodcat pc LEFT OUTER JOIN category c ON pc.catid=c.catid) p GROUP BY p.pdid) pct ON p.pdid=pct.pdid
@@ -101,6 +101,7 @@ class ProductModel
 
     public function addProduct(
         $pdname,
+        $desc,
         $ing,
         $ben,
         $app,
@@ -128,7 +129,8 @@ class ProductModel
         ' . $p50 . ',
         ' . $p100 . ',
         ' . $p250 . ',
-        ' . $discount . ');';
+        ' . $discount . ',
+        ' . $desc . ');';
         $prep = $this->db->prepare($sql);
         $prep->execute();
 
@@ -166,7 +168,7 @@ class ProductModel
             } else {
                 $sql = 'INSERT INTO media VALUES("' . $mdid . '", 
                 "' . substr($target_file, 2) . '",
-                TRUE,
+                TRUE,coupon
                 "' . $pdid . '",
                 FALSE
                 );';
@@ -201,7 +203,7 @@ class ProductModel
         $sql = 'SELECT pdname,
         ingredients, benefits, application,
         IFNULL(30ml,0), IFNULL(50ml,0), IFNULL(100ml,0), IFNULL(250ml,0),
-        pdid, tags, discount, isfeatured
+        pdid, tags, discount, isfeatured, description
         FROM product  WHERE pdid= :pdid;';
         $prep = $this->db->prepare($sql);
         $prep->execute(['pdid' => $pdid]);
@@ -245,6 +247,7 @@ class ProductModel
     public function editProduct(
         $pdid,
         $pdname,
+        $desc,
         $ing,
         $ben,
         $app,
@@ -270,7 +273,8 @@ class ProductModel
         100ml= :p100,
         250ml= :p250,
         discount= :discount,
-        isfeatured= :isfeatured WHERE pdid= :pdid;';
+        isfeatured= :isfeatured,
+        description= :desc WHERE pdid= :pdid;';
         $prep = $this->db->prepare($sql);
         $prep->execute([
             'pdname' => $pdname,
@@ -284,7 +288,8 @@ class ProductModel
             'p250' => $p250,
             'discount' => $discount,
             'pdid' => $pdid,
-            'isfeatured' => $isfeatured
+            'isfeatured' => $isfeatured,
+            'desc' => $desc
         ]);
 
         $sql = 'DELETE FROM prodcat WHERE pdid= :pdid;';
