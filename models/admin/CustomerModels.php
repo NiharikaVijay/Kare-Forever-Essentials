@@ -74,7 +74,7 @@ class CustomerModel
 
     public function getCustomerWishlist($cxid){
         $sql = 'SELECT m.path,
-        p.pdname, w.pdvolume
+        p.pdname
         FROM wishlist w  LEFT OUTER JOIN product p ON w.pdid=p.pdid
         LEFT OUTER JOIN (SELECT pdid, path FROM media WHERE isimage=TRUE AND isdefault=TRUE) m ON m.pdid=w.pdid WHERE w.cxid= :cxid;';
         $prep = $this->db->prepare($sql);

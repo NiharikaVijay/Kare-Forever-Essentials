@@ -167,26 +167,22 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        {# <div class="col-md-6">
                             <div class="form-group">
                                 <label>Status</label>
                                 <div class="radio-list">
                                     <label class="radio-inline p-0 mr-10">
                                         <div class="radio radio-info">
-                                            <input type="radio" name="radio" name="radio1" value="option1">
-                                            <label for="radio1">Published</label>
-                                        </div>
-                                    </label>
-                                    <label class="radio-inline">
-                                        <div class="radio radio-info">
-                                            <input type="radio" name="radio" name="radio2" value="option2">
-                                            <label for="radio2">Draft</label>
+                                            {% if details['general'][10] %}
+                                            <input type="radio" name="isfeatured" name="isfeatured"  onClick="this.contentEditable='true';" checked>
+                                            {% else %}
+                                            <input type="radio" name="isfeatured" name="isfeatured" onClick="this.contentEditable='true';">
+                                            {% endif %}
+                                            <label for="isfeatured">Is Featured Product?</label>
                                         </div>
                                     </label>
                                 </div>
                             </div>
-                        </div> #}
+                        </div>
                     </div>
                     <div class="form-actions mt-10">
                         <center><button type="submit" class="btn btn-primary"> <i class="fa fa-check"></i>Save

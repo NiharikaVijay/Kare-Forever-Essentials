@@ -48,6 +48,7 @@ $p250 = $_POST['250ml'];
 $cat = $_POST['categories'];
 $conc = $_POST['concerns'];
 $discount = $_POST['discount'];
+$isfeatured = $_POST['isfeatured'];
 $media = $_FILES['media'];
 
 if ($p30 == 0) {
@@ -76,7 +77,8 @@ $productModel->addProduct(
     $cat,
     $conc,
     $discount,
-    $media
+    $isfeatured,
+    $media,
 );
 
 header('Location: product_index.php');

@@ -28,11 +28,11 @@ class ProductModel
         pct.categories,
         pcn.concerns,
         p.pdid, p.30ml, p.50ml, p.100ml, p.250ml,
-        ROUND(p.30ml*(100-p.discount)/100,2), ROUND(p.50ml*(100-p.discount)/100, 2), ROUND(p.100ml*(100-p.discount)/100,2), ROUND(p.250ml*(100-p.discount)/100,2)
+        ROUND(p.30ml*(100-p.discount)/100,2), ROUND(p.50ml*(100-p.discount)/100, 2), ROUND(p.100ml*(100-p.discount)/100,2), ROUND(p.250ml*(100-p.discount)/100,2), p.isfeatured
         FROM product p LEFT OUTER JOIN (SELECT pdid, path FROM media WHERE isimage=true AND isdefault=true) m ON m.pdid=p.pdid
         LEFT OUTER JOIN (SELECT pdid, round(avg(rating),1) AS rtg, count(rating) AS rtgcount FROM reviews GROUP BY pdid) r ON r.pdid=p.pdid
         LEFT OUTER JOIN (SELECT p.pdid, group_concat(p.name) AS concerns FROM  (SELECT pc.pdid AS pdid, c.concname AS name FROM prodconc pc LEFT OUTER JOIN concern c ON pc.concid=c.concid) p GROUP BY p.pdid) pcn ON p.pdid=pcn.pdid
-        LEFT OUTER JOIN (SELECT p.pdid, group_concat(p.name) AS categories FROM  (SELECT pc.pdid AS pdid, c.catname AS name FROM prodcat pc LEFT OUTER JOIN category c ON pc.catid=c.catid) p GROUP BY p.pdid) pct ON p.pdid=pct.pdid;';
+        LEFT OUTER JOIN (SELECT p.pdid, group_concat(p.name) AS categories FROM  (SELECT pc.pdid AS pdid, c.catname AS name FROM prodcat pc LEFT OUTER JOIN category c ON pc.catid=c.catid) p GROUP BY p.pdid) pct ON p.pdid=pct.pdid ORDER BY p.isfeatured DESC;';
         $prep = $this->db->prepare($sql);
         $prep->execute();
         $details = $prep->fetchAll();
@@ -51,7 +51,7 @@ class ProductModel
         pcn.concerns,
         IFNULL(o.itemcount,0), IFNULL(o.ordcount,0),
         ROUND(p.30ml*(100-p.discount)/100,2), ROUND(p.50ml*(100-p.discount)/100, 2), ROUND(p.100ml*(100-p.discount)/100,2), ROUND(p.250ml*(100-p.discount)/100,2),
-        p.discount, p.tags
+        p.discount, p.tags, p.isfeatured
         FROM product p LEFT OUTER JOIN (SELECT pdid, round(avg(rating),1) AS rtg, count(rating) AS rtgcount FROM reviews GROUP BY pdid) r ON r.pdid=p.pdid
         LEFT OUTER JOIN (SELECT p.pdid, group_concat(p.name) AS concerns FROM  (SELECT pc.pdid AS pdid, c.concname AS name FROM prodconc pc LEFT OUTER JOIN concern c ON pc.concid=c.concid) p GROUP BY p.pdid) pcn ON p.pdid=pcn.pdid
         LEFT OUTER JOIN (SELECT p.pdid, group_concat(p.name) AS categories FROM  (SELECT pc.pdid AS pdid, c.catname AS name FROM prodcat pc LEFT OUTER JOIN category c ON pc.catid=c.catid) p GROUP BY p.pdid) pct ON p.pdid=pct.pdid
@@ -112,6 +112,7 @@ class ProductModel
         $cat,
         $conc,
         $discount,
+        $isfeatured,
         $media
     ) {
         $pdid = $this->generateRandomString(5);
@@ -121,7 +122,7 @@ class ProductModel
         "' . $ben . '",
         "' . $app . '",
         "' . $tags . '",
-        FALSE,
+        "' . $isfeatured . '",
         TRUE,
         ' . $p30 . ',
         ' . $p50 . ',
@@ -200,7 +201,7 @@ class ProductModel
         $sql = 'SELECT pdname,
         ingredients, benefits, application,
         IFNULL(30ml,0), IFNULL(50ml,0), IFNULL(100ml,0), IFNULL(250ml,0),
-        pdid, tags, discount
+        pdid, tags, discount, isfeatured
         FROM product  WHERE pdid= :pdid;';
         $prep = $this->db->prepare($sql);
         $prep->execute(['pdid' => $pdid]);
@@ -255,6 +256,7 @@ class ProductModel
         $cat,
         $conc,
         $discount,
+        $isfeatured,
         $media
     ) {
         $sql = 'UPDATE product SET
@@ -267,7 +269,8 @@ class ProductModel
         50ml= :p50,
         100ml= :p100,
         250ml= :p250,
-        discount= :discount WHERE pdid= :pdid;';
+        discount= :discount,
+        isfeatured= :isfeatured WHERE pdid= :pdid;';
         $prep = $this->db->prepare($sql);
         $prep->execute([
             'pdname' => $pdname,
@@ -280,7 +283,8 @@ class ProductModel
             'p100' => $p100,
             'p250' => $p250,
             'discount' => $discount,
-            'pdid' => $pdid
+            'pdid' => $pdid,
+            'isfeatured' => $isfeatured
         ]);
 
         $sql = 'DELETE FROM prodcat WHERE pdid= :pdid;';

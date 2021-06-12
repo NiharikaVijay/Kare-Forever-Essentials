@@ -54,23 +54,27 @@
                             <p>Discount rate: {{details[19]}}%</p>
                             <div class="table-responsive">
                                 <table class="table b-1">
-                                    <thead class="bg-inverse">
-                                        <tr>
-                                            <th></th>
-                                            {% if details[6] %}
-                                            <th>30 mL</th>
+                                    {% if details[21] %}
+                                    <thead class="bg-inverse" style="background-color: #FFD700;">
+                                        {% else %}
+                                        <thead class="bg-inverse">
                                             {% endif %}
-                                            {% if details[7] %}
-                                            <th>50 mL</th>
-                                            {% endif %}
-                                            {% if details[8] %}
-                                            <th>100 mL</th>
-                                            {% endif %}
-                                            {% if details[9] %}
-                                            <th>250 mL</th>
-                                            {% endif %}
-                                        </tr>
-                                    </thead>
+                                            <tr>
+                                                <th></th>
+                                                {% if details[6] %}
+                                                <th>30 mL</th>
+                                                {% endif %}
+                                                {% if details[7] %}
+                                                <th>50 mL</th>
+                                                {% endif %}
+                                                {% if details[8] %}
+                                                <th>100 mL</th>
+                                                {% endif %}
+                                                {% if details[9] %}
+                                                <th>250 mL</th>
+                                                {% endif %}
+                                            </tr>
+                                        </thead>
                                     <tbody>
                                         <tr>
                                             <td><b>MRP</b></td>
@@ -156,7 +160,6 @@
                                     <div class="box box-solid bg-primary box-outline-primary">
                                         <div class="box-header">
                                             <h4 class="box-title"><strong>{{review[0]}}</strong></h4>
-
                                             <div class="d-flex text-warning align-items-center">
                                                 {% for i in 1..(review[1]) %}
                                                 <i class="fa fa-star"></i>
@@ -164,14 +167,11 @@
                                                 <span class="text-fade ml-10">{{review[1]}}</span>
                                             </div>
                                         </div>
-
                                         <div class="box-body">
                                             {{review[2]}}
                                         </div>
                                     </div>
                                     {% endfor %}
-
-
                                 </div>
                             </div>
                         </div>
