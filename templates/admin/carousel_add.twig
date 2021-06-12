@@ -1,0 +1,56 @@
+{% extends "template.twig" %}
+
+{% block title %}Admin | Add Image{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="box">
+            <div class="box-body">
+                <form action="carousel_add.php" method="POST" enctype="multipart/form-data">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Rank</label>
+                                    <input type="number" class="form-control" value="1" min="0" max="100" name="rank"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Tagline</label>
+                                    <input type="text" class="form-control" placeholder="Tagline" name="tagline"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Link</label>
+                                    <input type="text" class="form-control" placeholder="Link" name="link" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Carousel image</label>
+                                    <div class="product-img text-left">
+                                        <div class="btn btn-light mb-20">
+                                            <input type="file" class="upload form-control" required name="image"
+                                                required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions mt-10">
+                            <center><button type="submit" class="btn btn-primary"> <i class="fa fa-check"></i>Add
+                                    Image</button></center>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

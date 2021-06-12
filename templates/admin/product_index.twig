@@ -2,25 +2,6 @@
 
 {% block title %}Admin | Product List{% endblock %}
 {% block content %}
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript">
-    function changeState(obj, pdid) {
-        // function below will run clear.php?h=michael
-        var isActive = false;
-        if (obj.checked) {
-            isActive = true;
-        }
-        $.ajax({
-            type: "GET",
-            url: "product_state_update.php",
-            data: {
-                isActive: isActive,
-                pdid: pdid
-            },
-            success: function () { }
-        });
-    }
-</script>
 <div class="row">
     {% for product in products %}
     <div class="col-md-12 col-lg-4">
@@ -146,4 +127,5 @@
         </div>
         {% endfor %}
     </div>
-    {% endblock %}
+</div>
+{% endblock %}
