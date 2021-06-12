@@ -78,23 +78,7 @@
     <a href="orders.html"><button class="order-btn order-close text-white"> &times; </button> </a>
 </div>
 <div class="ord-wrapper bg-white">
-<!--     <div class="order-table-responsive">
-        <table class="order-table table-borderless">
-            <thead>
-                <tr class="text-uppercase text-muted">
-                    <th scope="col">product</th>
-                    <th scope="col" class="text-right">total</th>
-                </tr>
-            </thead>
-             <tbody>
-                <tr>
-                    <th scope="row" class="order-row">Babyblends: 1meal/day</th>
-                    <td class="text-right"><b>$69.86</b></td>
-                </tr>
-            </tbody>
-        </table>
-    </div> --> 
-    <div class="order-table-responsive">
+<div class="order-table-responsive">
     <table class="order-table table-borderless" style="width: 100%">
             <thead class="thead-primary">
                 <tr class="text-center">
@@ -105,87 +89,78 @@
                 </tr>
             </thead>
             <tbody>
-                {% for item in products %}
+                
                 <tr class="text-center">
                     <td class="image-prod">
                         <div class="img" style="background-image:url({{item[0]}});"></div>
                     </td>
                     <td class="product-name">
-                        <h3>{{item[1]}}</h3>
-                        <p>{{item[2]}}</p>
+                        <h7>Banana Hair Spa</h7>
+                        <!-- <p>Banana Hair Spa</p> -->
                     </td>
-                    <td class="price">₹ {{item[3]}}</td>
-                    <td class="quantity">{{item[4]}}</td>
-                    <td class="total">₹{{item[5]}}</td>
+                    <td class="price">₹ 450</td>
+                    <td class="quantity"> 2 </td>
+                    <td class="total" style="float: right;">₹ 900</td>
                 </tr>
-                {% endfor %}
+                <tr class="text-center">
+                    <td class="image-prod">
+                        <div class="img" style="background-image:url({{item[0]}});"></div>
+                    </td>
+                    <td class="product-name">
+                        <h7>Banana Hair Spa</h7>
+                        <!-- <p>Banana Hair Spa</p> -->
+                    </td>
+                    <td class="price">₹ 450</td>
+                    <td class="quantity"> 2 </td>
+                    <td class="total" style="float: right;">₹ 900</td>
+                </tr>
+                
                 <tr>
                     <td></td>
+                    
                     <td><b>SUBTOTAL</b></td>
                     <td></td>
                     <td></td>
-                    <td><b>₹ {{products[0][6]}}</b></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        Delivery Charges
-                    </td>
-                    {% if details[11]==0 %}
-                    <td>FREE</td>
-                    {% endif %}
-                    <td></td>
-                    {% if details[11]==0 %}
-                    <td></td>
-                    {% else %}
-                    <td>
-                        ₹ {{details[11]}}
-                    </td>
-                    {% endif %}
-                </tr>
-                {% if coupon %}
-                <tr>
-                    <td></td>
-                    <td>
-                        Coupon used
-                    </td>
-                    <td>{{coupon[0]}}</td>
-                    <td></td>
-                    <td>
-                        - ₹{{coupon[1]}}
-                    </td>
-                </tr>
-                {% endif %}
-                {% if details[10]>0 %}
-                <tr>
-                    <td></td>
-                    <td>
-                        Loyalty points used
-                    </td>
-                    <td>{{details[10]}} pts</td>
-                    <td></td>
-                    <td>
-                        - ₹{{details[10]}}
-                    </td>
-                </tr>
-                {% endif %}
-                <tr>
-                    <td></td>
-                    <td>
-                        <strong>ORDER TOTAL</strong>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <strong>₹ {{details[8]}}</strong>
-                    </td>
+                    <td style="float: right;"><b>₹ 1800</b></td>
                 </tr>
             </tbody>
         </table>
-        </div>
+    </div> <!-- 
+  <div class="d-flex justify-content-start align-items-center order-list py-1">
+        <div class="order-item order-item-sn"><b>SN: </b></div>
+        <div class="mx-3">  </div>
+        <div class="order-item order-item-prod"><b>PRODUCT</b></div>
+        <span>
+        <div class="order-item order-item-price">PRICE</div>
+        </span>
+    </div>
+    <br>
+    <div class="d-flex justify-content-start align-items-center order-list py-1">
+        <div><b>1 </b></div>
+        <div class="mx-3"> <img src="images/bhs.jpg" alt="apple" class="rounded-circle" width="30" height="30"> </div>
+        <div class="order-item">Banana Hair Spa</div>
+        <div class="order-item">Rs 450</div>
+    </div>
+    <div class="d-flex justify-content-start align-items-center order-list my-2 py-1">
+        <div><b>2 </b></div>
+        <div class="mx-3"> <img src="images/al.jpg" alt="apple" class="rounded-circle" width="30" height="30"> </div>
+        <div class="order-item align-items-center">Alovera Combo Spa</div>
+        <div class="order-item">Rs 450</div>
+    </div>
+    <div class="d-flex justify-content-start align-items-center order-list my-2 py-1">
+        <div><b>3 </b></div>
+        <div class="mx-3"> <img src="images/adg.jpg" alt="apple" class="rounded-circle" width="30" height="30"> </div>
+        <div class="order-item">Anti Dandruff Gel</div>
+        <div class="order-item">Rs 450</div>
+    </div>
+    <div class="d-flex justify-content-start align-items-center order-list my-2 py-1">
+        <div><b>4 </b></div>
+        <div class="mx-3"> <img src="images/rfg.jpg" alt="apple" class="rounded-circle" width="30" height="30"> </div>
+        <div class="order-item">Rose Face Gel Pack</div>
+        <div class="order-item">Rs 450</div>
+    </div>
 
-
-
+ -->
     <div class="pt-2 border-bottom mb-3"></div>
     <div class="d-flex justify-content-start align-items-center pl-3">
         <div class="text-muted">Payment Method</div>
