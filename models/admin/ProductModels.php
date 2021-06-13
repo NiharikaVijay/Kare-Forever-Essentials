@@ -44,17 +44,18 @@ class ProductModel
     {
         $sql = 'SELECT p.pdname,
         r.rtg, r.rtgcount,
-        p.ingredients, p.benefits, p.application,
+        p.description, p.benefits, p.application,
         p.30ml, p.50ml, p.100ml, p.250ml, 
         p.pdid,
         pct.categories,
         pcn.concerns,
         IFNULL(o.itemcount,0), IFNULL(o.ordcount,0),
         ROUND(p.30ml*(100-p.discount)/100,2), ROUND(p.50ml*(100-p.discount)/100, 2), ROUND(p.100ml*(100-p.discount)/100,2), ROUND(p.250ml*(100-p.discount)/100,2),
-        p.discount, p.tags, p.isfeatured, p.description
+        p.discount, p.tags, p.isfeatured, pdi.ingredients
         FROM product p LEFT OUTER JOIN (SELECT pdid, round(avg(rating),1) AS rtg, count(rating) AS rtgcount FROM reviews GROUP BY pdid) r ON r.pdid=p.pdid
         LEFT OUTER JOIN (SELECT p.pdid, group_concat(p.name) AS concerns FROM  (SELECT pc.pdid AS pdid, c.concname AS name FROM prodconc pc LEFT OUTER JOIN concern c ON pc.concid=c.concid) p GROUP BY p.pdid) pcn ON p.pdid=pcn.pdid
         LEFT OUTER JOIN (SELECT p.pdid, group_concat(p.name) AS categories FROM  (SELECT pc.pdid AS pdid, c.catname AS name FROM prodcat pc LEFT OUTER JOIN category c ON pc.catid=c.catid) p GROUP BY p.pdid) pct ON p.pdid=pct.pdid
+        LEFT OUTER JOIN (SELECT p.pdid, group_concat(p.name) AS ingredients FROM  (SELECT pc.pdid AS pdid, c.name AS name FROM proding pc LEFT OUTER JOIN ingredients c ON pc.ingid=c.ingid) p GROUP BY p.pdid) pdi ON p.pdid=pdi.pdid
         LEFT OUTER JOIN (SELECT pdid, SUM(pdqty) AS itemcount, COUNT(*) AS ordcount from orderproducts GROUP BY pdid) o ON p.pdid=o.pdid WHERE p.pdid= :pdid;';
         $prep = $this->db->prepare($sql);
         $prep->execute(['pdid' => $pdid]);
@@ -79,7 +80,7 @@ class ProductModel
         ];
     }
 
-    public function getCatCon()
+    public function getCatConIngs()
     {
         $sql = 'SELECT catid, catname
         FROM category;';
@@ -93,16 +94,22 @@ class ProductModel
         $prep->execute();
         $conc = $prep->fetchAll();
 
+        $sql = 'SELECT ingid, name
+        FROM ingredients;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute();
+        $ings = $prep->fetchAll();
         return [
             'cat' => $cat,
-            'conc' => $conc
+            'conc' => $conc,
+            'ings' => $ings
         ];
     }
 
     public function addProduct(
         $pdname,
         $desc,
-        $ing,
+        $ings,
         $ben,
         $app,
         $tags,
@@ -119,7 +126,6 @@ class ProductModel
         $pdid = $this->generateRandomString(5);
         $sql = 'INSERT INTO product VALUES("' . $pdid . '", 
         "' . $pdname . '",
-        "' . $ing . '",
         "' . $ben . '",
         "' . $app . '",
         "' . $tags . '",
@@ -144,6 +150,13 @@ class ProductModel
         foreach ($conc as $c) {
             $sql = 'INSERT INTO prodconc VALUES("' . $pdid . '", 
             "' . $c . '");';
+            $prep = $this->db->prepare($sql);
+            $prep->execute();
+        }
+
+        foreach ($ings as $i) {
+            $sql = 'INSERT INTO proding VALUES("' . $pdid . '", 
+            "' . $i . '");';
             $prep = $this->db->prepare($sql);
             $prep->execute();
         }
@@ -201,9 +214,9 @@ class ProductModel
     public function getEditProductDetails($pdid)
     {
         $sql = 'SELECT pdname,
-        ingredients, benefits, application,
+        description, benefits, application,
         IFNULL(30ml,0), IFNULL(50ml,0), IFNULL(100ml,0), IFNULL(250ml,0),
-        pdid, tags, discount, isfeatured, description
+        pdid, tags, discount, isfeatured
         FROM product  WHERE pdid= :pdid;';
         $prep = $this->db->prepare($sql);
         $prep->execute(['pdid' => $pdid]);
@@ -234,13 +247,25 @@ class ProductModel
         $prep->execute(['pdid' => $pdid]);
         $notconc = $prep->fetchAll();
 
+        $sql = 'SELECT ingid, name FROM ingredients WHERE ingid IN ( SELECT ingid FROM proding WHERE pdid= :pdid);';
+        $prep = $this->db->prepare($sql);
+        $prep->execute(['pdid' => $pdid]);
+        $ings = $prep->fetchAll();
+
+        $sql = 'SELECT ingid, name FROM ingredients WHERE ingid NOT IN ( SELECT ingid FROM proding WHERE pdid= :pdid);';
+        $prep = $this->db->prepare($sql);
+        $prep->execute(['pdid' => $pdid]);
+        $notings = $prep->fetchAll();
+
         return [
             'general' => $general[0],
             'media' => $media,
             'cat' => $cat,
             'notcat' => $notcat,
             'conc' => $conc,
-            'notconc' => $notconc
+            'notconc' => $notconc,
+            'ings' => $ings,
+            'notings' => $notings
         ];
     }
 
@@ -248,7 +273,7 @@ class ProductModel
         $pdid,
         $pdname,
         $desc,
-        $ing,
+        $ings,
         $ben,
         $app,
         $tags,
@@ -310,6 +335,17 @@ class ProductModel
         foreach ($conc as $c) {
             $sql = 'INSERT INTO prodconc VALUES("' . $pdid . '", 
         "' . $c . '");';
+            $prep = $this->db->prepare($sql);
+            $prep->execute();
+        }
+
+        $sql = 'DELETE FROM proding WHERE pdid= :pdid;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute(['pdid' => $pdid]);
+
+        foreach ($ings as $i) {
+            $sql = 'INSERT INTO proding VALUES("' . $pdid . '", 
+        "' . $i . '");';
             $prep = $this->db->prepare($sql);
             $prep->execute();
         }

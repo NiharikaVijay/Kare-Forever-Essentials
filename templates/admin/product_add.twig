@@ -7,7 +7,7 @@
     <div class="col-12">
         <div class="box">
             <div class="box-body">
-                <form action="product_create.php" method="POST" enctype="multipart/form-data">
+                <form action="" method="POST" enctype="multipart/form-data">
                     <div class="form-body">
                         <div class="row">
                             <div class="col-md-12">
@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Categories</label>
                                     <select class="form-control select2" multiple data-placeholder="Select categories"
@@ -53,7 +53,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Concerns</label>
                                     <select class="form-control select2" multiple data-placeholder="Select concerns"
@@ -64,18 +64,15 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-3">
-                                <div class="tags-default form-group">
-                                    <label>Tags</label><br>
-                                    <input type="text" placeholder="Enter comma separated tags" data-role="tagsinput"
-                                        name="tags" />
-                                </div>
-                            </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Discount</label>
-                                    <input type="number" class="form-control" value="10" min="0" max="100"
-                                        name="discount" required>
+                                    <label>Ingredients</label>
+                                    <select class="form-control select2" multiple data-placeholder="Select ingredients"
+                                        style="width: 100%;" name="ings[]">
+                                        {% for ing in ings %}
+                                        <option value={{ing[0]}}>{{ing[1]}}</option>
+                                        {% endfor %}
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -127,16 +124,21 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label>Media Files</label>
-                                <div class="product-img text-left">
-                                    <div class="btn btn-light mb-20">
-                                        <input type="file" class="upload form-control" required multiple name="media[]"
-                                            required>
-                                    </div>
-                                </div>
+                                <label>Discount</label>
+                                <input type="number" class="form-control" value="10" min="0" max="100" name="discount"
+                                    required>
                             </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="tags-default form-group">
+                                <label>Tags</label><br>
+                                <input type="text" placeholder="Enter comma separated tags" data-role="tagsinput"
+                                    name="tags" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label>Status</label>
                                 <div class="radio-list">
@@ -150,13 +152,28 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-actions mt-10">
-                        <center><button type="submit" class="btn btn-primary"> <i class="fa fa-check"></i>Add
-                                product</button></center>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Media Files</label>
+                                <div class="product-img text-left">
+                                    <div class="btn btn-light mb-20">
+                                        <input type="file" class="upload form-control" required multiple name="media[]"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </form>
             </div>
         </div>
+        <div class="form-actions mt-10">
+            <center><button type="submit" class="btn btn-primary"> <i class="fa fa-check"></i>Add
+                    product</button></center>
+        </div>
+        </form>
     </div>
+</div>
+</div>
 </div>
 {% endblock %}

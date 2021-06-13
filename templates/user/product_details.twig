@@ -8,7 +8,7 @@
         </div>
         <div class="modal-body">
             <form action="cart_add.php" method="POST" id="cart-form" class="billing-form">
-                <input name="pdid" type="hidden" value="{{details[11]}}">
+                <input name="pdid" type="hidden" value="{{details[3]}}">
                 <h3 class="mb-4 billing-heading">{{details[0]}}</h3>
                 <div class="row align-items-end">
                     <div class="col-xl-6">
@@ -120,51 +120,51 @@
                             <div class="table">
                                 <table>
                                     <tbody>
-                                        {% if details[14] %}
+                                        {% if details[11] %}
                                         <tr>
-                                            <td><button class="btn btn-price" name="price">₹ {{details[14]}}</button>
+                                            <td><button class="btn btn-price" name="price">₹ <del>{{details[7]}}</del> {{details[11]}}</button>
                                             </td>
                                         </tr>
-                                        {% elseif details[15] %}
+                                        {% elseif details[12] %}
                                         <tr>
-                                            <td><button class="btn btn-price" name="price">₹ {{details[15]}}</button>
+                                            <td><button class="btn btn-price" name="price">₹ <del>{{details[8]}}</del> {{details[12]}}</button>
                                             </td>
                                         </tr>
-                                        {% elseif details[16] %}
+                                        {% elseif details[13] %}
                                         <tr>
-                                            <td><button class="btn btn-price" name="price">₹ {{details[16]}}</button>
+                                            <td><button class="btn btn-price" name="price">₹ <del>{{details[9]}}</del> {{details[13]}}</button>
                                             </td>
                                         </tr>
-                                        {% elseif details[17] %}
+                                        {% elseif details[14] %}
                                         <tr>
-                                            <td><button class="btn btn-price" name="price">₹ {{details[17]}}</button>
+                                            <td><button class="btn btn-price" name="price">₹ <del>{{details[10]}}</del> {{details[14]}}</button>
                                             </td>
                                         </tr>
                                         {% endif %}
                                     </tbody>
                                 </table>
                             </div>
-                            <p><b>INGREDIENTS:</b>&ensp;{{details[3]}}</p>
+                            <!-- <p><b>INGREDIENTS:</b>&ensp;{{details[3]}}</p> -->
                             <p><b>APPLICATION:</b>&ensp;{{details[5]}}</p>
                             <div class="row mt-4">
                                 <div class="col-md-6">
                                     <div class="form-group d-flex">
                                         <div class="select-wrap">
+                                            {% if details[11] %}
+                                            <button class="btn btn-qty"
+                                                onclick="changePrice('{{details[11]}}')">30ml</button>
+                                            {% endif %}
+                                            {% if details[12] %}
+                                            <button class="btn btn-qty"
+                                                onclick="changePrice('{{details[12]}}')">50ml</button>
+                                            {% endif %}
+                                            {% if details[13] %}
+                                            <button class="btn btn-qty"
+                                                onclick="changePrice('{{details[13]}}')">100ml</button>
+                                            {% endif %}
                                             {% if details[14] %}
                                             <button class="btn btn-qty"
-                                                onclick="changePrice('{{details[14]}}')">30ml</button>
-                                            {% endif %}
-                                            {% if details[15] %}
-                                            <button class="btn btn-qty"
-                                                onclick="changePrice('{{details[15]}}')">50ml</button>
-                                            {% endif %}
-                                            {% if details[16] %}
-                                            <button class="btn btn-qty"
-                                                onclick="changePrice('{{details[16]}}')">100ml</button>
-                                            {% endif %}
-                                            {% if details[17] %}
-                                            <button class="btn btn-qty"
-                                                onclick="changePrice('{{details[17]}}')">250ml</button>
+                                                onclick="changePrice('{{details[14]}}')">250ml</button>
                                             {% endif %}
                                         </div>
                                     </div>
@@ -178,91 +178,37 @@
                         </div>
                     </div>
             </section>
-            <!-- <section class="ftco-section">
+            <section class="ftco-section">
                 <div class="container">
                     <div class="row justify-content-center mb-3 pb-3">
                         <div class="col-md-12 heading-section text-center ftco-animate">
                             <span class="subheading">Ingredients</span>
                             <h2 class="mb-4">Main Ingredients used</h2>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia
-                            </p>
                         </div>
                     </div>
                 </div>
                 <div class="container">
                     <div class="row">
+                        {% for ing in ings %}
                         <div class="col-md-6 col-lg-3 ftco-animate">
                             <div class="product">
-                                <a href="#" class="img-prod"><img class="img-fluid" src="images/product-8.jpg"
+                                <a href="#" class="img-prod"><img class="img-fluid" src="{{ing[1]}}"
                                         alt="Kare Forever">
                                     <div class="overlay"></div>
                                 </a>
                                 <div class="text py-3 pb-4 px-3 text-center" style="min-height: 160px;">
-                                    <h3><a href="#">Almond extract</a></h3>
+                                    <h3><a href="#">{{ing[2]}}</a></h3>
                                     <div class="d-flex">
                                         <div class="Ing-details">
-                                            <p class="ingredient-det"><span class="ing-sale">Almond oil is a good source
-                                                    of the antioxidant vitamin E and unsaturated fats.</span></p>
+                                            <p class="ingredient-det"><span class="ing-sale">{{ing[3]}}</span></p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-3 ftco-animate">
-                            <div class="product">
-                                <a href="#" class="img-prod"><img class="img-fluid" src="images/product-8.jpg"
-                                        alt="Kare Forever">
-                                    <div class="overlay"></div>
-                                </a>
-                                <div class="text py-3 pb-4 px-3 text-center" style="min-height: 160px;">
-                                    <h3><a href="#">Almond extract</a></h3>
-                                    <div class="d-flex">
-                                        <div class="Ing-details">
-                                            <p class="ingredient-det"><span class="ing-sale">Almond oil is a good source
-                                                    of the antioxidant vitamin E and unsaturated fats.</span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 ftco-animate">
-                            <div class="product">
-                                <a href="#" class="img-prod"><img class="img-fluid" src="images/product-8.jpg"
-                                        alt="Kare Forever">
-                                    <div class="overlay"></div>
-                                </a>
-                                <div class="text py-3 pb-4 px-3 text-center" style="min-height: 160px;">
-                                    <h3><a href="#">Almond extract</a></h3>
-                                    <div class="d-flex">
-                                        <div class="Ing-details">
-                                            <p class="ingredient-det"><span class="ing-sale">Almond oil is a good source
-                                                    of the antioxidant vitamin E and unsaturated fats.</span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 ftco-animate">
-                            <div class="product">
-                                <a href="#" class="img-prod"><img class="img-fluid" src="images/product-8.jpg"
-                                        alt="Kare Forever">
-                                    <div class="overlay"></div>
-                                </a>
-                                <div class="text py-3 pb-4 px-3 text-center" style="min-height: 160px;">
-                                    <h3><a href="#">Almond extract</a></h3>
-                                    <div class="d-flex">
-                                        <div class="Ing-details">
-                                            <p class="ingredient-det"><span class="ing-sale">Almond oil is a good source
-                                                    of the antioxidant vitamin E and unsaturated fats.</span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
-            </section> -->
-            <section class="ftco-section">
                 <div class="container">
                     <div class="row justify-content-center mb-3 pb-3">
                         <div class="col-md-12 heading-section text-center ftco-animate">

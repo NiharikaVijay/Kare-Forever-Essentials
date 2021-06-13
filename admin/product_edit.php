@@ -8,11 +8,11 @@ error_reporting(E_ALL);
 session_start();
 // If the user is not logged in redirect to the login page...
 if (!isset($_SESSION['loggedin'])) {
-	header('Location: login.php');
-	exit;
+    header('Location: login.php');
+    exit;
 }
 
-require dirname(dirname(__FILE__)). '/vendor/autoload.php';
+require dirname(dirname(__FILE__)) . '/vendor/autoload.php';
 include dirname(dirname(__FILE__)) . '/models/admin/ProductModels.php';
 
 use Twig\Environment;
@@ -36,13 +36,66 @@ $db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 $productModel = new ProductModel($db);
 $pdid = $_GET['pdid'];
 
-$details = $productModel->getEditProductDetails($pdid);
 
-#Main code, changes for every view
-echo $twig->render('product_edit.twig', [
-    'user' => $_SESSION,
-    'page_title' => 'Edit Product',
-    'section' => 'Edit Product',
-    'subsection' => $details['general'][0],
-    'details' => $details
-]);
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    $details = $productModel->getEditProductDetails($pdid);
+    echo $twig->render('product_edit.twig', [
+        'user' => $_SESSION,
+        'page_title' => 'Edit Product',
+        'section' => 'Edit Product',
+        'subsection' => $details['general'][0],
+        'details' => $details
+    ]);
+} else {
+    $pdid = $_POST['pdid'];
+    $pdname = $_POST['pdname'];
+    $desc = $_POST['description'];
+    $ings = $_POST['ings'];
+    $ben = $_POST['benefits'];
+    $app = $_POST['application'];
+    $tags = $_POST['tags'];
+    $p30 = $_POST['30ml'];
+    $p50 = $_POST['50ml'];
+    $p100 = $_POST['100ml'];
+    $p250 = $_POST['250ml'];
+    $cat = $_POST['categories'];
+    $conc = $_POST['concerns'];
+    $discount = $_POST['discount'];
+    $isfeatured = $_POST['isfeatured'];
+    $media = $_FILES['media'];
+
+    if ($p30 == 0) {
+        $p30 = null;
+    }
+    if ($p50 == 0) {
+        $p50 = null;
+    }
+    if ($p100 == 0) {
+        $p100 = null;
+    }
+    if ($p250 == 0) {
+        $p250 = null;
+    }
+
+    $productModel->editProduct(
+        $pdid,
+        $pdname,
+        $desc,
+        $ings,
+        $ben,
+        $app,
+        $tags,
+        $p30,
+        $p50,
+        $p100,
+        $p250,
+        $cat,
+        $conc,
+        $discount,
+        $isfeatured,
+        $media
+    );
+
+    header('Location: product_index.php');
+    die();
+}

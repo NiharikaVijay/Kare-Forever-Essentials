@@ -83,16 +83,10 @@ class ProductModel
     {
         $sql = 'SELECT p.pdname,
         r.rtg, r.rtgcount,
-        p.ingredients, p.benefits, p.application,p.description,
+        p.pdid, p.benefits, p.application,p.description,
         p.30ml, p.50ml, p.100ml, p.250ml, 
-        p.pdid,
-        pct.categories,
-        pcn.concerns,
-        ROUND(p.30ml*(100-p.discount)/100,2), ROUND(p.50ml*(100-p.discount)/100, 2), ROUND(p.100ml*(100-p.discount)/100,2), ROUND(p.250ml*(100-p.discount)/100,2),
-        p.discount, p.tags
-        FROM product p LEFT OUTER JOIN (SELECT pdid, round(avg(rating),1) AS rtg, count(rating) AS rtgcount FROM reviews GROUP BY pdid) r ON r.pdid=p.pdid
-        LEFT OUTER JOIN (SELECT p.pdid, group_concat(p.name) AS concerns FROM  (SELECT pc.pdid AS pdid, c.concname AS name FROM prodconc pc LEFT OUTER JOIN concern c ON pc.concid=c.concid) p GROUP BY p.pdid) pcn ON p.pdid=pcn.pdid
-        LEFT OUTER JOIN (SELECT p.pdid, group_concat(p.name) AS categories FROM  (SELECT pc.pdid AS pdid, c.catname AS name FROM prodcat pc LEFT OUTER JOIN category c ON pc.catid=c.catid) p GROUP BY p.pdid) pct ON p.pdid=pct.pdid WHERE p.pdid= :pdid;';
+        ROUND(p.30ml*(100-p.discount)/100,2), ROUND(p.50ml*(100-p.discount)/100, 2), ROUND(p.100ml*(100-p.discount)/100,2), ROUND(p.250ml*(100-p.discount)/100,2)
+        FROM product p LEFT OUTER JOIN (SELECT pdid, round(avg(rating),1) AS rtg, count(rating) AS rtgcount FROM reviews GROUP BY pdid) r ON r.pdid=p.pdid WHERE p.pdid= :pdid;';
         $prep = $this->db->prepare($sql);
         $prep->execute(['pdid' => $pdid]);
         $product = $prep->fetchAll();
@@ -104,9 +98,15 @@ class ProductModel
         $prep->execute(['pdid' => $pdid]);
         $media = $prep->fetchAll();
 
+        $sql = 'SELECT i.* FROM proding p LEFT OUTER JOIN ingredients i on i.ingid=p.ingid WHERE p.pdid= :pdid;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute(['pdid' => $pdid]);
+        $ing = $prep->fetchAll();
+
         return [
             'details' => $product[0],
             'media' => $media,
+            'ing' => $ing
         ];
     }
 }

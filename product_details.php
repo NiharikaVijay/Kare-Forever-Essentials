@@ -46,5 +46,6 @@ $product = $productModel->getProduct($pdid);
 echo $twig->render('product_details.twig', [
     'account' => $_SESSION,
     'details' => $product['details'],
-    'media' => $product['media']
+    'media' => $product['media'],
+    'ings' => $product['ing']
 ]);
