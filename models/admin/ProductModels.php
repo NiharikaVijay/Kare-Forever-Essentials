@@ -386,4 +386,14 @@ class ProductModel
         }
         return;
     }
+
+    public function getAllIngredients()
+    {
+        $sql = 'SELECT * FROM ingredients;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute();
+        $ings = $prep->fetchAll();
+
+        return $ings;
+    }
 }
