@@ -83,6 +83,27 @@
 </div>
 </div>
 </div>
+<div class="modal" id="modal-{{item[3]}}">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h6 style="color:white;" class="modal-title">Are you sure you want to remove
+                this item from cart?</h6>
+        </div>
+        <div class="modal-body">
+            {{item[1]}}
+        </div>
+        <div class="modal-body">
+            <button type="button" class="btn border" data-dismiss="modal">
+                Cancel
+            </button>
+            <a href="cart_delete.php?pdid={{item[3]}}"><button type="button" class="btn bg-primary right-content"
+                    style="color:white;" data-dismiss="modal">
+                    Delete
+                </button></a>
+        </div>
+    </div>
+</div>
+
 <section class="ftco-section ftco-cart">
 <div class="container">
 <div class="row">

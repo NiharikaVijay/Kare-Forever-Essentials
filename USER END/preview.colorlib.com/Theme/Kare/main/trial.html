@@ -21,21 +21,27 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="goto-here">
-    <div class="py-1 bg-primary">
-        <div class="container">
-            <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
-                <div class="col-lg-12 d-block">
-                    <div class="row d-flex">
-                        <div class="col-md pr-4 d-flex topper align-items-center">
-                            <div class="icon mr-2 d-flex justify-content-center align-items-center"></div>
-
-                            <span class="text"><marquee behavior="scroll" direction="left">FLAT 25% OFF ON YOUR FIRST ORDER</marquee></a></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="py-1 bg-primary">
+<div class="container">
+<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+<div class="col-lg-12 d-block">
+<div class="row d-flex">
+<div class="col-md pr-4 d-flex topper align-items-center">
+<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
+<span class="text">+ 1235 2355 98</span>
+</div>
+<div class="col-md pr-4 d-flex topper align-items-center">
+<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
+<span class="text"><a href="https://preview.colorlib.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="81f8eef4f3e4ece0e8edc1e4ece0e8edafe2eeec">[email&#160;protected]</a></span>
+</div>
+<div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
+<span class="text">3-5 Business days delivery &amp; Free Returns</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 <div class="container">
 <a href="index.html" class="pull-left logo"><img src="images/logo.png" alt="LOGO" width="238" height="56"></a>
@@ -45,7 +51,7 @@
 <ul class="navbar-nav ml-auto">
 <li class="nav-item active"><a href="shop.html" class="nav-link">All Products</a></li>
 <li class="nav-item active"><a href="skincare.html" class="nav-link">Skin Care</a></li>
-<li class="nav-item"><a href="hair'/./c\are.html" class="nav-link">Hair Care</a></li>
+<li class="nav-item"><a href="haircare.html" class="nav-link">Hair Care</a></li>
 <li class="nav-item"><a href="specialkare.html" class="nav-link">Special Kare</a></li>
 <li class="nav-item"><a href="bathsalts.html" class="nav-link">Bath Salts</a></li>
 <li class="nav-item"><a href="gifting.html" class="nav-link">GIFTING</a></li>
@@ -66,246 +72,190 @@
 </div>
 </div>
 </nav>
-
-<div class="d-flex flex-column justify-content-center align-items-center" id="order-heading">
-    <div class="text-uppercase">
-        <p>Order detail</p>
+<div class="modal" id="modal-{{item[3]}}">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h6 style="color:white;" class="modal-title">Are you sure you want to remove
+                this item from cart?</h6>
+        </div>
+        <div class="modal-body">
+            {{item[1]}}
+        </div>
+        <div class="modal-body">
+            <button type="button" class="btn border" data-dismiss="modal">
+                Cancel
+            </button>
+            <a href="cart_delete.php?pdid={{item[3]}}"><button type="button" class="btn bg-primary right-content"
+                    style="color:white;" data-dismiss="modal">
+                    Delete
+                </button></a>
+        </div>
     </div>
-    <div class="h4">Tuesday, December 08, 2020</div>
-    <div class="pt-1">
-        <p>Order #12615 is currently<b class="text-dark"> processing</b></p>
-    </div>
-    <a href="orders.html"><button class="order-btn order-close text-white"> &times; </button> </a>
 </div>
-<div class="ord-wrapper bg-white">
-<!--     <div class="order-table-responsive">
-        <table class="order-table table-borderless">
-            <thead>
-                <tr class="text-uppercase text-muted">
-                    <th scope="col">product</th>
-                    <th scope="col" class="text-right">total</th>
-                </tr>
-            </thead>
-             <tbody>
-                <tr>
-                    <th scope="row" class="order-row">Babyblends: 1meal/day</th>
-                    <td class="text-right"><b>$69.86</b></td>
-                </tr>
-            </tbody>
-        </table>
-    </div> --> 
-    <div class="ord-wrapper bg-white">
-    <div class="order-table-responsive">
-    <table class="order-table table-borderless" style="width: 100%">
-            <thead class="thead-primary">
-                <tr class="text-center">
-                    <th colspan="2">Item Details</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th style="float: right;">Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in products %}
-                <tr class="text-center">
-                    <td class="image-prod">
-                        <div class="img" style="background-image:url({{item[0]}});"></div>
-                    </td>
-                    <td class="product-name">
-                        <h7>Banana Hair Spa</h7>
-                        <p>Banana Hair Spa</p>
-                    </td>
-                    <td class="price">₹ 450</td>
-                    <td class="quantity"> 2 </td>
-                    <td class="total" style="float: right;">₹ 900</td>
-                </tr>
-                <tr class="text-center">
-                    <td class="image-prod">
-                        <div class="img" style="background-image:url({{item[0]}});"></div>
-                    </td>
-                    <td class="product-name">
-                        <h7>Banana Hair Spa</h7>
-                        <p>Banana Hair Spa</p>
-                    </td>
-                    <td class="price">₹ 450</td>
-                    <td class="quantity"> 2 </td>
-                    <td class="total" style="float: right;">₹ 900</td>
-                </tr>
-                {% endfor %}
-                <tr>
-                    <td></td>
-                    <td><b>SUBTOTAL</b></td>
-                    <td></td>
-                    <td></td>
-                    <td><b>₹ 900</b></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        Delivery Charges
-                    </td>
-                    {% if details[11]==0 %}
-                    <td>FREE</td>
-                    {% endif %}
-                    <td></td>
-                    {% if details[11]==0 %}
-                    <td></td>
-                    {% else %}
-                    <td>
-                        ₹ {{details[11]}}
-                    </td>
-                    {% endif %}
-                </tr>
-                {% if coupon %}
-                <tr>
-                    <td></td>
-                    <td>
-                        Coupon used
-                    </td>
-                    <td>{{coupon[0]}}</td>
-                    <td></td>
-                    <td>
-                        - ₹{{coupon[1]}}
-                    </td>
-                </tr>
-                {% endif %}
-                {% if details[10]>0 %}
-                <tr>
-                    <td></td>
-                    <td>
-                        Loyalty points used
-                    </td>
-                    <td>{{details[10]}} pts</td>
-                    <td></td>
-                    <td>
-                        - ₹{{details[10]}}
-                    </td>
-                </tr>
-                {% endif %}
-                <tr>
-                    <td></td>
-                    <td>
-                        <strong>ORDER TOTAL</strong>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <strong>₹ {{details[8]}}</strong>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
-    </div>
-   
 
 
-
-
-    <div class="pt-2 border-bottom mb-3"></div>
-    <div class="d-flex justify-content-start align-items-center pl-3">
-        <div class="text-muted">Payment Method</div>
-        <div class="ml-auto"> <img src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-logok-15.png" alt="" width="30" height="30"> <label>Mastercard ******5342</label> </div>
-    </div>
-
-    <div class="d-flex justify-content-start align-items-center py-1 pl-3">
-        <div class="text-muted">Shipping</div>
-        <div class="ml-auto"> <label>Free</label> </div>
-    </div>
-
-    <div class="d-flex justify-content-start align-items-center pb-4 pl-3 border-bottom">
-        <div class="text-muted"> <button class="text-white order-btn">50% Discount</button> </div>
-        <div class="ml-auto order-price"> -Rs 2450 </div>
-    </div>
-
-    <div class="d-flex justify-content-start align-items-center pl-3 py-3 mb-4 border-bottom">
-        <div class="text-muted"> Order Total </div>
-        <div class="ml-auto h5">Rs 2450 </div>
-    </div>
-
-    <div class="row order-row border rounded p-1 my-3">
-        <div class="col-md-6 py-3">
-            <div class="d-flex flex-column align-items start"> <b>Billing Address</b>
-                <p class="order-text-justify pt-2">James Thompson, 356 Jonathon Apt.220,</p>
-                <p class="order-text-justify">New York</p>
-            </div>
-        </div>
-        <div class="col-md-6 py-3">
-            <div class="d-flex flex-column align-items start"> <b>Shipping Address</b>
-                <p class="order-text-justify pt-2">James Thompson, 356 Jonathon Apt.220,</p>
-                <p class="order-text-justify">New York</p>
+<div class="hero-wrap hero-bread" style="background-image: url('/media/categories/all-products.jpg');">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span></p>
+                <h1 class="mb-0 bread">Cart</h1>
             </div>
         </div>
     </div>
-    <!-- <div class="pl-3 font-weight-bold">TRACKING</div>
-    <div class="d-sm-flex justify-content-between rounded my-3 subscriptions">
-            
-                <ul id="progressbar">
-                    <li class="step0 active " id="step1">PLACED</li>
-                    <li class="step0 active text-center" id="step2">SHIPPED</li>
-                    <li class="step0 text-muted text-right" id="step3">DELIVERED</li>
-                </ul>
-           
-        
-    </div> -->
-    <div class="pl-3 font-weight-bold">Summary</div>
-    <div class="d-sm-flex justify-content-between rounded my-3 subscriptions">
-        <div> <b>#9632</b> </div>
-        <div>December 08, 2020</div>
-        <div>Status: Processing</div>
-        <div> Total: <b> Rs 2450 for 10 items</b> </div>
+</div>
+<form id="cart-form" method="POST" action="cart_update.php">
+    <input type="hidden" id="submit_type" name="submit_type" value="checkout">
+    <input type="hidden" id="form-total" name="form-total" value="{{total}}">
+</form>
+<section class="ftco-section ftco-cart">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 ftco-animate">
+                <div class="cart-list">
+                    <table class="table">
+                        <thead class="thead-primary">
+                            <tr class="text-center">
+                                <th></th>
+                                <th>Item Details</th>
+                                <th>Price</th>
+                                <th>Volume</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           
+                            <tr class="text-center">
+                                <td class="image-prod">
+                                    <div class="img" style="background-image:url({{item[0]}});"></div>
+                                </td>
+                                <td class="product-name">
+                                    <h3>{{item[1]}}</h3>
+                                    <p>{{item[2]}}</p>
+                                </td>
+                                <td class="price">₹{{item[6]}}</td>
+                                <td class="Volume">{{item[4]}}</td>
+                                <td class="quantity">
+                                    <div class="input-group mb-3">
+                                        <button type="button" class="quantity-left-minus btn" data-type="minus"
+                                            data-field="" onclick="qtyDec('{{item[3]}}')">
+                                            <i class="ion-ios-remove"></i>
+                                        </button>
+                                        <input form="cart-form" type="text" id="quantity-{{item[3]}}" name="{{item[3]}}"
+                                            onchange="qtyChanged()" class="quantity form-control input-number"
+                                            value={{item[5]}} min="1" max="100">
+                                        <button type="button" class="quantity-right-plus btn" data-type="plus"
+                                            data-field="" onclick="qtyInc('{{item[3]}}')">
+                                            <i class="ion-ios-add"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                                <td class="total">₹{{item[7]}}</td>
+                                <td class="product-remove"><a href="#" data-toggle="modal"
+                                        data-target="#modal-{{item[3]}}" title="Remove from cart"><span
+                                            class="ion-ios-close"></span></a></td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-end">
+            <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
+                <div class="cart-total mb-3">
+                    <h3>Coupon Code</h3>
+                    <p>Enter your coupon code if you have one</p>
+                    <div class="form-group">
+                        <label for="">Coupon code</label>
+                        <input form="cart-form" type="text" name="coupon" value="{{coupon}}" class="form-control text-left px-3"
+                            placeholder="">
+                    </div>
+                </div>
+                <p><button class="btn btn-primary py-3 px-4" onclick="formSubmit('coupon')">Apply
+                        Coupon</button></p>
+            </div>
+            <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
+                <div class="cart-total mb-3">
+                    <h3>Cart Totals</h3>
+                    <p class="d-flex">
+                        <span>Subtotal</span>
+                        <span name="subtotal">₹{{subtotal}}</span>
+                    </p>
+                    <p class="d-flex">
+                        <span>Delivery charges</span>
+                        <span name="delivery">₹{{delivery}}</span>
+                    </p>
+                    {% if discount %}
+                    <p class="d-flex">
+                        <span>Discount</span>
+                        <span name="discount">- ₹{{discount}}</span>
+                    </p>
+                    {% endif %}
+                    <hr>
+                    <p class="d-flex total-price">
+                        <span>Total</span>
+                        <span name="total">₹{{total}}</span>
+                    </p>
+                </div>
+                <p><button class="btn btn-primary py-3 px-4" onclick="formSubmit('checkout')">Proceed to
+                        Checkout</button></p>
+            </div>
+        </div>
     </div>
-    </div>
-    </div>
+</section>
 
-
-</body>
-
-
-<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
-<script src="js/jquery.min.js"></script>
-<script src="js/jquery-migrate-3.0.1.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.easing.1.3.js"></script>
-<script src="js/jquery.waypoints.min.js"></script>
-<script src="js/jquery.stellar.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/jquery.magnific-popup.min.js"></script>
-<script src="js/aos.js"></script>
-<script src="js/jquery.animateNumber.min.js"></script>
-<script src="js/bootstrap-datepicker.js"></script>
-<script src="js/scrollax.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&amp;sensor=false"></script>
-<script src="js/google-map.js"></script>
-<script src="js/main.js"></script>
 <script>
-$(".js-open-modal").click(function(){
-  $(".modal").addClass("visible");
-});
+    function qtyChanged() {
+        var qtys = document.getElementsByClassName("input-number");
+        var totals = document.getElementsByClassName("total");
+        var prices = document.getElementsByClassName("price");
+        var subtotal = 0;
 
-$(".js-close-modal").click(function(){
-  $(".modal").removeClass("visible");
-});
+        for (i = 0; i < qtys.length; i++) {
+            var qty = Number(qtys[i].value);
+            var price = Number(prices[i].innerHTML.slice(1));
+            totals[i].innerHTML = "₹" + (qty * price).toString();
 
-$(document).click(function(event) {
-  //if you click on anything except the modal itself or the "open modal" link, close the modal
-  if (!$(event.target).closest(".modal,.js-open-modal").length) {
-    $("body").find(".modal").removeClass("visible");
-  }
-});
+            subtotal += (qty * price);
+        }
 
-    </script>
+        document.getElementsByName("subtotal")[0].innerHTML = "₹" + subtotal.toString();
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-23581568-13');
+        delivery = Number(document.getElementsByName("delivery")[0].innerHTML.slice(1));
+        total = delivery + subtotal;
+        if (document.getElementsByName("discount").length > 0) {
+            total -= Number(document.getElementsByName("discount")[0].innerHTML.slice(3));
+        }
+        document.getElementsByName("total")[0].innerHTML = "₹" + total.toString();
+        document.getElementById("form-total").value = total;
+    }
 </script>
-</body>
+
+<script>
+    function qtyDec(pdid) {
+        var n = Number(document.getElementById('quantity-' + pdid).value);
+        if (n > 0) {
+            document.getElementById('quantity-' + pdid).value = (n - 1).toString();
+        }
+        qtyChanged();
+    }
+    function qtyInc(pdid) {
+        document.getElementById('quantity-' + pdid).value = (Number(document.getElementById('quantity-' + pdid).value) + 1).toString();
+        qtyChanged();
+    }
+    function formSubmit(type) {
+        if (type == 'coupon') {
+            document.getElementById('submit_type').value = 'coupon';
+        }
+        else if (type == 'checkout') {
+            document.getElementById('submit_type').value = 'checkout';
+        }
+        document.getElementById('cart-form').submit();
+    }
+</script></body>
 
 <!-- Mirrored from preview.colorlib.com/theme/vegefoods/cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 02 May 2021 06:20:03 GMT -->
 </html>
