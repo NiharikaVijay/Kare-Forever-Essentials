@@ -396,4 +396,32 @@ class ProductModel
 
         return $ings;
     }
+
+    public function addIngredient($name, $description, $image){
+        $ingid = $this->generateRandomString(5);
+
+        $target_dir = '../media/ingredients/';
+        $target_file = $target_dir . $ingid . '-' . basename($image['name']);
+
+        if (!move_uploaded_file($image["tmp_name"], $target_file)) {
+            die();
+        }
+
+        $sql = 'INSERT INTO ingredients VALUES(:ingid, :imgpath, :name, :description);';
+        $prep = $this->db->prepare($sql);
+        $prep->execute([
+            'ingid' => $ingid,
+            'imgpath' => '/media/ingredients/' . $ingid . '-' . basename($image['name']),
+            'name' => $name,
+            'description' => $description
+        ]);
+    }
+
+    public function deleteIngredient($ingid){
+        $sql = 'DELETE FROM ingredients WHERE ingid= :ingid;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute([
+            'ingid' => $ingid
+        ]);
+    }
 }
