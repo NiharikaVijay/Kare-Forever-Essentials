@@ -47,5 +47,6 @@ echo $twig->render('product_details.twig', [
     'account' => $_SESSION,
     'details' => $product['details'],
     'media' => $product['media'],
-    'ings' => $product['ing']
+    'ings' => $product['ing'],
+    'related' => $product['related']
 ]);

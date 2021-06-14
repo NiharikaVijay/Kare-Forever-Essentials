@@ -122,22 +122,26 @@
                                     <tbody>
                                         {% if details[11] %}
                                         <tr>
-                                            <td><button class="btn btn-price" name="price">₹ <del>{{details[7]}}</del> {{details[11]}}</button>
+                                            <td><button class="btn btn-price" name="price">₹ <del>{{details[7]}}</del>
+                                                    {{details[11]}}</button>
                                             </td>
                                         </tr>
                                         {% elseif details[12] %}
                                         <tr>
-                                            <td><button class="btn btn-price" name="price">₹ <del>{{details[8]}}</del> {{details[12]}}</button>
+                                            <td><button class="btn btn-price" name="price">₹ <del>{{details[8]}}</del>
+                                                    {{details[12]}}</button>
                                             </td>
                                         </tr>
                                         {% elseif details[13] %}
                                         <tr>
-                                            <td><button class="btn btn-price" name="price">₹ <del>{{details[9]}}</del> {{details[13]}}</button>
+                                            <td><button class="btn btn-price" name="price">₹ <del>{{details[9]}}</del>
+                                                    {{details[13]}}</button>
                                             </td>
                                         </tr>
                                         {% elseif details[14] %}
                                         <tr>
-                                            <td><button class="btn btn-price" name="price">₹ <del>{{details[10]}}</del> {{details[14]}}</button>
+                                            <td><button class="btn btn-price" name="price">₹ <del>{{details[10]}}</del>
+                                                    {{details[14]}}</button>
                                             </td>
                                         </tr>
                                         {% endif %}
@@ -192,8 +196,7 @@
                         {% for ing in ings %}
                         <div class="col-md-6 col-lg-3 ftco-animate">
                             <div class="product">
-                                <a href="#" class="img-prod"><img class="img-fluid" src="{{ing[1]}}"
-                                        alt="Kare Forever">
+                                <a href="#" class="img-prod"><img class="img-fluid" src="{{ing[1]}}" alt="Kare Forever">
                                     <div class="overlay"></div>
                                 </a>
                                 <div class="text py-3 pb-4 px-3 text-center" style="min-height: 160px;">
@@ -221,27 +224,49 @@
                 </div>
                 <div class="container">
                     <div class="row">
+                        {% for prod in related %}
                         <div class="col-md-6 col-lg-3 ftco-animate">
                             <div class="product">
-                                <a href="#" class="img-prod"><img class="img-fluid" src="images/rmh.jpg"
+                                <a href="product_details.php?pdid={{prod[1]}}" class="img-prod"><img class="img-fluid" src="{{prod[0]}}"
                                         alt="Colorlib Template">
-                                    <span class="status">30%</span>
+                                    {% if prod[2]>0 %}
+                                    <span class="status">{{prod[2]}}%</span>
+                                    {% endif %}
                                     <div class="overlay"></div>
                                 </a>
                                 <div class="text py-3 pb-4 px-3 text-center">
-                                    <h3><a href="#">Rosemary Methi Hair Gel</a></h3>
+                                    <h3><a href="">{{prod[3]}}</a></h3>
+                                    {% if prod[4]>0 %}
                                     <div class="d-flex">
                                         <div class="pricing">
-                                            <p class="price"><span class="mr-2 price-dc">Rs 520.00</span><span
-                                                    class="price-sale">Rs 450.00</span></p>
+                                            <p class="price"><span class="mr-2 price-dc">₹{{prod[4]}}</span><span
+                                                    class="price-sale">₹{{prod[8]}}</span></p>
                                         </div>
                                     </div>
+                                    {% elseif prod[5]>0 %}
+                                    <div class="d-flex">
+                                        <div class="pricing">
+                                            <p class="price"><span class="mr-2 price-dc">₹{{prod[5]}}</span><span
+                                                    class="price-sale">₹{{prod[9]}}</span></p>
+                                        </div>
+                                    </div>
+                                    {% elseif prod[6]>0 %}
+                                    <div class="d-flex">
+                                        <div class="pricing">
+                                            <p class="price"><span class="mr-2 price-dc">₹{{prod[6]}}</span><span
+                                                    class="price-sale">₹{{prod[10]}}</span></p>
+                                        </div>
+                                    </div>
+                                    {% else %}
+                                    <div class="d-flex">
+                                        <div class="pricing">
+                                            <p class="price"><span class="mr-2 price-dc">₹{{prod[7]}}</span><span
+                                                    class="price-sale">₹{{prod[11]}}</span></p>
+                                        </div>
+                                    </div>
+                                    {% endif %}
                                     <div class="bottom-area d-flex px-3">
                                         <div class="m-auto d-flex">
-                                            <a href="#"
-                                                class="add-to-cart d-flex justify-content-center align-items-center text-center">
-                                                <span><i class="ion-ios-menu"></i></span>
-                                            </a>
                                             <a href="#"
                                                 class="buy-now d-flex justify-content-center align-items-center mx-1">
                                                 <span><i class="ion-ios-cart"></i></span>
@@ -254,101 +279,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-3 ftco-animate">
-                            <div class="product">
-                                <a href="#" class="img-prod"><img class="img-fluid" src="images/rmh.jpg"
-                                        alt="Colorlib Template">
-                                    <span class="status">30%</span>
-                                    <div class="overlay"></div>
-                                </a>
-                                <div class="text py-3 pb-4 px-3 text-center">
-                                    <h3><a href="#">Rosemary Methi Hair Gel</a></h3>
-                                    <div class="d-flex">
-                                        <div class="pricing">
-                                            <p class="price"><span class="mr-2 price-dc">Rs 520.00</span><span
-                                                    class="price-sale">Rs 450.00</span></p>
-                                        </div>
-                                    </div>
-                                    <div class="bottom-area d-flex px-3">
-                                        <div class="m-auto d-flex">
-                                            <a href="#"
-                                                class="add-to-cart d-flex justify-content-center align-items-center text-center">
-                                                <span><i class="ion-ios-menu"></i></span>
-                                            </a>
-                                            <a href="#"
-                                                class="buy-now d-flex justify-content-center align-items-center mx-1">
-                                                <span><i class="ion-ios-cart"></i></span>
-                                            </a>
-                                            <a href="#" class="heart d-flex justify-content-center align-items-center ">
-                                                <span><i class="ion-ios-heart"></i></span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 ftco-animate">
-                            <div class="product">
-                                <a href="#" class="img-prod"><img class="img-fluid" src="images/rmh.jpg"
-                                        alt="Colorlib Template">
-                                    <div class="overlay"></div>
-                                </a>
-                                <div class="text py-3 pb-4 px-3 text-center">
-                                    <h3><a href="#">Rosemary Methi Hair Gel</a></h3>
-                                    <div class="d-flex">
-                                        <div class="pricing">
-                                            <p class="price"><span>Rs 520.00</span></p>
-                                        </div>
-                                    </div>
-                                    <div class="bottom-area d-flex px-3">
-                                        <div class="m-auto d-flex">
-                                            <a href="#"
-                                                class="add-to-cart d-flex justify-content-center align-items-center text-center">
-                                                <span><i class="ion-ios-menu"></i></span>
-                                            </a>
-                                            <a href="#"
-                                                class="buy-now d-flex justify-content-center align-items-center mx-1">
-                                                <span><i class="ion-ios-cart"></i></span>
-                                            </a>
-                                            <a href="#" class="heart d-flex justify-content-center align-items-center ">
-                                                <span><i class="ion-ios-heart"></i></span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 ftco-animate">
-                            <div class="product">
-                                <a href="#" class="img-prod"><img class="img-fluid" src="images/rmh.jpg"
-                                        alt="Colorlib Template">
-                                    <div class="overlay"></div>
-                                </a>
-                                <div class="text py-3 pb-4 px-3 text-center">
-                                    <h3><a href="#">Rosemary Methi Hair Gel</a></h3>
-                                    <div class="d-flex">
-                                        <div class="pricing">
-                                            <p class="price"><span>Rs 520.00</span></p>
-                                        </div>
-                                    </div>
-                                    <div class="bottom-area d-flex px-3">
-                                        <div class="m-auto d-flex">
-                                            <a href="#"
-                                                class="add-to-cart d-flex justify-content-center align-items-center text-center">
-                                                <span><i class="ion-ios-menu"></i></span>
-                                            </a>
-                                            <a href="#"
-                                                class="buy-now d-flex justify-content-center align-items-center mx-1">
-                                                <span><i class="ion-ios-cart"></i></span>
-                                            </a>
-                                            <a href="#" class="heart d-flex justify-content-center align-items-center ">
-                                                <span><i class="ion-ios-heart"></i></span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </section>

@@ -91,7 +91,7 @@ class ProductModel
         $prep->execute(['pdid' => $pdid]);
         $product = $prep->fetchAll();
 
-        $product[0][4] = explode("|",$product[0][4]);
+        $product[0][4] = explode("|", $product[0][4]);
 
         $sql = 'SELECT path FROM media WHERE pdid= :pdid ORDER BY isdefault DESC;';
         $prep = $this->db->prepare($sql);
@@ -103,10 +103,31 @@ class ProductModel
         $prep->execute(['pdid' => $pdid]);
         $ing = $prep->fetchAll();
 
+        $sql = 'SELECT p.discount, m.path, p.pdid,
+        p.pdname, IFNULL(p.30ml,100000),IFNULL(p.50ml,100000),IFNULL(p.100ml,100000),IFNULL(p.250ml, 100000)
+        FROM prodconc pc LEFT OUTER JOIN product p on pc.pdid=p.pdid
+        LEFT OUTER JOIN (SELECT pdid,path FROM media WHERE isimage=TRUE AND isdefault=TRUE) m ON m.pdid=pc.pdid 
+        WHERE pc.concid IN (SELECT concid FROM prodconc WHERE pdid= :pdid);';
+
+        $sql = 'SELECT m.path,
+        p.pdid, p.discount, p.pdname,
+        p.30ml, p.50ml, p.100ml, p.250ml,
+        ROUND(p.30ml*(100-p.discount)/100,2), ROUND(p.50ml*(100-p.discount)/100, 2), ROUND(p.100ml*(100-p.discount)/100,2), ROUND(p.250ml*(100-p.discount)/100,2)
+        FROM product p LEFT OUTER JOIN 
+        (SELECT pdid,path FROM media WHERE isimage=TRUE AND isdefault=TRUE) m ON m.pdid=p.pdid 
+        WHERE p.pdid IN ( SELECT DISTINCT(pdid) FROM prodconc WHERE concid IN (SELECT concid FROM prodconc WHERE pdid= :pdid) AND p.pdid!= :pdid2);';
+        $prep = $this->db->prepare($sql);
+        $prep->execute([
+            'pdid' => $pdid,
+            'pdid2' => $pdid
+        ]);
+        $related = $prep->fetchAll();
+
         return [
             'details' => $product[0],
             'media' => $media,
-            'ing' => $ing
+            'ing' => $ing,
+            'related' => $related
         ];
     }
 }
