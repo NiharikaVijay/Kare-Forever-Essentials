@@ -52,6 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $email = $_POST['email'];
     }
 
+    $_SESSION['tel'] = $tel;
+    $_SESSION['email'] = $email;
     $recp = $customerModel->setOTP($email, $tel, $cxid);
     echo $twig->render('otp.twig', [
         'account' => $_SESSION,
