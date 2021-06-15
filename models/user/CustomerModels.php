@@ -284,4 +284,28 @@ class CustomerModel
             'coupon' => $coupon[0]
         ];
     }
+
+    public function getHomePageDetails($cxid)
+    {
+        $sql = 'SELECT * FROM carousel ORDER BY rank;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute();
+        $carousel = $prep->fetchAll();
+
+        $sql = 'SELECT m.path,
+        p.pdid, p.discount, p.pdname,
+        p.30ml, p.50ml, p.100ml, p.250ml,
+        ROUND(p.30ml*(100-p.discount)/100,2), ROUND(p.50ml*(100-p.discount)/100, 2), ROUND(p.100ml*(100-p.discount)/100,2), ROUND(p.250ml*(100-p.discount)/100,2)
+        FROM product p LEFT OUTER JOIN 
+        (SELECT pdid,path FROM media WHERE isimage=TRUE AND isdefault=TRUE) m ON m.pdid=p.pdid 
+        WHERE isfeatured=TRUE;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute();
+        $ftproducts = $prep->fetchAll();
+
+        return [
+            'carousel' => $carousel,
+            'ftproducts' => $ftproducts,
+        ];
+    }
 }

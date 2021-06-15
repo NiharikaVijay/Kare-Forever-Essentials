@@ -40,15 +40,12 @@ $db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 
 #Main code, changes for every view
 $customerModel = new CustomerModel($db);
+$cxid = $_SESSION['cxid'];
+$details = $customerModel->getHomePageDetails($cxid);
 
-// $products = $productModel->getProductsByCategory('cat4');
+echo $twig->render('home.twig',[
+    'account' => $_SESSION,
+    'carousel'=> $details['carousel'],
+    'ftproducts' => $details['ftproducts'],
 
-// echo $twig->render('menu.twig', [
-//     'account' => $_SESSION,
-//     'title' => 'Special Kare',
-//     'banner' => '/media/categories/specialkare.jpg',
-//     'products' => $products['products'],
-//     'concerns' => $products['concerns']
-// ]);
-
-echo $twig->render('home.twig');
+]);
