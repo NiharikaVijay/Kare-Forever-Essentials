@@ -23,7 +23,7 @@ class CustomerModel
     public function getWishlist(String $cxid)
     {
         $sql = 'SELECT m.path,
-        p.pdname, p.ingredients, p.pdid,
+        p.pdname, p.description, p.pdid,
         ROUND(p.30ml*(100-p.discount)/100,2), ROUND(p.50ml*(100-p.discount)/100, 2), ROUND(p.100ml*(100-p.discount)/100,2), ROUND(p.250ml*(100-p.discount)/100,2)
         FROM wishlist w LEFT OUTER JOIN product p ON w.pdid=p.pdid
         LEFT OUTER JOIN (SELECT pdid, path FROM media WHERE isimage=true AND isdefault=true) m
@@ -38,7 +38,7 @@ class CustomerModel
     public function getCart(String $cxid, String $coupon = '')
     {
         $sql = 'SELECT m.path,
-        p.pdname, p.ingredients, p.pdid,
+        p.pdname, p.description, p.pdid,
         c.pdvolume, c.pdqty,
         ROUND(p.30ml*(100-p.discount)/100,2), ROUND(p.50ml*(100-p.discount)/100, 2), ROUND(p.100ml*(100-p.discount)/100,2), ROUND(p.250ml*(100-p.discount)/100,2)   
         FROM cart c LEFT OUTER JOIN product p ON c.pdid=p.pdid

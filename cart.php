@@ -59,5 +59,3 @@ if (isset($cart['discount'])) {
     $params += array('discount' => $cart['discount'], 'coupon' => $_GET['coupon']);
 }
 echo $twig->render('cart.twig', $params);
-// print_r(sizeof($params));
-// print_r($_GET);

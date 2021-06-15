@@ -35,6 +35,7 @@
         </div>
     </div>
 </div>
+{% if cart|length >0 %}
 <form id="cart-form" method="POST" action="cart_update.php">
     <input type="hidden" id="submit_type" name="submit_type" value="checkout">
     <input type="hidden" id="form-total" name="form-total" value="{{total}}">
@@ -137,6 +138,19 @@
         </div>
     </div>
 </section>
+{% else %}
+<div class="hero-wrap hero-bread">
+    <div class="container">
+        <div class="row no-gutters slider-text align-itedeletems-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                {# <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span></p> #}
+                <h1 class="mb-0 bread" style="color: #B76F4E">Your Cart is empty</h1>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
 {% endblock %}
 
 {% block js %}
