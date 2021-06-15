@@ -308,4 +308,11 @@ class CustomerModel
             'ftproducts' => $ftproducts,
         ];
     }
+
+    public function addSubscriber($email)
+    {
+        $sql = 'INSERT INTO newsletter values(:email);';
+        $prep = $this->db->prepare($sql);
+        $prep->execute(['email' => $email]);
+    }
 }
