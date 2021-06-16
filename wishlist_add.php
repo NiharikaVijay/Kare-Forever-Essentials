@@ -9,7 +9,7 @@ if (!isset($_SESSION['cxid'])) {
     $_SESSION['cxid'] = $helperModel->generateRandomString(5);
 }
 
-#TODO to be removed during deployment
+# TODO To be removed during deployment
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -39,20 +39,10 @@ $db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 #Main code, changes for every view
 $customerModel = new CustomerModel($db);
 
+// Change the customer ID to login based in the end
 $cxid = $_SESSION['cxid'];
-$otp = $_POST['first'] . $_POST['second'] . $_POST['third'] . $_POST['fourth'];
+$pdid = $_POST['pdid'];
+$customerModel->addToWishlist($cxid, $pdid);
 
-$result = $customerModel->verifyOTP($cxid, $otp);
-
-if ($result['isValid']) {
-    $_SESSION['cxid'] = $result['details'][0];
-    $_SESSION['fname'] = explode(" ",$result['details'][1])[0];
-    $_SESSION['cxloggedin'] = true;
-    // TODO change to index.php when done
-    header("Location: /");
-    die();
-} else {
-    $_SESSION['error'] = 'Invalid OTP';
-    header("Location: login.php");
-    die();
-}
+header('Location: wishlist.php');
+die();
