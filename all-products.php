@@ -41,12 +41,18 @@ $db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 #Main code, changes for every view
 $productModel = new ProductModel($db);
 
-$products = $productModel->getAllProducts();
+
+if (isset($_GET['concid'])) {
+    $products = $productModel->getAllProducts($_GET['concid']);
+} else {
+    $products = $productModel->getAllProducts();
+}
 
 echo $twig->render('menu.twig', [
     'account' => $_SESSION,
     'title' => 'products',
-    'banner'=>'/media/categories/all-products.jpg',
+    'banner' => '/media/categories/all-products.jpg',
     'products' => $products['products'],
-    'concerns' => $products['concerns']
+    'concerns' => $products['concerns'],
+    'page' => 'all-products'
 ]);

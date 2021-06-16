@@ -49,7 +49,7 @@ if ($result['isValid']) {
     $_SESSION['fname'] = explode(" ",$result['details'][1])[0];
     $_SESSION['cxloggedin'] = true;
     // TODO change to index.php when done
-    header("Location: skinkare.php");
+    header("Location: /");
     die();
 } else {
     $_SESSION['error'] = 'Invalid OTP';

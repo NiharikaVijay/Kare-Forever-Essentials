@@ -366,9 +366,97 @@
                 </div>
             </div>
         </div>
+
         <div class="container">
             <div class="row equal-height-col">
                 {% for product in ftproducts %}
+                {# Move to cart Modal #}
+                <div class="modal" id="cart-modal-{{product[1]}}">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h6 style="color:white;" class="modal-title">Adding to your cart</h6>
+                        </div>
+                        <div class="modal-body">
+                            <form action="cart_add.php" method="POST" id="cart-form" class="billing-form">
+                                <input name="pdid" type="hidden" value="{{product[1]}}">
+                                <h3 class="mb-4 billing-heading">{{product[3]}}</h3>
+                                <div class="row align-items-end">
+                                    <div class="col-xl-6">
+                                        <div class="form-group">
+                                            <label for="country">Volume</label>
+                                            <div class="select-wrap">
+                                                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                                <select id="volume-{{product[1]}}" name="volume" class="form-control">
+                                                    {% if product[4] %}
+                                                    <option value="30ml">30ml</option>
+                                                    {% endif %}
+                                                    {% if product[5] %}
+                                                    <option value="50ml">50ml</option>
+                                                    {% endif %}
+                                                    {% if product[6] %}
+                                                    <option value="100ml">100ml</option>
+                                                    {% endif %}
+                                                    {% if product[7] %}
+                                                    <option value="250ml">250ml</option>
+                                                    {% endif %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {# <div class="w-100"></div> #}
+                                    <div class="col-xl-6">
+                                        <label for="quantity-{{product[3]}}">Quantity</label><br>
+                                        <div class="input-group xl-6">
+                                            <button type="button" class="quantity-left-minus btn" data-type="minus"
+                                                data-field="" onclick="qtyDec('{{product[1]}}')">
+                                                <i class="ion-ios-remove"></i>
+                                            </button>
+                                            <input type="text" id="quantity-{{product[1]}}" name="qty"
+                                                class="quantity form-control input-number" value=1>
+                                            <button type="button" class="quantity-right-plus btn" data-type="plus"
+                                                data-field="" onclick="qtyInc('{{product[1]}}')">
+                                                <i class="ion-ios-add"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="w-100"></div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn border" data-dismiss="modal">
+                                Cancel
+                            </button>
+                            <button type="submit" form="cart-form" class="btn bg-primary right-content"
+                                style="color:white;">Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                {# Move to wishlist modal #}
+                <div class="modal" id="wishlist-modal-{{product[1]}}">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h6 style="color:white;" class="modal-title">Adding to your Wishlist</h6>
+                        </div>
+                        <div class="modal-body">
+                            <form action="wishlist_add.php" method="POST" id="cart-form" class="billing-form">
+                                <input name="pdid" type="hidden" value="{{product[1]}}">
+                                <h3 class="mb-4 billing-heading">{{product[3]}}</h3>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn border" data-dismiss="modal">
+                                Cancel
+                            </button>
+                            <button type="submit" form="cart-form" class="btn bg-primary right-content"
+                                style="color:white;">Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {# Card details display #}
                 <div class="col-md-6 col-lg-3 ftco-animate">
                     <div class="product equal-height-content">
                         <a href="product_details.php?pdid={{product[1]}}" class="img-prod"><img class="img-fluid"
@@ -413,10 +501,12 @@
                             </div>
                             <div class="bottom-area d-flex px-3 equal-height-content">
                                 <div class="m-auto d-flex equal-height-content">
-                                    <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                    <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1"
+                                        data-toggle="modal" data-target="#cart-modal-{{product[1]}}">
                                         <span><i class="ion-ios-cart"></i></span>
                                     </a>
-                                    <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                    <a href="#" class="heart d-flex justify-content-center align-items-center "
+                                    data-toggle="modal" data-target="#wishlist-modal-{{product[1]}}">
                                         <span><i class="ion-ios-heart"></i></span>
                                     </a>
                                 </div>
@@ -768,89 +858,89 @@
     </section>
     <!-- Footer************************* -->
     <footer>
-		<div class="main_footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 footer_logo">
-						<a href="index.html"><img src="/media/general/logo.png" alt="Logo"></a>
-						<p>Kare Forever is strongly committed to protecting the environment by promoting
-							sustainability
-							and chemical free lifestyle . We source pure, organic, paraben free natural extracts and
-							aromatic oils for all our skin and hair care products. </p>
-						<p>Our products are sourced locally, packed in glass jars and sent to you with love, keeping
-							our
-							motto of safe products, healthy environment and minimum waste.Kare - For your holistic
-							sustainable Lifestyle !! Come Indulge in Kareforever Essentials !! </p>
+        <div class="main_footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 footer_logo">
+                        <a href="index.html"><img src="/media/general/logo.png" alt="Logo"></a>
+                        <p>Kare Forever is strongly committed to protecting the environment by promoting
+                            sustainability
+                            and chemical free lifestyle . We source pure, organic, paraben free natural extracts and
+                            aromatic oils for all our skin and hair care products. </p>
+                        <p>Our products are sourced locally, packed in glass jars and sent to you with love, keeping
+                            our
+                            motto of safe products, healthy environment and minimum waste.Kare - For your holistic
+                            sustainable Lifestyle !! Come Indulge in Kareforever Essentials !! </p>
 
 
-					</div> <!-- End of .footer_logo -->
+                    </div> <!-- End of .footer_logo -->
 
 
 
-					<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 footer_subscribe">
-						<h5>Categories</h5>
-						<ul class="list catagories">
-							<li><a href="#"><i class="fa fa-angle-right"></i>Nourishing Creams</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i>Face Packs</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i>Face Scrubs</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i>Hair Kare</a></li>
-						</ul>
-						<div class="widget popular-tags">
-							<div class="sidebar-title">
-								<h5>tags</h5>
-							</div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 footer_subscribe">
+                        <h5>Categories</h5>
+                        <ul class="list catagories">
+                            <li><a href="#"><i class="fa fa-angle-right"></i>Nourishing Creams</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right"></i>Face Packs</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right"></i>Face Scrubs</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right"></i>Hair Kare</a></li>
+                        </ul>
+                        <div class="widget popular-tags">
+                            <div class="sidebar-title">
+                                <h5>tags</h5>
+                            </div>
 
-							<a href="#">Organic</a>
-							<a href="#">Shea Butter</a>
-							<a href="#">Alovera</a>
-							<a href="#">Rose</a>
-							<a href="#">Seaweed</a>
-							<a href="#">Lemon & Honey</a>
-						</div>
-					</div> <!-- End of .footer_subscribe -->
+                            <a href="#">Organic</a>
+                            <a href="#">Shea Butter</a>
+                            <a href="#">Alovera</a>
+                            <a href="#">Rose</a>
+                            <a href="#">Seaweed</a>
+                            <a href="#">Lemon & Honey</a>
+                        </div>
+                    </div> <!-- End of .footer_subscribe -->
 
 
-					<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 footer_contact">
-						<h5>Get In Touch</h5>
-						<ul class="list catagories">
-							<li><a href="#"><i class="fa fa-envelope"></i>contactus@kareforeveressentials.com</a>
-							</li>
-							<li><a href="#"><i class="fa fa-phone"></i>+91 89718 55620</a></li>
-							<li><a href="#"><i class="fa fa-home"></i>AA1703, Greenage Apartments, Bomanhalli,
-									Bangalore</a></li>
-						</ul>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 footer_contact">
+                        <h5>Get In Touch</h5>
+                        <ul class="list catagories">
+                            <li><a href="#"><i class="fa fa-envelope"></i>contactus@kareforeveressentials.com</a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-phone"></i>+91 89718 55620</a></li>
+                            <li><a href="#"><i class="fa fa-home"></i>AA1703, Greenage Apartments, Bomanhalli,
+                                    Bangalore</a></li>
+                        </ul>
 
-						<div class="list Business">
-							<h5>Newsletter</h5>
-							<p>Stay Tuned for the latest updates :) </p>
-							<form action="#" class="subscribe-form">
-								<div class="form-group d-flex">
-									<input type="text" class="form-control" placeholder="Enter email address">
-									<input type="submit" value="Subscribe" class="submit px-3">
-								</div>
-							</form>
-						</div>
+                        <div class="list Business">
+                            <h5>Newsletter</h5>
+                            <p>Stay Tuned for the latest updates :) </p>
+                            <form action="#" class="subscribe-form">
+                                <div class="form-group d-flex">
+                                    <input type="text" class="form-control" placeholder="Enter email address">
+                                    <input type="submit" value="Subscribe" class="submit px-3">
+                                </div>
+                            </form>
+                        </div>
 
-					</div> <!-- End of .footer_contact -->
-				</div>
-			</div>
-		</div> <!-- End of .main_footer -->
+                    </div> <!-- End of .footer_contact -->
+                </div>
+            </div>
+        </div> <!-- End of .main_footer -->
 
-		<div class="bottom_footer clear_fix">
-			<div class="container">
-				<h6 class="pull-left">Copyrights © 2020 All Rights Reserved by<a
-						href="http://themeforest.net/user/steelthemes/portfolio" target="_blank"> Kare Forever
-						Essentials</a></h6>
-				<ul class="social_icon pull-right">
-					<li><a href="#" class="tran3s"><i class="fa fa-cc-visa" aria-hidden="true"></i></a></li>
-					<li><a href="#" class="tran3s"><i class="fa fa-cc-mastercard" aria-hidden="true"></i></a></li>
-					<li><a href="#" class="tran3s"><i class="fa fa-paypal" aria-hidden="true"></i></a></li>
-					<li><a href="#" class="tran3s"><i class="fa fa-credit-card-alt" aria-hidden="true"></i></a></li>
-					<li><a href="#" class="tran3s"><i class="fa fa-cc-discover" aria-hidden="true"></i></a></li>
-				</ul>
-			</div>
-		</div>
-	</footer>
+        <div class="bottom_footer clear_fix">
+            <div class="container">
+                <h6 class="pull-left">Copyrights © 2020 All Rights Reserved by<a
+                        href="http://themeforest.net/user/steelthemes/portfolio" target="_blank"> Kare Forever
+                        Essentials</a></h6>
+                <ul class="social_icon pull-right">
+                    <li><a href="#" class="tran3s"><i class="fa fa-cc-visa" aria-hidden="true"></i></a></li>
+                    <li><a href="#" class="tran3s"><i class="fa fa-cc-mastercard" aria-hidden="true"></i></a></li>
+                    <li><a href="#" class="tran3s"><i class="fa fa-paypal" aria-hidden="true"></i></a></li>
+                    <li><a href="#" class="tran3s"><i class="fa fa-credit-card-alt" aria-hidden="true"></i></a></li>
+                    <li><a href="#" class="tran3s"><i class="fa fa-cc-discover" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
             <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
@@ -881,6 +971,19 @@
     <script src="/public/user/js/google-map.js"></script>
     <script src="/public/user/js/main.js"></script>
     <script type="text/javascript">
+        function qtyDec(pdid) {
+            var n = Number(document.getElementById('quantity-' + pdid).value);
+            if (n > 0) {
+                document.getElementById('quantity-' + pdid).value = (n - 1).toString();
+            }
+            qtyChanged();
+        }
+    
+        function qtyInc(pdid) {
+            document.getElementById('quantity-' + pdid).value = (Number(document.getElementById('quantity-' + pdid).value) + 1).toString();
+            qtyChanged();
+        }
+
         $(document).ready(function () {
 
             $('.owl-carousel').owlCarousel({

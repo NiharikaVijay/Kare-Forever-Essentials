@@ -20,22 +20,27 @@ class ProductModel
         return $randomString;
     }
 
-    public function getAllProducts()
+    public function getAllProducts($concid = null)
     {
-        $sql = 'SELECT p.discount, m.path, p.pdid,
-        p.pdname, IFNULL(p.30ml,100000),IFNULL(p.50ml,100000),IFNULL(p.100ml,100000),IFNULL(p.250ml, 100000)
-        FROM product p LEFT OUTER JOIN
-        (SELECT pdid,path FROM media WHERE isimage=TRUE AND isdefault=TRUE) m ON m.pdid=p.pdid;';
-        $prep = $this->db->prepare($sql);
-        $prep->execute();
-        $products = $prep->fetchAll();
-
-        for ($i = 0; $i < sizeof($products); $i++) {
-            $products[$i][4] = min($products[$i][4], $products[$i][5], $products[$i][6], $products[$i][7]);
-            $products[$i][5] = $products[$i][4] * (100 - $products[$i][0]) / 100;
-            unset($products[$i][6]);
-            unset($products[$i][7]);
+        if (!$concid) {
+            $sql = 'SELECT p.discount, m.path, p.pdid,
+            p.pdname, p.30ml, p.50ml, p.100ml, p.250ml, 
+            ROUND(p.30ml*(100-p.discount)/100,2), ROUND(p.50ml*(100-p.discount)/100, 2), ROUND(p.100ml*(100-p.discount)/100,2), ROUND(p.250ml*(100-p.discount)/100,2)
+            FROM product p LEFT OUTER JOIN
+            (SELECT pdid,path FROM media WHERE isimage=TRUE AND isdefault=TRUE) m ON m.pdid=p.pdid;';
+            $prep = $this->db->prepare($sql);
+            $prep->execute();
+        } else {
+            $sql = 'SELECT p.discount, m.path, p.pdid,
+            p.pdname, p.30ml, p.50ml, p.100ml, p.250ml,
+            ROUND(p.30ml*(100-p.discount)/100,2), ROUND(p.50ml*(100-p.discount)/100, 2), ROUND(p.100ml*(100-p.discount)/100,2), ROUND(p.250ml*(100-p.discount)/100,2)
+            FROM product p LEFT OUTER JOIN
+            (SELECT pdid,path FROM media WHERE isimage=TRUE AND isdefault=TRUE) m ON m.pdid=p.pdid
+            WHERE p.pdid IN (SELECT DISTINCT(pdid) FROM prodconc WHERE concid= :concid);';
+            $prep = $this->db->prepare($sql);
+            $prep->execute(['concid' => $concid]);
         }
+        $products = $prep->fetchAll();
 
         $sql = 'SELECT concid, concname FROM concern;';
         $prep = $this->db->prepare($sql);
@@ -48,23 +53,32 @@ class ProductModel
         ];
     }
 
-    public function getProductsByCategory($catid)
+    public function getProductsByCategory($catid, $concid = null)
     {
-        $sql = 'SELECT p.discount, m.path, p.pdid,
-        p.pdname, IFNULL(p.30ml,100000),IFNULL(p.50ml,100000),IFNULL(p.100ml,100000),IFNULL(p.250ml, 100000)
-        FROM prodcat pc LEFT OUTER JOIN product p on pc.pdid=p.pdid
-        LEFT OUTER JOIN (SELECT pdid,path FROM media WHERE isimage=TRUE AND isdefault=TRUE) m ON m.pdid=pc.pdid 
-        WHERE pc.catid= :catid;';
-        $prep = $this->db->prepare($sql);
-        $prep->execute(['catid' => $catid]);
-        $products = $prep->fetchAll();
-
-        for ($i = 0; $i < sizeof($products); $i++) {
-            $products[$i][4] = min($products[$i][4], $products[$i][5], $products[$i][6], $products[$i][7]);
-            $products[$i][5] = $products[$i][4] * (100 - $products[$i][0]) / 100;
-            unset($products[$i][6]);
-            unset($products[$i][7]);
+        if (!$concid) {
+            $sql = 'SELECT p.discount, m.path, p.pdid,
+            p.pdname, p.30ml, p.50ml, p.100ml, p.250ml,
+            ROUND(p.30ml*(100-p.discount)/100,2), ROUND(p.50ml*(100-p.discount)/100, 2), ROUND(p.100ml*(100-p.discount)/100,2), ROUND(p.250ml*(100-p.discount)/100,2)
+            FROM prodcat pc LEFT OUTER JOIN product p on pc.pdid=p.pdid
+            LEFT OUTER JOIN (SELECT pdid,path FROM media WHERE isimage=TRUE AND isdefault=TRUE) m ON m.pdid=pc.pdid 
+            WHERE pc.catid= :catid;';
+            $prep = $this->db->prepare($sql);
+            $prep->execute(['catid' => $catid]);
+        } else {
+            $sql = 'SELECT p.discount, m.path, p.pdid,
+            p.pdname, p.30ml, p.50ml, p.100ml, p.250ml,
+            ROUND(p.30ml*(100-p.discount)/100,2), ROUND(p.50ml*(100-p.discount)/100, 2), ROUND(p.100ml*(100-p.discount)/100,2), ROUND(p.250ml*(100-p.discount)/100,2)
+            FROM prodcat pc LEFT OUTER JOIN product p on pc.pdid=p.pdid
+            LEFT OUTER JOIN (SELECT pdid,path FROM media WHERE isimage=TRUE AND isdefault=TRUE) m ON m.pdid=pc.pdid 
+            WHERE pc.catid= :catid AND
+            p.pdid IN (SELECT DISTINCT(pdid) FROM prodconc WHERE concid= :concid);';
+            $prep = $this->db->prepare($sql);
+            $prep->execute([
+                'catid' => $catid,
+                'concid' => $concid
+            ]);
         }
+        $products = $prep->fetchAll();
 
         $sql = 'SELECT c.concid, c.concname
         FROM concern c RIGHT OUTER JOIN

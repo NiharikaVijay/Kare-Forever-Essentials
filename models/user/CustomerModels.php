@@ -127,7 +127,7 @@ class CustomerModel
 
     public function moveToCart($cxid, $data)
     {
-        $sql = 'INSERT INTO cart VALUES(:cxid, :pdid, :pdvolume, :pdqty);';
+        $sql = 'REPLACE INTO cart VALUES(:cxid, :pdid, :pdvolume, :pdqty);';
         $prep = $this->db->prepare($sql);
         $prep->execute([
             'cxid' => $cxid,
@@ -153,6 +153,16 @@ class CustomerModel
             'pdid' => $data['pdid'],
             'pdvolume' => $data['volume'],
             'pdqty' => $data['qty']
+        ]);
+    }
+
+    public function addToWishlist($cxid, $pdid)
+    {
+        $sql = 'REPLACE INTO wishlist VALUES(:cxid, :pdid);';
+        $prep = $this->db->prepare($sql);
+        $prep->execute([
+            'cxid' => $cxid,
+            'pdid' => $pdid,
         ]);
     }
 
