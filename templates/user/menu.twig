@@ -61,8 +61,8 @@
                         {% for product in products %}
                         <div class="col-md-4 col-sm-6 col-xs-12 ftco-animate">
                             <div class="product">
-                                <a href="product_details.php?pdid={{product[2]}}" class="img-prod"><img class="img-fluid" src={{product[1]}}
-                                        alt="Colorlib Template">
+                                <a href="product_details.php?pdid={{product[2]}}" class="img-prod"><img
+                                        class="img-fluid" src={{product[1]}} alt="Colorlib Template">
                                     {% if product[0]>0 %}
                                     <span class="status">{{product[0]}}%</span>
                                     {% endif %}
@@ -108,8 +108,7 @@
                             </div>
                             <ul>
                                 {% for concern in concerns %}
-                                <li><label><input type="checkbox" value="{{concern[0]}}"
-                                            onchange="filterbyConcern()" id="{{concern[0]}}" class="concern"><span>{{concern[1]}}</span></label></li>
+                                <li><a href="{{page}}.php?concid={{concern[0]}}" class="tran3s">{{concern[1]}}</a></li>
                                 {% endfor %}
                             </ul>
                         </div> <!-- End of .sidebar_categories -->
@@ -143,13 +142,4 @@
         </div>
     </div>
 </section>
-{% endblock %}
-
-{% block js %}
-<script>
-    function filterbyConcern(){
-        products = '{{products}}';
-        alert(products.length);
-    }
-</script>
 {% endblock %}

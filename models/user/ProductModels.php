@@ -20,14 +20,24 @@ class ProductModel
         return $randomString;
     }
 
-    public function getAllProducts()
+    public function getAllProducts($concid = null)
     {
-        $sql = 'SELECT p.discount, m.path, p.pdid,
-        p.pdname, IFNULL(p.30ml,100000),IFNULL(p.50ml,100000),IFNULL(p.100ml,100000),IFNULL(p.250ml, 100000)
-        FROM product p LEFT OUTER JOIN
-        (SELECT pdid,path FROM media WHERE isimage=TRUE AND isdefault=TRUE) m ON m.pdid=p.pdid;';
-        $prep = $this->db->prepare($sql);
-        $prep->execute();
+        if (!$concid) {
+            $sql = 'SELECT p.discount, m.path, p.pdid,
+            p.pdname, IFNULL(p.30ml,100000),IFNULL(p.50ml,100000),IFNULL(p.100ml,100000),IFNULL(p.250ml, 100000)
+            FROM product p LEFT OUTER JOIN
+            (SELECT pdid,path FROM media WHERE isimage=TRUE AND isdefault=TRUE) m ON m.pdid=p.pdid;';
+            $prep = $this->db->prepare($sql);
+            $prep->execute();
+        } else {
+            $sql = 'SELECT p.discount, m.path, p.pdid,
+            p.pdname, IFNULL(p.30ml,100000),IFNULL(p.50ml,100000),IFNULL(p.100ml,100000),IFNULL(p.250ml, 100000)
+            FROM product p LEFT OUTER JOIN
+            (SELECT pdid,path FROM media WHERE isimage=TRUE AND isdefault=TRUE) m ON m.pdid=p.pdid
+            WHERE p.pdid IN (SELECT DISTINCT(pdid) FROM prodconc WHERE concid= :concid);';
+            $prep = $this->db->prepare($sql);
+            $prep->execute(['concid' => $concid]);
+        }
         $products = $prep->fetchAll();
 
         for ($i = 0; $i < sizeof($products); $i++) {
@@ -48,15 +58,29 @@ class ProductModel
         ];
     }
 
-    public function getProductsByCategory($catid)
+    public function getProductsByCategory($catid, $concid = null)
     {
-        $sql = 'SELECT p.discount, m.path, p.pdid,
-        p.pdname, IFNULL(p.30ml,100000),IFNULL(p.50ml,100000),IFNULL(p.100ml,100000),IFNULL(p.250ml, 100000)
-        FROM prodcat pc LEFT OUTER JOIN product p on pc.pdid=p.pdid
-        LEFT OUTER JOIN (SELECT pdid,path FROM media WHERE isimage=TRUE AND isdefault=TRUE) m ON m.pdid=pc.pdid 
-        WHERE pc.catid= :catid;';
-        $prep = $this->db->prepare($sql);
-        $prep->execute(['catid' => $catid]);
+        if (!$concid) {
+            $sql = 'SELECT p.discount, m.path, p.pdid,
+            p.pdname, IFNULL(p.30ml,100000),IFNULL(p.50ml,100000),IFNULL(p.100ml,100000),IFNULL(p.250ml, 100000)
+            FROM prodcat pc LEFT OUTER JOIN product p on pc.pdid=p.pdid
+            LEFT OUTER JOIN (SELECT pdid,path FROM media WHERE isimage=TRUE AND isdefault=TRUE) m ON m.pdid=pc.pdid 
+            WHERE pc.catid= :catid;';
+            $prep = $this->db->prepare($sql);
+            $prep->execute(['catid' => $catid]);
+        } else {
+            $sql = 'SELECT p.discount, m.path, p.pdid,
+            p.pdname, IFNULL(p.30ml,100000),IFNULL(p.50ml,100000),IFNULL(p.100ml,100000),IFNULL(p.250ml, 100000)
+            FROM prodcat pc LEFT OUTER JOIN product p on pc.pdid=p.pdid
+            LEFT OUTER JOIN (SELECT pdid,path FROM media WHERE isimage=TRUE AND isdefault=TRUE) m ON m.pdid=pc.pdid 
+            WHERE pc.catid= :catid AND
+            p.pdid IN (SELECT DISTINCT(pdid) FROM prodconc WHERE concid= :concid);';
+            $prep = $this->db->prepare($sql);
+            $prep->execute([
+                'catid' => $catid,
+                'concid' => $concid
+            ]);
+        }
         $products = $prep->fetchAll();
 
         for ($i = 0; $i < sizeof($products); $i++) {
