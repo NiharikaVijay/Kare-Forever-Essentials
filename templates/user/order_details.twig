@@ -33,15 +33,104 @@
     <div class="row order-row border rounded p-1 my-3">
         <div class="col-md-12 py-3">
             <div class="d-flex flex-column align-items start"> <b>Shipping Address</b>
-                <p class="order-text-justify pt-2">{{details[3]}}, {{details[4]}}, {{details[4]}}-{{details[5]}}, {{details[6]}}.</p>
+                <p class="order-text-justify pt-2">{{details[3]}}, {{details[4]}}, {{details[4]}}-{{details[5]}},
+                    {{details[6]}}.</p>
             </div>
         </div>
     </div>
     <div class="pt-2 border-bottom mb-3"></div>
 
     {# ORDER PRODUCTS #}
-
-    <div class="d-flex justify-content-start align-items-center order-list py-1">
+    <div class="order-table-responsive">
+        <table class="order-table table-borderless" style="width: 100%">
+            <thead class="thead-primary">
+                <tr class="text-center">
+                    <th colspan="2">Item Details</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th style="float: right;">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in products %}
+                <tr class="text-center">
+                    <td class="image-prod">
+                        <div class="img" style="background-image:url({{item[0]}});"></div>
+                    </td>
+                    <td class="product-name">
+                        <h5>{{item[1]}}</h5>
+                        <p>{{item[2]}}</p>
+                    </td>
+                    <td class="price">₹ {{item[3]}}</td>
+                    <td class="quantity">{{item[4]}}</td>
+                    <td class="total">₹{{item[5]}}</td>
+                </tr>
+                {% endfor %}
+                <tr class="text-center">
+                    <td></td>
+                    <td><b>SUBTOTAL</b></td>
+                    <td></td>
+                    <td></td>
+                    <td><b>₹ {{products[0][6]}}</b></td>
+                </tr>
+                <tr class="text-center">
+                    <td></td>
+                    <td>
+                        Delivery Charges
+                    </td>
+                    {% if details[11]==0 %}
+                    <td>FREE</td>
+                    {% endif %}
+                    <td></td>
+                    {% if details[11]==0 %}
+                    <td></td>
+                    {% else %}
+                    <td>
+                        ₹ {{details[11]}}
+                    </td>
+                    {% endif %}
+                </tr>
+                {% if coupon %}
+                <tr class="text-center">
+                    <td></td>
+                    <td>
+                        Coupon used
+                    </td>
+                    <td>{{coupon[0]}}</td>
+                    <td></td>
+                    <td>
+                        - ₹{{coupon[1]}}
+                    </td>
+                </tr>
+                {% endif %}
+                {% if details[10]>0 %}
+                <tr class="text-center">
+                    <td></td>
+                    <td>
+                        Loyalty points used
+                    </td>
+                    <td>{{details[10]}} pts</td>
+                    <td></td>
+                    <td>
+                        - ₹{{details[10]}}
+                    </td>
+                </tr>
+                {% endif %}
+                <tr class="text-center">
+                    <td></td>
+                    <td>
+                        <strong>ORDER TOTAL</strong>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <strong>₹ {{details[8]}}</strong>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {# <div class="d-flex justify-content-start align-items-center order-list py-1">
         <table class="table">
             <thead class="thead-primary">
                 <tr class="text-center">
@@ -129,6 +218,6 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+    </div> #}
 </div>
 {% endblock %}
