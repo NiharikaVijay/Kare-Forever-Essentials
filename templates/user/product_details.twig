@@ -1,6 +1,93 @@
 {% extends 'template.twig' %}
 
 {% block content %}
+{% for product in related %}
+{# Move to cart Modal #}
+<div class="modal" id="cart-modal-{{product[2]}}">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h6 style="color:white;" class="modal-title">Adding to your cart</h6>
+        </div>
+        <div class="modal-body">
+            <form action="cart_add.php" method="POST" id="cart-form" class="billing-form">
+                <input name="pdid" type="hidden" value="{{product[1]}}">
+                <h3 class="mb-4 billing-heading">{{product[3]}}</h3>
+                <div class="row align-items-end">
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="country">Volume</label>
+                            <div class="select-wrap">
+                                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                <select id="volume-{{product[1]}}" name="volume" class="form-control">
+                                    {% if product[4] %}
+                                    <option value="30ml">30ml</option>
+                                    {% endif %}
+                                    {% if product[5] %}
+                                    <option value="50ml">50ml</option>
+                                    {% endif %}
+                                    {% if product[6] %}
+                                    <option value="100ml">100ml</option>
+                                    {% endif %}
+                                    {% if product[7] %}
+                                    <option value="250ml">250ml</option>
+                                    {% endif %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    {# <div class="w-100"></div> #}
+                    <div class="col-xl-6">
+                        <label for="quantity-{{product[2]}}">Quantity</label><br>
+                        <div class="input-group xl-6">
+                            <button type="button" class="quantity-left-minus btn" data-type="minus" data-field=""
+                                onclick="qtyDecCart('{{product[2]}}')">
+                                <i class="ion-ios-remove"></i>
+                            </button>
+                            <input type="text" id="quantity-{{product[2]}}" name="qty"
+                                class="quantity form-control input-number" value=1>
+                            <button type="button" class="quantity-right-plus btn" data-type="plus" data-field=""
+                                onclick="qtyIncCart('{{product[2]}}')">
+                                <i class="ion-ios-add"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="w-100"></div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn border" data-dismiss="modal">
+                Cancel
+            </button>
+            <button type="submit" form="cart-form" class="btn bg-primary right-content" style="color:white;">Add
+            </button>
+        </div>
+    </div>
+</div>
+
+{# Move to wishlist modal #}
+<div class="modal" id="wishlist-modal-{{product[2]}}">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h6 style="color:white;" class="modal-title">Adding to your Wishlist</h6>
+        </div>
+        <div class="modal-body">
+            <form action="wishlist_add.php" method="POST" id="cart-form" class="billing-form">
+                <input name="pdid" type="hidden" value="{{product[2]}}">
+                <h3 class="mb-4 billing-heading">{{product[3]}}</h3>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn border" data-dismiss="modal">
+                Cancel
+            </button>
+            <button type="submit" form="cart-form" class="btn bg-primary right-content" style="color:white;">Add
+            </button>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
 <div class="modal" id="cart-modal">
     <div class="modal-content">
         <div class="modal-header">
@@ -227,8 +314,8 @@
                         {% for prod in related %}
                         <div class="col-md-6 col-lg-3 ftco-animate">
                             <div class="product">
-                                <a href="product_details.php?pdid={{prod[1]}}" class="img-prod"><img class="img-fluid" src="{{prod[0]}}"
-                                        alt="Colorlib Template">
+                                <a href="product_details.php?pdid={{prod[1]}}" class="img-prod"><img class="img-fluid"
+                                        src="{{prod[0]}}" alt="Colorlib Template">
                                     {% if prod[2]>0 %}
                                     <span class="status">{{prod[2]}}%</span>
                                     {% endif %}
@@ -268,10 +355,12 @@
                                     <div class="bottom-area d-flex px-3">
                                         <div class="m-auto d-flex">
                                             <a href="#"
-                                                class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                                class="buy-now d-flex justify-content-center align-items-center mx-1"
+                                                data-toggle="modal" data-target="#cart-modal-{{prod[2]}}">
                                                 <span><i class="ion-ios-cart"></i></span>
                                             </a>
-                                            <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                            <a href="#" class="heart d-flex justify-content-center align-items-center "
+                                                data-toggle="modal" data-target="#wishlist-modal-{{prod[2]}}">
                                                 <span><i class="ion-ios-heart"></i></span>
                                             </a>
                                         </div>
@@ -289,6 +378,20 @@
 {% endblock %}
 
 {% block js %}
+<script>
+    function qtyDecCart(pdid) {
+        var n = Number(document.getElementById('quantity-' + pdid).value);
+        if (n > 0) {
+            document.getElementById('quantity-' + pdid).value = (n - 1).toString();
+        }
+        qtyChanged();
+    }
+
+    function qtyIncCart(pdid) {
+        document.getElementById('quantity-' + pdid).value = (Number(document.getElementById('quantity-' + pdid).value) + 1).toString();
+        qtyChanged();
+    }
+</script>
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
