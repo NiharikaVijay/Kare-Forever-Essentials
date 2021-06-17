@@ -221,8 +221,10 @@
                             Hi {{account['fname']}}
                             {% endif %}
                         </a>
+
                         <div class="dropdown-menu" aria-labelledby="dropdown04">
                             {% if account['cxloggedin']== false %}
+                            
                             <a class="dropdown-item" href="login.php">Log In</a>
                             {% endif %}
                             <a class="dropdown-item" href="orders.php">My Orders</a>

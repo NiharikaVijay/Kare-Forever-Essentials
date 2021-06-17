@@ -474,6 +474,12 @@ pre {
   margin-right: -15px;
   margin-left: -15px; }
 
+  .ingredients_container{
+    align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;}
+
 .no-gutters {
   margin-right: 0;
   margin-left: 0; }
@@ -8842,7 +8848,7 @@ h1, h2, h3, h4, h5,
   padding: 0 15px; }
 
 .product-details button, .product-details .form-control {
-  height: 40px !important;
+  height: 60px !important;
   text-align: center;
   border: 1px solid rgba(0, 0, 0, 0.1) !important;
   color: #B76F4E;
@@ -8852,7 +8858,7 @@ h1, h2, h3, h4, h5,
   -moz-border-radius: 0;
   -ms-border-radius: 0;
   border-radius: 0;
-  font-size: 14px; }
+  font-size: 18px; }
   .product-details button:hover, .product-details button:focus, .product-details .form-control:hover, .product-details .form-control:focus {
     text-decoration: none;
     outline: none; }
@@ -16648,27 +16654,46 @@ margin-left: 4px;
   text-decoration: underline;
 }  
 
+.product-details button, .product-details .form-control {
+  height: 60px !important;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  color: #B76F4E;
+  padding: 10px 20px;
+  background: transparent !important;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  border-radius: 0;
+  font-size: 18px; }
+  .product-details button:hover, .product-details button:focus, .product-details .form-control:hover, .product-details .form-control:focus {
+    text-decoration: none;
+    outline: none; }
 
 
  .btn.btn-qty {
-    padding: 15px 25px;
-  font-size: 6px;
+  height: 20px !important
+  padding: 5px 7px;
   text-align: center;
   cursor: pointer;
   outline: none;
-  color: black;
+  color: #B76F4E;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+   font-size: 13px;
   /*background-color: #F4F2E4;*/
-  border: none;
-  border-radius: 5px;
-  box-shadow: 0 9px #ceb57f;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  border-radius: 2px;
+  box-shadow: 0 9px #B76F4E;
 }
     .btn.btn-qty:hover {
-     background-color: #F4F2E4;
+     background-color: #B76F4E;
    }
 
    .btn.btn-qty:active {
   background-color: #F4F2E4;
-  box-shadow: 0 5px #ceb57f;
+  box-shadow: 0 5px #B76F4E;
   transform: translateY(4px);
 }
 
@@ -16757,6 +16782,8 @@ input[type=number]::-webkit-outer-spin-button {
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif
 }
+
+
 
 
 #order-heading {
