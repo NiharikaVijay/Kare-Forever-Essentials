@@ -11,7 +11,7 @@
         <div class="modal-body">
             <form action="cart_add.php" method="POST" id="cart-form" class="billing-form">
                 <input name="pdid" type="hidden" value="{{product[1]}}">
-                <h3 class="mb-4 billing-heading">{{product[3]}}</h3>
+                <h3 class="mb-4 billing-heading">{{product[3]}}TEST</h3>
                 <div class="row align-items-end">
                     <div class="col-xl-6">
                         <div class="form-group">
@@ -103,20 +103,9 @@
                             <label for="country">Volume</label>
                             <div class="select-wrap">
                                 <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                <select id="volume" name="volume" class="form-control">
-                                    {% if details[14] %}
-                                    <option value="30ml">30ml</option>
-                                    {% endif %}
-                                    {% if details[15] %}
-                                    <option value="50ml">50ml</option>
-                                    {% endif %}
-                                    {% if details[16] %}
-                                    <option value="100ml">100ml</option>
-                                    {% endif %}
-                                    {% if details[17] %}
-                                    <option value="250ml">250ml</option>
-                                    {% endif %}
-                                </select>
+                                <input id="volume" name="volume" type="hidden">
+                                
+                        
                             </div>
                         </div>
                     </div>
@@ -243,27 +232,26 @@
                                         <div class="select-wrap">
                                             {% if details[11] %}
                                             <button class="btn btn-qty"
-                                                onclick="changePrice('{{details[11]}}')">30ml</button>
+                                                onclick="changePrice('{{details[11]}}', '30ml')">30ml</button>
                                             {% endif %}
                                             {% if details[12] %}
                                             <button class="btn btn-qty"
-                                                onclick="changePrice('{{details[12]}}')">50ml</button>
+                                                onclick="changePrice('{{details[12]}}', '50ml')">50ml</button>
                                             {% endif %}
                                             {% if details[13] %}
                                             <button class="btn btn-qty"
-                                                onclick="changePrice('{{details[13]}}')">100ml</button>
+                                                onclick="changePrice('{{details[13]}}', '100ml')">100ml</button>
                                             {% endif %}
                                             {% if details[14] %}
                                             <button class="btn btn-qty"
-                                                onclick="changePrice('{{details[14]}}')">250ml</button>
+                                                onclick="changePrice('{{details[14]}}', '250ml')">250ml</button>
                                             {% endif %}
                                         </div>
                                     </div>
                                 </div>
                                 <br>
                                 <br><br>
-                                <p><a href="#" class="btn btn-black py-3 px-5" data-toggle="modal"
-                                        data-target="#cart-modal">Add to Cart</a>
+                                <p><button type="submit" form="cart-form" class="btn btn-black py-3 px-5">Add to Cart</button>
                                     <span> </span>
                                     <a href="#" class="btn btn-black py-3 px-5">Buy Now</a>
                                 </p>
@@ -419,8 +407,9 @@
         setTimeout(showSlides, 2000); // Change image every 2 seconds
     }
 
-    function changePrice(price) {
+    function changePrice(price, volume) {
         document.getElementsByName('price')[0].innerHTML = '₹ ' + price;
+        document.getElementById('volume').value = volume;
     }
 
     function qtyDec() {

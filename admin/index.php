@@ -8,10 +8,10 @@ error_reporting(E_ALL);
 session_start();
 // If the user is not logged in redirect to the login page...
 if (!isset($_SESSION['loggedin'])) {
-    echo "NOT LOGGED IN";
-    exit;
-    // header('Location: login.php');
-    // exit;
+   // echo "NOT LOGGED IN";
+   // exit;
+    header('Location: login.php');
+     exit;
 }
 
 require dirname(dirname(__FILE__)) . '/vendor/autoload.php';

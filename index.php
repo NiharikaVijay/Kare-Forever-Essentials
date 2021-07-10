@@ -8,8 +8,7 @@ if (!isset($_SESSION['cxid'])) {
 
     $helperModel = new HelperModel($db);
     $_SESSION['cxloggedin'] = false;
-    $_SESSION['cxid'] = $helperModel->generateRandomString(5);
-}
+    $_SESSION['cxid'] = $helperModel->generateRandomString(5); }
 
 # TODO To be removed during deployment
 ini_set('display_errors', 1);

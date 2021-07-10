@@ -146,13 +146,28 @@ class CustomerModel
 
     public function addToCart($cxid, $data)
     {
+        $sql = 'SELECT * FROM customer WHERE cxid= :cxid;';
+        $prep = $this->db->prepare($sql);
+        $prep->execute([
+            'cxid' => $cxid
+        ]);
+        $cx = $prep->fetchAll();
+
+        if(sizeof($cx)==0){
+             $sql = 'INSERT into customer values (:cxid, \' \', \' \', \' \', 0, \' \' );';
+        $prep = $this->db->prepare($sql);
+        $prep->execute([
+            'cxid' => $cxid
+        ]);
+        }
+
         $sql = 'REPLACE INTO cart VALUES(:cxid, :pdid, :pdvolume, :pdqty);';
         $prep = $this->db->prepare($sql);
         $prep->execute([
             'cxid' => $cxid,
             'pdid' => $data['pdid'],
             'pdvolume' => $data['volume'],
-            'pdqty' => $data['qty']
+            'pdqty' => 1
         ]);
     }
 

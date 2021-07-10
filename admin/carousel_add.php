@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     ]);
 } else {
     $rank = $_POST['rank'];
-    $tagline = $_POST['tagline'];
+    $tagline = '';
     $link = $_POST['link'];
     $img = $_FILES['image'];
 

@@ -13719,6 +13719,12 @@ margin-top: 45px;
   width:100%;
 }
 /*============================ Footer =====================*/
+
+@media only screen and (max-width: 768px) {
+  footer {
+    display: none !important;
+  }
+}
 footer {
   padding-top: 60px;
   background: #363636;
