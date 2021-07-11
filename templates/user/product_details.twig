@@ -2,142 +2,41 @@
 
 {% block content %}
 {% for product in related %}
-{# Move to cart Modal #}
-<div class="modal" id="cart-modal-{{product[2]}}">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h6 style="color:white;" class="modal-title">Adding to your cart</h6>
-        </div>
-        <div class="modal-body">
-            <form action="cart_add.php" method="POST" id="cart-form" class="billing-form">
-                <input name="pdid" type="hidden" value="{{product[1]}}">
-                <h3 class="mb-4 billing-heading">{{product[3]}}TEST</h3>
-                <div class="row align-items-end">
-                    <div class="col-xl-6">
-                        <div class="form-group">
-                            <label for="country">Volume</label>
-                            <div class="select-wrap">
-                                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                <select id="volume-{{product[1]}}" name="volume" class="form-control">
-                                    {% if product[4] %}
-                                    <option value="30ml">30ml</option>
-                                    {% endif %}
-                                    {% if product[5] %}
-                                    <option value="50ml">50ml</option>
-                                    {% endif %}
-                                    {% if product[6] %}
-                                    <option value="100ml">100ml</option>
-                                    {% endif %}
-                                    {% if product[7] %}
-                                    <option value="250ml">250ml</option>
-                                    {% endif %}
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    {# <div class="w-100"></div> #}
-                    <div class="col-xl-6">
-                        <label for="quantity-{{product[2]}}">Quantity</label><br>
-                        <div class="input-group xl-6">
-                            <button type="button" class="quantity-left-minus btn" data-type="minus" data-field=""
-                                onclick="qtyDecCart('{{product[2]}}')">
-                                <i class="ion-ios-remove"></i>
-                            </button>
-                            <input type="text" id="quantity-{{product[2]}}" name="qty"
-                                class="quantity form-control input-number" value=1>
-                            <button type="button" class="quantity-right-plus btn" data-type="plus" data-field=""
-                                onclick="qtyIncCart('{{product[2]}}')">
-                                <i class="ion-ios-add"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="w-100"></div>
-                </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn border" data-dismiss="modal">
-                Cancel
-            </button>
-            <button type="submit" form="cart-form" class="btn bg-primary right-content" style="color:white;">Add
-            </button>
-        </div>
-    </div>
-</div>
+{# Add to cart Form - related products #}
+<form action="cart_add.php" method="POST" id="cart-form-{{product[1]}}" class="billing-form">
+    <input name="pdid" id="volume-{{product[1]}}" type="hidden" value="{{product[1]}}">
+    {% if product[4] %}
+    <input name="volume" id="volume-{{product[1]}}" type="hidden" value="30ml">
+    {% elseif product[5] %}
+    <input name="volume" id="volume-{{product[1]}}" type="hidden" value="50ml">
+    {% elseif product[6] %}
+    <input name="volume" id="volume-{{product[1]}}" type="hidden" value="100ml">
+    {% elseif product[7] %}
+    <input name="volume" id="volume-{{product[1]}}" type="hidden" value="250ml">
+    {% endif %}
+    <input name="qty" id="quantity-{{product[1]}}" type="hidden" value="1">
+</form>
 
-{# Move to wishlist modal #}
-<div class="modal" id="wishlist-modal-{{product[2]}}">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h6 style="color:white;" class="modal-title">Adding to your Wishlist</h6>
-        </div>
-        <div class="modal-body">
-            <form action="wishlist_add.php" method="POST" id="cart-form" class="billing-form">
-                <input name="pdid" type="hidden" value="{{product[2]}}">
-                <h3 class="mb-4 billing-heading">{{product[3]}}</h3>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn border" data-dismiss="modal">
-                Cancel
-            </button>
-            <button type="submit" form="cart-form" class="btn bg-primary right-content" style="color:white;">Add
-            </button>
-        </div>
-    </div>
-</div>
+{# Add to wishlist form - related products #}
+<form action="wishlist_add.php" method="POST" id="wishlist-form-{{product[1]}}" class="billing-form">
+    <input name="pdid" type="hidden" value="{{product[1]}}">
+</form>
 {% endfor %}
 
-<div class="modal" id="cart-modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h6 style="color:white;" class="modal-title">Moving to your cart</h6>
-        </div>
-        <div class="modal-body">
-            <form action="cart_add.php" method="POST" id="cart-form" class="billing-form">
-                <input name="pdid" type="hidden" value="{{details[3]}}">
-                <h3 class="mb-4 billing-heading">{{details[0]}}</h3>
-                <div class="row align-items-end">
-                    <div class="col-xl-6">
-                        <div class="form-group">
-                            <label for="country">Volume</label>
-                            <div class="select-wrap">
-                                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                <input id="volume" name="volume" type="hidden">
-                                
-                        
-                            </div>
-                        </div>
-                    </div>
-                    {# <div class="w-100"></div> #}
-                    <div class="col-xl-6">
-                        <label for="cart-quantity">Quantity</label><br>
-                        <div class="input-group xl-6">
-                            <button type="button" class="quantity-left-minus btn" data-type="minus" data-field=""
-                                onclick="qtyDec()">
-                                <i class="ion-ios-remove"></i>
-                            </button>
-                            <input type="text" id="cart-quantity" name="qty" class="quantity form-control input-number"
-                                value=1>
-                            <button type="button" class="quantity-right-plus btn" data-type="plus" data-field=""
-                                onclick="qtyInc()">
-                                <i class="ion-ios-add"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="w-100"></div>
-                </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn border" data-dismiss="modal">
-                Cancel
-            </button>
-            <button type="submit" form="cart-form" class="btn bg-primary right-content" style="color:white;">Move
-            </button>
-        </div>
-    </div>
-</div>
+{# Add to cart form - Current product #}
+<form action="cart_add.php" method="POST" id="cart-form" class="billing-form">
+    <input name="pdid" type="hidden" value="{{details[3]}}">
+    {% if details[7] %}
+    <input id="volume-curr" name="volume" type="hidden" value="30ml">
+    {% elseif product[8] %}
+    <input id="volume-curr" name="volume" type="hidden" value="50ml">
+    {% elseif product[9] %}
+    <input id="volume-curr" name="volume" type="hidden" value="100ml">
+    {% elseif product[10] %}
+    <input id="volume-curr" name="volume" type="hidden" value="250ml">
+    {% endif %}
+    <input id="qty" name="qty-{{details[3]}}" type="hidden" value="1">
+</form>
 
 <div class="Container">
     <div class="ProductMeta">
@@ -251,7 +150,9 @@
                                 </div>
                                 <br>
                                 <br><br>
-                                <p><button type="submit" form="cart-form" class="btn btn-black py-3 px-5">Add to Cart</button>
+                                <p><button type="submit" form="cart-form-{{details[3]}}"
+                                        class="btn btn-black py-3 px-5">Add to
+                                        Cart</button>
                                     <span> </span>
                                     <a href="#" class="btn btn-black py-3 px-5">Buy Now</a>
                                 </p>
@@ -344,14 +245,17 @@
                                     {% endif %}
                                     <div class="bottom-area d-flex px-3">
                                         <div class="m-auto d-flex">
-                                            <a href="#"
+                                            {# <a href="#"
                                                 class="buy-now d-flex justify-content-center align-items-center mx-1"
-                                                data-toggle="modal" data-target="#cart-modal-{{prod[2]}}">
-                                                <span><i class="ion-ios-cart"></i></span>
+                                                data-toggle="modal" data-target="#cart-modal-{{prod[2]}}"> #}
+                                                <button type="submit" form="cart-form-{{prod[1]}}">
+                                                    <span><i class="ion-ios-cart"></i></span></button>
                                             </a>
-                                            <a href="#" class="heart d-flex justify-content-center align-items-center "
-                                                data-toggle="modal" data-target="#wishlist-modal-{{prod[2]}}">
-                                                <span><i class="ion-ios-heart"></i></span>
+                                            {# <a href="#"
+                                                class="heart d-flex justify-content-center align-items-center "
+                                                data-toggle="modal" data-target="#wishlist-modal-{{prod[2]}}"> #}
+                                                <button type="submit" form="wishlist-form-{{prod[1]}}">
+                                                    <span><i class="ion-ios-heart"></i></span></button>
                                             </a>
                                         </div>
                                     </div>
@@ -409,7 +313,7 @@
 
     function changePrice(price, volume) {
         document.getElementsByName('price')[0].innerHTML = '₹ ' + price;
-        document.getElementById('volume').value = volume;
+        document.getElementById('volume-curr').value = volume;
     }
 
     function qtyDec() {
