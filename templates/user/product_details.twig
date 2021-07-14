@@ -96,25 +96,25 @@
                                 <table>
                                     <tbody>
                                         {% if details[11] %}
-                                        <tr>
+                                        <tr class="ingredients_container">
                                             <td><button class="btn btn-price" name="price">₹ <del>{{details[7]}}</del>
                                                     {{details[11]}}</button>
                                             </td>
                                         </tr>
                                         {% elseif details[12] %}
-                                        <tr>
+                                        <tr class="ingredients_container">
                                             <td><button class="btn btn-price" name="price">₹ <del>{{details[8]}}</del>
                                                     {{details[12]}}</button>
                                             </td>
                                         </tr>
                                         {% elseif details[13] %}
-                                        <tr>
+                                        <tr class="ingredients_container">
                                             <td><button class="btn btn-price" name="price">₹ <del>{{details[9]}}</del>
                                                     {{details[13]}}</button>
                                             </td>
                                         </tr>
                                         {% elseif details[14] %}
-                                        <tr>
+                                        <tr class="ingredients_container">
                                             <td><button class="btn btn-price" name="price">₹ <del>{{details[10]}}</del>
                                                     {{details[14]}}</button>
                                             </td>
@@ -125,7 +125,7 @@
                             </div>
                             <!-- <p><b>INGREDIENTS:</b>&ensp;{{details[3]}}</p> -->
                             <p><b>APPLICATION:</b>&ensp;{{details[5]}}</p>
-                            <div class="row mt-4">
+                            <div class="row ingredients_container mt-4">
                                 <div class="col-md-6">
                                     <div class="form-group d-flex">
                                         <div class="select-wrap">
@@ -151,8 +151,7 @@
                                 <br>
                                 <br><br>
                                 <p><button type="submit" form="cart-form-{{details[3]}}"
-                                        class="btn btn-black py-3 px-5">Add to
-                                        Cart</button>
+                                        class="btn btn-black py-3 px-5">Add to Cart</button>
                                     <span> </span>
                                     <a href="#" class="btn btn-black py-3 px-5">Buy Now</a>
                                 </p>
@@ -201,7 +200,7 @@
                     </div>
                 </div>
                 <div class="container">
-                    <div class="row">
+                    <div class="row ingredients_container">
                         {% for prod in related %}
                         <div class="col-md-6 col-lg-3 ftco-animate">
                             <div class="product">

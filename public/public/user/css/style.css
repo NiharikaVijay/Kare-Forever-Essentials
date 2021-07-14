@@ -8020,7 +8020,7 @@ body {
   font-size: 15px;
   line-height: 1.8;
   font-weight: 400;
-  color: gray; }
+ /* color: gray; */}
   body.menu-show {
     overflow: hidden;
     position: fixed;
@@ -8761,7 +8761,7 @@ h1, h2, h3, h4, h5,
     position: relative;
     width: 100%; 
   min-height: 110px;
-    max-height: 110px;}
+    max-height: 172px;}
 
 
     .product .text h3 {
